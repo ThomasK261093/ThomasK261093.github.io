@@ -559,10 +559,10 @@
     /* ── Section padding adjustment for container ───────────────── */
     section { padding-left: 0; padding-right: 0; }
 
-    /* ── Burn Scene 3D ──────────────────────────────────────────────── */
-    .burn-scene { background: #06101a; overflow: hidden; }
-    .burn-canvas-wrap { position: relative; width: 100%; height: 420px; }
-    #burnCanvas { display: block; width: 100%; height: 100%; }
+    /* ── Burn Scene Video ───────────────────────────────────────────── */
+    .burn-scene { background: #000; overflow: hidden; }
+    .burn-video-wrap { position: relative; width: 100%; line-height: 0; }
+    .burn-video-wrap video { width: 100%; display: block; }
     .burn-badge-3d {
       position: absolute; top: 16px; right: 20px; z-index: 10;
       display: flex; align-items: center; gap: 8px;
@@ -579,7 +579,7 @@
     }
     .burn-caption {
       text-align: center; padding: 18px 24px 26px;
-      font-size: 15px; color: var(--text3); font-weight: 500; background: #06101a;
+      font-size: 15px; color: var(--text3); font-weight: 500; background: #000;
     }
     .burn-caption strong { color: #ff6a00; }
   </style>
@@ -630,10 +630,12 @@
   <div class="scroll-hint">Scroll</div>
 </section>
 
-<!-- ── Burn Scene 3D ───────────────────────────────────────────── -->
+<!-- ── Burn Scene Video ───────────────────────────────────────── -->
 <section class="burn-scene">
-  <div class="burn-canvas-wrap" id="burnWrap">
-    <canvas id="burnCanvas"></canvas>
+  <div class="burn-video-wrap">
+    <video autoplay loop muted playsinline preload="auto">
+      <source src="burn_loop.mp4" type="video/mp4">
+    </video>
     <div class="burn-badge-3d">
       <span class="sun-ico">☀️</span>
       Asphalt: 62°C
@@ -644,281 +646,6 @@
   </p>
 </section>
 
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
-    "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
-  }
-}
-</script>
-<script type="module">
-import * as THREE from 'three';
-import { EffectComposer }    from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass }        from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass }   from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { OutputPass }        from 'three/addons/postprocessing/OutputPass.js';
-
-const wrap   = document.getElementById('burnWrap');
-const canvas = document.getElementById('burnCanvas');
-if (!wrap || !canvas) throw new Error('no canvas');
-
-/* ── Renderer ──────────────────────────────────────────────── */
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type    = THREE.PCFSoftShadowMap;
-renderer.toneMapping       = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.0;
-
-/* ── Scene / Camera ────────────────────────────────────────── */
-const scene  = new THREE.Scene();
-scene.background = new THREE.Color(0x06101a);
-scene.fog        = new THREE.FogExp2(0x06101a, 0.055);
-
-const camera = new THREE.PerspectiveCamera(46, 1, 0.1, 60);
-camera.position.set(0, 1.6, 6.2);
-camera.lookAt(0, 1.1, 0);
-
-/* ── Resize ────────────────────────────────────────────────── */
-let W, H;
-function resize() {
-  W = wrap.clientWidth; H = 440;
-  renderer.setSize(W, H);
-  composer.setSize(W, H);
-  bloomPass.resolution.set(W, H);
-  camera.aspect = W / H;
-  camera.updateProjectionMatrix();
-}
-
-/* ── Post-processing ───────────────────────────────────────── */
-const composer  = new EffectComposer(renderer);
-const bloomPass = new UnrealBloomPass(new THREE.Vector2(1280, 440), 0.35, 0.55, 0.80);
-composer.addPass(new RenderPass(scene, camera));
-composer.addPass(bloomPass);
-composer.addPass(new OutputPass());
-
-/* ── Lights ────────────────────────────────────────────────── */
-const sun = new THREE.DirectionalLight(0xfff5d0, 3.5);
-sun.position.set(4, 10, 5);
-sun.castShadow = true;
-sun.shadow.mapSize.set(2048, 2048);
-Object.assign(sun.shadow.camera, { near:1, far:25, left:-4, right:4, top:4, bottom:-4 });
-sun.shadow.bias = -0.0006;
-scene.add(sun);
-scene.add(new THREE.AmbientLight(0x1a2840, 1.8));
-scene.add(new THREE.HemisphereLight(0x304070, 0x201410, 0.8));
-
-const burnPL = new THREE.PointLight(0xff4400, 0, 5, 1.8);
-burnPL.position.set(0, 0.35, 0.25);
-scene.add(burnPL);
-
-/* ── Asphalt texture ───────────────────────────────────────── */
-const tc = document.createElement('canvas');
-tc.width = tc.height = 512;
-const tc2 = tc.getContext('2d');
-tc2.fillStyle = '#181818'; tc2.fillRect(0,0,512,512);
-for (let i=0;i<18000;i++){
-  const v=Math.floor(Math.random()*30+4);
-  tc2.fillStyle=`rgb(${v},${v},${v})`;
-  tc2.fillRect(Math.random()*512,Math.random()*512,Math.random()*2.8+0.4,Math.random()*2.8+0.4);
-}
-for (let i=0;i<380;i++){
-  const x=Math.random()*512,y=Math.random()*512,r=Math.random()*5.5+1,v=Math.floor(Math.random()*20+18);
-  tc2.fillStyle=`rgba(${v},${v},${v},0.5)`;
-  tc2.beginPath();tc2.arc(x,y,r,0,Math.PI*2);tc2.fill();
-}
-tc2.strokeStyle='rgba(0,0,0,0.4)';tc2.lineWidth=1.2;
-for (let i=0;i<8;i++){
-  tc2.beginPath();let px=Math.random()*512,py=Math.random()*512;tc2.moveTo(px,py);
-  for(let j=0;j<5;j++){px+=Math.random()*100-50;py+=Math.random()*50-25;tc2.lineTo(px,py);}
-  tc2.stroke();
-}
-const aspTex = new THREE.CanvasTexture(tc);
-aspTex.wrapS = aspTex.wrapT = THREE.RepeatWrapping;
-aspTex.repeat.set(5,5);
-
-const ground = new THREE.Mesh(
-  new THREE.PlaneGeometry(24,24),
-  new THREE.MeshStandardMaterial({ map:aspTex, roughness:0.97, metalness:0 })
-);
-ground.rotation.x = -Math.PI/2;
-ground.receiveShadow = true;
-scene.add(ground);
-
-/* Emissive burn mark on asphalt */
-const burnMarkMat = new THREE.MeshStandardMaterial({
-  color:0xff1800, emissive:0xff0800, emissiveIntensity:0,
-  transparent:true, opacity:0,
-});
-const burnMark = new THREE.Mesh(new THREE.CircleGeometry(1.05, 40), burnMarkMat);
-burnMark.rotation.x = -Math.PI/2;
-burnMark.position.y = 0.009;
-scene.add(burnMark);
-
-/* ── Helpers ───────────────────────────────────────────────── */
-function squircle(rx, ry, n=3.0, segs=80) {
-  const s = new THREE.Shape();
-  for (let i=0;i<=segs;i++){
-    const t=(i/segs)*Math.PI*2, c=Math.cos(t), si=Math.sin(t);
-    const x=rx*Math.sign(c)*Math.pow(Math.abs(c),2/n);
-    const y=ry*Math.sign(si)*Math.pow(Math.abs(si),2/n);
-    i===0?s.moveTo(x,y):s.lineTo(x,y);
-  }
-  return s;
-}
-const EX = { depth:0.20, bevelEnabled:true, bevelThickness:0.11, bevelSize:0.11, bevelSegments:10 };
-
-/* ── Fur texture ───────────────────────────────────────────── */
-const fc = document.createElement('canvas');
-fc.width = fc.height = 256;
-const f2 = fc.getContext('2d');
-f2.fillStyle='#3e2208';f2.fillRect(0,0,256,256);
-for (let i=0;i<320;i++){
-  const x=Math.random()*256,y=Math.random()*256,len=10+Math.random()*22;
-  const ang=-0.25+(Math.random()-0.5)*0.5;
-  const v=Math.floor(Math.random()*50+80);
-  f2.strokeStyle=`rgba(${v},${Math.floor(v*0.45)},${Math.floor(v*0.12)},0.75)`;
-  f2.lineWidth=1+Math.random()*1.8;
-  f2.beginPath();f2.moveTo(x,y);f2.lineTo(x+Math.sin(ang)*len,y-Math.cos(ang)*len);f2.stroke();
-}
-const furTex = new THREE.CanvasTexture(fc);
-furTex.wrapS=furTex.wrapT=THREE.RepeatWrapping;
-furTex.repeat.set(4,3);
-
-/* ── Materials ─────────────────────────────────────────────── */
-const padMat = new THREE.MeshStandardMaterial({
-  color:0xbf8060, roughness:0.78, metalness:0,
-  emissive:new THREE.Color(0,0,0), emissiveIntensity:0,
-});
-const furMat = new THREE.MeshStandardMaterial({ map:furTex, roughness:0.96, metalness:0 });
-const clawMat = new THREE.MeshStandardMaterial({ color:0x120a04, roughness:0.6 });
-
-/* ── Paw group ─────────────────────────────────────────────── */
-const paw = new THREE.Group();
-paw.position.set(0, 5.5, 0.18);
-scene.add(paw);
-
-// Main pad — squircle extrusion
-const mainPadMesh = new THREE.Mesh(new THREE.ExtrudeGeometry(squircle(0.76,0.64,3.0), EX), padMat);
-mainPadMesh.rotation.x = Math.PI/2;
-mainPadMesh.position.set(0, 0, -0.1);
-mainPadMesh.castShadow = true;
-paw.add(mainPadMesh);
-
-// 4 toe beans
-[[-1.06,0,-0.62],[-0.40,0,-1.04],[0.40,0,-1.04],[1.06,0,-0.62]].forEach(([x,y,z])=>{
-  const m = new THREE.Mesh(new THREE.ExtrudeGeometry(squircle(0.38,0.35,2.6), EX), padMat);
-  m.rotation.x = Math.PI/2;
-  m.position.set(x,y,z-0.1);
-  m.castShadow = true;
-  paw.add(m);
-});
-
-// Claws — tapered cylinders
-[[-1.14,-0.22,-0.90],[-0.42,-0.22,-1.33],[0.42,-0.22,-1.33],[1.14,-0.22,-0.90]].forEach(([x,y,z],i)=>{
-  const m = new THREE.Mesh(new THREE.CylinderGeometry(0.038,0.008,0.3,8), clawMat);
-  m.position.set(x,y,z);
-  m.rotation.x = -0.6 + (i<2?-1:1)*0.05;
-  m.rotation.z = (i-1.5)*0.18;
-  m.castShadow = true;
-  paw.add(m);
-});
-
-// Leg — LatheGeometry with taper
-const prof = [];
-for (let i=0;i<14;i++){
-  const t=i/13;
-  prof.push(new THREE.Vector2(0.56+t*0.06, t*2.2));
-}
-const legMesh = new THREE.Mesh(new THREE.LatheGeometry(prof,22), furMat);
-legMesh.position.set(0,0.02,0.1);
-legMesh.castShadow = true;
-paw.add(legMesh);
-
-/* ── Smoke particles ───────────────────────────────────────── */
-const smokes = [];
-for (let i=0;i<30;i++){
-  const m = new THREE.Mesh(
-    new THREE.SphereGeometry(0.10+Math.random()*0.09,7,7),
-    new THREE.MeshBasicMaterial({ color:0xcccccc, transparent:true, opacity:0 })
-  );
-  m.visible = false; scene.add(m);
-  smokes.push({ mesh:m, active:false, life:0,
-    maxLife:1.2+Math.random()*0.6,
-    ox:(Math.random()-0.5)*1.5, oz:(Math.random()-0.5)*0.9,
-    vy:0.65+Math.random()*0.5, vx:(Math.random()-0.5)*0.22,
-  });
-}
-
-/* ── Animation ─────────────────────────────────────────────── */
-const CYCLE=3.8;
-let t=0, last=performance.now(), burnAlpha=0, camAngle=0;
-const ease    = x => x<0.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
-const easeOut = x => 1-Math.pow(1-x,3);
-
-function tick(){
-  requestAnimationFrame(tick);
-  const now=performance.now(), dt=Math.min((now-last)/1000,0.05); last=now;
-  t=(t+dt)%CYCLE;
-  const tn=t/CYCLE;
-  const PD=0.17,PB=0.34,PU=0.46, FY=5.2, TY=0.40;
-
-  // Paw Y
-  let py, burn=0;
-  if(tn<PD){ py=FY+(TY-FY)*ease(tn/PD); }
-  else if(tn<PB){ const p=(tn-PD)/(PB-PD); py=TY-Math.sin(p*Math.PI)*0.06; burn=Math.sin(p*Math.PI); }
-  else if(tn<PU){ py=TY+(FY*1.06-TY)*easeOut((tn-PB)/(PU-PB)); }
-  else { py=FY+Math.sin((tn-PU)*Math.PI*1.7)*0.16; }
-  paw.position.y = py;
-
-  const inContact = (tn>=PD && tn<PB);
-
-  // Shake
-  if(inContact){ const s=now*0.026; paw.rotation.z=Math.sin(s*2.9)*0.042; paw.rotation.x=Math.sin(s*2.2)*0.028; }
-  else { paw.rotation.z*=0.86; paw.rotation.x*=0.86; }
-
-  // Burn light + bloom
-  burnPL.intensity = THREE.MathUtils.lerp(burnPL.intensity, inContact ? burn*18 : 0, dt*8);
-  bloomPass.strength = THREE.MathUtils.lerp(bloomPass.strength, inContact ? 0.35+burn*2.4 : 0.35, dt*5);
-
-  // Pad emissive
-  padMat.emissive.setHex(0xff2200);
-  padMat.emissiveIntensity = THREE.MathUtils.lerp(padMat.emissiveIntensity, burn*0.85, dt*7);
-
-  // Burn mark on ground
-  if(inContact) burnAlpha=Math.min(burnAlpha+dt*5,0.9);
-  else if(tn>PU||tn<0.04) burnAlpha=Math.max(burnAlpha-dt*0.6,0);
-  burnMarkMat.opacity = burnAlpha;
-  burnMarkMat.emissiveIntensity = burnAlpha*1.1;
-
-  // Smoke
-  if(inContact && Math.random()<0.55){
-    const p=smokes.find(s=>!s.active);
-    if(p){ p.active=true;p.life=0;p.mesh.visible=true;p.mesh.position.set(p.ox,0.25,p.oz+0.2);p.mesh.scale.setScalar(1); }
-  }
-  smokes.forEach(p=>{
-    if(!p.active)return;
-    p.life+=dt;const pg=p.life/p.maxLife;
-    if(pg>=1){p.active=false;p.mesh.visible=false;return;}
-    p.mesh.position.y+=p.vy*dt; p.mesh.position.x+=p.vx*dt;
-    p.mesh.scale.setScalar(1+pg*5);
-    p.mesh.material.opacity=(pg<0.2?pg/0.2:1-(pg-0.2)/0.8)*0.28;
-  });
-
-  // Slow cinematic camera drift
-  camAngle+=dt*0.08;
-  camera.position.x=Math.sin(camAngle)*0.8;
-  camera.position.z=6.2+Math.cos(camAngle*0.6)*0.35;
-  camera.lookAt(0,1.1,0);
-
-  composer.render();
-}
-
-resize();
-window.addEventListener('resize', resize);
-tick();
-</script>
 
 
 
