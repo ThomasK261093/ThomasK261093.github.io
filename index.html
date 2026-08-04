@@ -1030,7 +1030,7 @@
     </p>
 
     <form class="waitlist-form reveal reveal-delay-2" id="waitlistForm">
-      <input class="waitlist-input" type="email" placeholder="deine@email.de" required id="emailInput" />
+      <input class="waitlist-input" type="email" name="email" placeholder="deine@email.de" required id="emailInput" />
       <button class="waitlist-btn" type="submit">Jetzt eintragen 🐾</button>
     </form>
     <div class="waitlist-success" id="waitlistSuccess">
@@ -1103,15 +1103,32 @@
       window.scrollY > 60 ? 'rgba(28,31,34,0.97)' : 'rgba(28,31,34,0.80)';
   }, { passive: true });
 
-  // ── Waitlist Form ────────────────────────────────────────────────
-  document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+  // ── Waitlist Form (Formspree) ─────────────────────────────────────
+  document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const email = document.getElementById('emailInput').value;
-    if (email) {
-      this.style.display = 'none';
-      document.getElementById('waitlistSuccess').style.display = 'block';
-      // In production: send to backend / Formspree / etc.
-      console.log('Waitlist signup:', email);
+    if (!email) return;
+    const btn = this.querySelector('button');
+    btn.textContent = '...';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/mdennapw', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      if (res.ok) {
+        this.style.display = 'none';
+        document.getElementById('waitlistSuccess').style.display = 'block';
+      } else {
+        btn.textContent = 'Jetzt eintragen 🐾';
+        btn.disabled = false;
+        alert('Ups, etwas ist schiefgelaufen. Bitte versuch es nochmal.');
+      }
+    } catch {
+      btn.textContent = 'Jetzt eintragen 🐾';
+      btn.disabled = false;
+      alert('Keine Verbindung. Bitte versuch es nochmal.');
     }
   });
 
