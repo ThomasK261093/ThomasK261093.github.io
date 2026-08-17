@@ -92,6 +92,14 @@
       cta_success: '✅ Super! Du bist auf der Liste. Wir melden uns!',
       badge_ios_small: 'Demn\u00e4chst im', badge_ios_main: 'App Store',
       badge_android_small: 'Demn\u00e4chst bei', badge_android_main: 'Google Play',
+      footer_impressum: 'Impressum',
+      impressum_title: 'Impressum',
+      impressum_angaben_label: 'Angaben gemäß § 5 DDG',
+      impressum_contact_title: 'Verantwortlich',
+      impressum_reach_title: 'Kontakt',
+      impressum_disclaimer_title: 'Haftungshinweis',
+      impressum_disclaimer_text: 'Die Inhalte dieser App dienen ausschließlich der allgemeinen Information. Sie ersetzen keine tierärztliche Beratung. Bei gesundheitlichen Problemen deines Hundes wende dich bitte an einen Tierarzt.',
+      impressum_note: '* Platzhalterdaten — werden vor Launch durch echte Angaben ersetzt.',
       footer_features: 'Features', footer_science: 'Wissenschaft', footer_access: 'Early Access',
       footer_contact: 'Kontakt', footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 F\u00fcr alle Hunde dieser Welt 🐾',
     },
@@ -158,6 +166,14 @@
       cta_success: '✅ Great! You\'re on the list. We\'ll be in touch!',
       badge_ios_small: 'Coming soon to the', badge_ios_main: 'App Store',
       badge_android_small: 'Coming soon to', badge_android_main: 'Google Play',
+      footer_impressum: 'Legal Notice',
+      impressum_title: 'Legal Notice',
+      impressum_angaben_label: 'Information pursuant to § 5 DDG (German Digital Services Act)',
+      impressum_contact_title: 'Responsible',
+      impressum_reach_title: 'Contact',
+      impressum_disclaimer_title: 'Liability Notice',
+      impressum_disclaimer_text: 'The content of this app is for general information purposes only. It does not replace veterinary advice. If your dog has health problems, please consult a vet.',
+      impressum_note: '* Placeholder data — will be replaced with real information before launch.',
       footer_features: 'Features', footer_science: 'Science', footer_access: 'Early Access',
       footer_contact: 'Contact', footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 For every dog in the world 🐾',
     }
@@ -717,6 +733,30 @@
     .footer-links a:hover { color: var(--text); }
     .footer-copy { font-size: 13px; color: var(--text3); }
 
+
+    /* ── Impressum ──────────────────────────────────────────────── */
+    .impressum-bar {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      background: var(--surface);
+    }
+    .impressum-inner {
+      display: flex; gap: 48px; flex-wrap: wrap;
+    }
+    .impressum-col h4 {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: var(--text2); margin-bottom: 12px;
+    }
+    .impressum-col p, .impressum-col a {
+      font-size: 13px; color: var(--text3); line-height: 1.9;
+      text-decoration: none; display: block;
+    }
+    .impressum-col a:hover { color: var(--text2); }
+    .impressum-note {
+      font-size: 11px; color: var(--text3); margin-top: 16px;
+      padding-top: 16px; border-top: 1px solid var(--border);
+    }
+
     /* ── Divider ─────────────────────────────────────────────────── */
     .divider {
       width: 100%; height: 1px;
@@ -1250,10 +1290,39 @@
       <a href="#science" data-i18n="nav_science">Wissenschaft</a>
       <a href="#waitlist">Early Access</a>
       <a href="mailto:info@pawsafe.eu">Kontakt</a>
+      <a href="#impressum" data-i18n="footer_impressum">Impressum</a>
     </div>
     <div class="footer-copy" data-i18n="footer_copy">© 2026 PawSafe · pawsafe.eu · Für alle Hunde dieser Welt 🐾</div>
   </div>
 </footer>
+
+<!-- ── Impressum ─────────────────────────────────────────────────── -->
+<section class="impressum-bar" id="impressum">
+  <div class="container">
+    <div class="impressum-inner">
+      <div class="impressum-col">
+        <h4 data-i18n="impressum_title">Impressum</h4>
+        <p data-i18n="impressum_angaben_label">Angaben gemäß § 5 DDG</p>
+      </div>
+      <div class="impressum-col">
+        <h4 data-i18n="impressum_contact_title">Verantwortlich</h4>
+        <p>Max Mustermann</p>
+        <p>Musterstraße 1</p>
+        <p>12345 Musterstadt</p>
+        <p>Deutschland</p>
+      </div>
+      <div class="impressum-col">
+        <h4 data-i18n="impressum_reach_title">Kontakt</h4>
+        <a href="mailto:info@pawsafe.eu">info@pawsafe.eu</a>
+      </div>
+      <div class="impressum-col">
+        <h4 data-i18n="impressum_disclaimer_title">Haftungshinweis</h4>
+        <p style="max-width:320px;" data-i18n="impressum_disclaimer_text">Die Inhalte dieser App dienen ausschließlich der allgemeinen Information. Sie ersetzen keine tierärztliche Beratung. Bei gesundheitlichen Problemen deines Hundes wende dich bitte an einen Tierarzt.</p>
+      </div>
+    </div>
+    <p class="impressum-note" data-i18n="impressum_note">* Platzhalterdaten — werden vor Launch durch echte Angaben ersetzt.</p>
+  </div>
+</section>
 
 <script>
   // ── Paw Trail Generator ──────────────────────────────────────────
