@@ -235,7 +235,7 @@
 
     /* scroll indicator */
     .scroll-hint {
-      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      position: absolute; bottom: -72px; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 6px;
       font-size: 11px; color: var(--text3); letter-spacing: 2px; text-transform: uppercase;
       z-index: 1;
@@ -1124,6 +1124,7 @@
 
     <form class="waitlist-form reveal reveal-delay-2" id="waitlistForm">
       <input class="waitlist-input" type="email" name="email" placeholder="deine@email.de" required id="emailInput" data-i18n-placeholder="cta_placeholder" />
+      <div id="emailError" style="display:none; color:#EF5350; font-size:13px; margin-top:6px; text-align:center;" data-i18n="email_error">Bitte gib eine gültige E-Mail-Adresse ein.</div>
       <button class="waitlist-btn" type="submit" data-i18n="cta_btn">Jetzt eintragen 🐾</button>
     </form>
     <div class="waitlist-success" id="waitlistSuccess">
@@ -1228,8 +1229,16 @@
   // ── Waitlist Form (Formspree) ─────────────────────────────────────
   document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const email = document.getElementById('emailInput').value;
+    const email = document.getElementById('emailInput').value.trim();
     if (!email) return;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const errEl = document.getElementById('emailError');
+    if (!emailRegex.test(email)) {
+      if (errEl) { errEl.style.display = 'block'; }
+      document.getElementById('emailInput').focus();
+      return;
+    }
+    if (errEl) errEl.style.display = 'none';
     const btn = this.querySelector('button');
     btn.textContent = '...';
     btn.disabled = true;
@@ -1315,7 +1324,7 @@
       emergency_btn: 'In der App \u00f6ffnen \u2192',
       cta_h2: 'Sei einer der<br/><span class="grad-text">Ersten.</span>',
       cta_p: 'PawSafe erscheint bald im App Store. Trag dich ein und bekomme sofort Bescheid wenn es soweit ist.',
-      cta_placeholder: 'deine@email.de', cta_btn: 'Jetzt eintragen \ud83d\udc3e',
+      cta_placeholder: 'deine@email.de', cta_btn: 'Jetzt eintragen \ud83d\udc3e', email_error: 'Bitte gib eine gültige E-Mail-Adresse ein.',
       cta_success: '\u2705 Super! Du bist auf der Liste. Wir melden uns!',
       badge_ios_small: 'Demn\u00e4chst im', badge_ios_main: 'App Store',
       badge_android_small: 'Demn\u00e4chst bei', badge_android_main: 'Google Play',
@@ -1387,7 +1396,7 @@
       emergency_btn: 'Open in the app \u2192',
       cta_h2: 'Be one of the<br/><span class="grad-text">first.</span>',
       cta_p: 'PawSafe is coming soon to the App Store. Sign up and get notified the moment it launches.',
-      cta_placeholder: 'your@email.com', cta_btn: 'Sign up now \ud83d\udc3e',
+      cta_placeholder: 'your@email.com', cta_btn: 'Sign up now \ud83d\udc3e', email_error: 'Please enter a valid email address.',
       cta_success: '\u2705 Great! You\'re on the list. We\'ll be in touch!',
       badge_ios_small: 'Coming soon to the', badge_ios_main: 'App Store',
       badge_android_small: 'Coming soon to', badge_android_main: 'Google Play',
