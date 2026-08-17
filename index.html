@@ -26,220 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js">
-  // ── i18n ────────────────────────────────────────────────────────────────────
-  const T = {
-    de: {
-      page_title: 'PawSafe \u2013 Sichere Pfoten bei jedem Wetter',
-      nav_features: 'Features', nav_science: 'Wissenschaft', nav_pack: 'Dein Rudel', nav_cta: 'Early Access',
-      hero_badge: '🐾 Bald im App Store',
-      hero_h1: 'Sichere Pfoten<br/><span class="grad-text">bei jedem Wetter.</span>',
-      hero_p: 'PawSafe berechnet in Echtzeit, ob der Boden f\u00fcr deinen Hund zu hei\u00df oder zu kalt ist \u2014 personalisiert f\u00fcr jede Rasse, jedes Fell, jeden Hund.',
-      hero_btn_primary: '🐾 Early Access sichern', hero_btn_secondary: 'Mehr erfahren \u2193',
-      stat_1: 'Asphalt-Temperatur an hei\u00dfen Sommertagen', stat_2: 'bis Asphalt Pfoten dauerhaft verbrennt',
-      stat_3: 'Oberfl\u00e4chen live berechnet \u2014 Asphalt bis Gras', stat_4: 'Sprachen: DE, EN, IT, ES, FR',
-      problem_label: 'Das Problem', problem_h2: 'Der Boden wird zur unsichtbaren Gefahr',
-      problem_p: '30\u00b0C Lufttemperatur klingen harmlos. Aber Asphalt in der Sonne kann 60\u00b0C erreichen \u2014 genug um Pfoten in Sekunden dauerhaft zu verbrennen. PawSafe macht das Unsichtbare sichtbar.',
-      problem_chart_label: 'Bodentemperaturen bei 30\u00b0C Luft',
-      problem_card_label: '<i data-lucide="thermometer" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> PawSafe \u2014 Live Auswertung',
-      problem_asphalt_label: 'Asphalt-Temperatur', problem_risk_title: 'Gef\u00e4hrlich',
-      problem_risk_desc: 'Bitte nicht spazieren gehen. Verbrennung in Sekunden m\u00f6glich.',
-      problem_air: 'Lufttemperatur', problem_humidity: 'Luftfeuchtigkeit',
-      problem_next: 'N\u00e4chstes Fenster', problem_next_val: 'Heute 20:30 Uhr',
-      features_label: 'Features', features_h2: 'Alles was dein Hund braucht.',
-      features_sub: 'Von der Echtzeit-Risikoampel bis zu K\u00fchlspot-Karten \u2014 PawSafe denkt f\u00fcr dich mit.',
-      feat1_title: 'Echtzeit-Risikoampel', feat1_desc: 'Bodentemperatur wird live aus Lufttemp, Sonneneinstrahlung und Windgeschwindigkeit berechnet \u2014 nicht geraten. Vier Stufen: Sicher, Vorsicht, Gef\u00e4hrlich, Kritisch.',
-      feat2_title: 'Dein Rudel', feat2_desc: 'Rasse, Alter, Fell, Gewicht, Herzerkrankung \u2014 PawSafe bewertet das Risiko f\u00fcr jeden Hund individuell. Brachyzephale, Riesenrassen und Seniorhunde werden automatisch erkannt.',
-      feat3_title: '7-Tage-Prognose', feat3_desc: 'St\u00fcndlich aufgel\u00f6ste Vorhersage f\u00fcr die n\u00e4chsten 7 Tage. Sieh auf einen Blick, wann heute noch ein sicheres Spaziergang-Fenster kommt \u2014 oder ob morgen fr\u00fch besser ist.',
-      feat4_title: 'GPS Walk Tracking', feat4_desc: 'Live-Tracking mit Timer, Distanz und Hunde-Auswahl \u2014 auch im Hintergrund. Alle Spazierg\u00e4nge werden gespeichert: Datum, Dauer, km, Aktivit\u00e4tslevel.',
-      feat5_title: 'K\u00fchlspot-Karte', feat5_desc: 'Parks, W\u00e4lder, Gew\u00e4sser und Naturschutzgebiete in der N\u00e4he \u2014 mit berechneter Temperatur vor Ort. Perfekt um spontan den k\u00fchlsten Weg zu finden.',
-      feat6_title: '4 Oberfl\u00e4chen im Vergleich', feat6_desc: 'Asphalt, Beton, Erde, Gras \u2014 alle gleichzeitig berechnet. Du siehst sofort, wie viel k\u00fchler der Schotterweg neben der Stra\u00dfe wirklich ist.',
-      feat7_title: 'Winter-Modus', feat7_desc: 'Streusalz-Warnung bei Frost, K\u00e4lte-Risikoampel (zu kalt, gef\u00e4hrlich, kritisch) und Windchill-Berechnung. K\u00e4lte ist genauso gef\u00e4hrlich wie Hitze.',
-      feat8_title: 'Anpassbares Dashboard', feat8_desc: 'Widgets per Drag & Drop sortieren, ein- oder ausblenden. Jeder Hundebesitzer hat andere Priorit\u00e4ten \u2014 dein Dashboard, deine Regeln.',
-      feat9_title: 'Notfall & Erste Hilfe', feat9_desc: 'Hitzschlag-Erkennung mit Schritt-f\u00fcr-Schritt-Anleitung direkt in der App. Plus: n\u00e4chsten Notfalltierarzt sofort finden.',
-      risk_label: 'Risikoampel', risk_h2: 'Vier Farben.<br/>Eine klare Antwort.',
-      risk_p: 'Kein kompliziertes Ablesen von Diagrammen. PawSafe gibt dir sofort die Ampel \u2014 und erkl\u00e4rt genau warum.',
-      risk_science: 'Basiert auf veterin\u00e4rmedizinischer Forschung und \u00fcber 30 Studien zur Hundehitzetoleranz.',
-      risk1_level: 'Sicher', risk1_range: 'Asphalt unter 35\u00b0C \u00b7 Unbegrenzt laufen',
-      risk2_level: 'Vorsicht', risk2_range: '35\u201345\u00b0C \u00b7 Max. 20 Minuten',
-      risk3_level: 'Gef\u00e4hrlich', risk3_range: '45\u201355\u00b0C \u00b7 Nur kurz auf Schatten',
-      risk4_level: 'Kritisch', risk4_range: '\u00dcber 55\u00b0C \u00b7 Bitte zu Hause bleiben',
-      pack_rudel_header: 'Mein Rudel',
-      pack_miss_meta: 'Cane Corso \u00b7 4,5 Jahre \u00b7 Braun',
-      pack_elio_meta: 'Deutsche Dogge \u00b7 13 Mon. \u00b7 Schwarz \u00b7 \u2764\ufe0f Herz',
-      pack_add: 'Hund hinzuf\u00fcgen', pack_badge_caution: 'Vorsicht', pack_badge_critical: 'Kritisch',
-      pack_label: 'Dein Rudel', pack_h2: 'Jeder Hund ist anders.',
-      pack_p: 'Ein junger Windhund, eine \u00e4ltere Dogge mit Herzerkrankung und ein Mischling mit Doppelfell \u2014 alle drei haben v\u00f6llig andere Grenzen. PawSafe kennt sie alle.',
-      pack_b1_title: 'Rassenspezifische Modifikatoren', pack_b1_desc: 'Kurznasen (Bulldogge, Mops), Riesenrassen, Doppelfall-Rassen und Windhunde werden automatisch erkannt.',
-      pack_b2_title: 'Spaziergang-Statistiken', pack_b2_desc: 'Wie oft war Elio diese Woche drau\u00dfen? Wie viele km habt ihr zur\u00fcckgelegt? Alles sauber getrackt.',
-      pack_b3_title: 'Maximale Gehzeit pro Hund', pack_b3_desc: 'Kein Raten: PawSafe sagt dir konkret, wie lange du heute mit jedem Hund rausgehen kannst.',
-      science_label: 'Wissenschaft', science_h2: 'Nicht geraten. Gemessen.',
-      science_p: 'PawSafe basiert auf veterin\u00e4rmedizinischer Forschung \u2014 keine App-Magie, sondern echte Wissenschaft hinter jedem Wert.',
-      science1_label: 'Gewebeschäden ab dieser Temperatur — bestätigt durch veterinärmedizinische Studien (Dillard et al., 2002)',
-      science2_label: 'Effektives Temperaturempfinden bei 80% Luftfeuchtigkeit — der Humidity-Index fließt direkt in PawSafe ein',
-      science3_label: 'Temperaturfaktor für brachycephale Rassen (Mops, Bulldogge) gegenüber Normalhunden',
-      science_source: '<strong>Wie berechnet PawSafe die Bodentemperatur?</strong><br/>Anhand von Lufttemperatur, UV-Index, Bew\u00f6lkungsgrad und Belag-Koeffizient (Asphalt, Beton, Erde, Gras) wird die Oberfl\u00e4chentemperatur nach dem <em>UTCI-Modell</em> abgesch\u00e4tzt. Alle Parameter und Quellen findest du direkt in der App unter <em>Einstellungen \u2192 Grundlage der Daten</em>.',
-      winter_label: 'Winter-Modus', winter_h2: 'K\u00e4lte ist genauso gef\u00e4hrlich.',
-      winter_p: 'Streusalz verbrennt Pfoten, Frost sch\u00e4digt Gewebe, und manche Rassen frieren schneller als andere. PawSafe sch\u00fctzt dein Rudel das ganze Jahr.',
-      winter1_title: 'Streusalz-Warnung', winter1_desc: 'Bei Temperaturen nahe 0\u00b0C und nach Schneef\u00e4llen: automatische Warnung vor Streusalz auf den Wegen.',
-      winter2_title: 'K\u00e4lteschutz-Risikoampel', winter2_desc: 'Kurzhaar-Rassen, Welpen und \u00e4ltere Hunde brauchen auch bei Frost Schutz. PawSafe kennt die Grenzen.',
-      winter3_title: 'Leptospirose-Warnung', winter3_desc: 'Nach starken Regenf\u00e4llen: Hinweis auf erh\u00f6htes Leptospirose-Risiko in stehenden Gew\u00e4ssern.',
-      emergency_h3: 'Notfall: Was tun bei Hitzschlag?', emergency_p: 'PawSafe zeigt dir Schritt f\u00fcr Schritt was zu tun ist \u2014 und findet den n\u00e4chsten Notfalltierarzt.',
-      emergency_btn: 'In der App \u00f6ffnen \u2192',
-      cta_h2: 'Sei einer der<br/><span class="grad-text">Ersten.</span>',
-      cta_p: 'PawSafe erscheint bald im App Store. Trag dich ein und bekomme sofort Bescheid wenn es soweit ist.',
-      cta_placeholder: 'deine@email.de', cta_btn: 'Jetzt eintragen 🐾',
-      cta_success: '✅ Super! Du bist auf der Liste. Wir melden uns!',
-      badge_ios_small: 'Demn\u00e4chst im', badge_ios_main: 'App Store',
-      badge_android_small: 'Demn\u00e4chst bei', badge_android_main: 'Google Play',
-      side_home: 'Start', side_risk: 'Risikoampel', side_access: 'Early Access',
-      footer_impressum: 'Impressum',
-      impressum_title: 'Impressum',
-      impressum_angaben_label: 'Angaben gemäß § 5 DDG',
-      impressum_contact_title: 'Verantwortlich',
-      impressum_reach_title: 'Kontakt',
-      impressum_disclaimer_title: 'Haftungshinweis',
-      impressum_disclaimer_text: 'Die Inhalte dieser App dienen ausschließlich der allgemeinen Information. Sie ersetzen keine tierärztliche Beratung. Bei gesundheitlichen Problemen deines Hundes wende dich bitte an einen Tierarzt.',
-      impressum_note: '* Platzhalterdaten — werden vor Launch durch echte Angaben ersetzt.',
-      footer_features: 'Features', footer_science: 'Wissenschaft', footer_access: 'Early Access',
-      footer_contact: 'Kontakt', footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 F\u00fcr alle Hunde dieser Welt 🐾',
-    },
-    en: {
-      page_title: 'PawSafe \u2013 Safe Paws in Any Weather',
-      nav_features: 'Features', nav_science: 'Science', nav_pack: 'Your Pack', nav_cta: 'Early Access',
-      hero_badge: '🐾 Coming to the App Store',
-      hero_h1: 'Safe Paws<br/><span class="grad-text">in Any Weather.</span>',
-      hero_p: 'PawSafe calculates in real time whether the ground is too hot or too cold for your dog \u2014 personalised for every breed, coat, and individual dog.',
-      hero_btn_primary: '🐾 Get Early Access', hero_btn_secondary: 'Learn more \u2193',
-      stat_1: 'Asphalt temperature on hot summer days', stat_2: 'until asphalt permanently burns paws',
-      stat_3: 'Surfaces calculated live \u2014 asphalt to grass', stat_4: 'Languages: DE, EN, IT, ES, FR',
-      problem_label: 'The Problem', problem_h2: 'The ground becomes an invisible danger',
-      problem_p: '30\u00b0C air temperature sounds harmless. But asphalt in the sun can reach 60\u00b0C \u2014 enough to permanently burn paws in seconds. PawSafe makes the invisible visible.',
-      problem_chart_label: 'Ground temperatures at 30\u00b0C air temp',
-      problem_card_label: '<i data-lucide="thermometer" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> PawSafe \u2014 Live Analysis',
-      problem_asphalt_label: 'Asphalt Temperature', problem_risk_title: 'Dangerous',
-      problem_risk_desc: 'Please do not walk outside. Burns possible within seconds.',
-      problem_air: 'Air Temperature', problem_humidity: 'Humidity',
-      problem_next: 'Next Safe Window', problem_next_val: 'Today at 8:30 PM',
-      features_label: 'Features', features_h2: 'Everything your dog needs.',
-      features_sub: 'From real-time risk alerts to cool spot maps \u2014 PawSafe thinks ahead for you.',
-      feat1_title: 'Real-Time Risk Alert', feat1_desc: 'Ground temperature is calculated live from air temp, solar radiation and wind \u2014 no guessing. Four levels: Safe, Caution, Dangerous, Critical.',
-      feat2_title: 'Your Pack', feat2_desc: 'Breed, age, coat, weight, heart condition \u2014 PawSafe assesses the risk for each dog individually. Brachycephalic, giant breeds, and senior dogs are detected automatically.',
-      feat3_title: '7-Day Forecast', feat3_desc: 'Hourly forecast for the next 7 days. See at a glance when a safe walk window is coming today \u2014 or whether tomorrow morning is better.',
-      feat4_title: 'GPS Walk Tracking', feat4_desc: 'Live tracking with timer, distance and dog selection \u2014 even in the background. All walks are saved: date, duration, km, activity level.',
-      feat5_title: 'Cool Spot Map', feat5_desc: 'Nearby parks, forests, waterways and nature reserves \u2014 with calculated on-site temperature. Perfect for spontaneously finding the coolest route.',
-      feat6_title: '4 Surfaces Compared', feat6_desc: 'Asphalt, concrete, earth, grass \u2014 all calculated simultaneously. You instantly see how much cooler the gravel path next to the road really is.',
-      feat7_title: 'Winter Mode', feat7_desc: 'De-icing salt warning at frost, cold risk alert (too cold, dangerous, critical) and wind chill calculation. Cold is just as dangerous as heat.',
-      feat8_title: 'Customisable Dashboard', feat8_desc: 'Sort widgets by drag & drop, show or hide them. Every dog owner has different priorities \u2014 your dashboard, your rules.',
-      feat9_title: 'Emergency & First Aid', feat9_desc: 'Heatstroke detection with step-by-step guidance right in the app. Plus: find the nearest emergency vet instantly.',
-      risk_label: 'Risk Indicator', risk_h2: 'Four Colours.<br/>One Clear Answer.',
-      risk_p: 'No complicated chart reading. PawSafe gives you the signal immediately \u2014 and explains exactly why.',
-      risk_science: 'Based on veterinary research and over 30 studies on canine heat tolerance.',
-      risk1_level: 'Safe', risk1_range: 'Asphalt below 35\u00b0C \u00b7 Walk as long as you like',
-      risk2_level: 'Caution', risk2_range: '35\u201345\u00b0C \u00b7 Max. 20 minutes',
-      risk3_level: 'Dangerous', risk3_range: '45\u201355\u00b0C \u00b7 Shaded areas only',
-      risk4_level: 'Critical', risk4_range: 'Above 55\u00b0C \u00b7 Please stay home',
-      pack_rudel_header: 'My Pack',
-      pack_miss_meta: 'Cane Corso \u00b7 4.5 years \u00b7 Brown',
-      pack_elio_meta: 'Great Dane \u00b7 13 mo. \u00b7 Black \u00b7 \u2764\ufe0f Heart',
-      pack_add: 'Add a dog', pack_badge_caution: 'Caution', pack_badge_critical: 'Critical',
-      pack_label: 'Your Pack', pack_h2: 'Every dog is different.',
-      pack_p: 'A young greyhound, an older Great Dane with a heart condition, and a mixed breed with a double coat \u2014 all three have completely different limits. PawSafe knows them all.',
-      pack_b1_title: 'Breed-specific modifiers', pack_b1_desc: 'Short-nosed breeds (bulldog, pug), giant breeds, double-coat breeds and sighthounds are detected automatically.',
-      pack_b2_title: 'Walk statistics', pack_b2_desc: 'How often was Elio outside this week? How many km did you cover? All neatly tracked.',
-      pack_b3_title: 'Maximum walk time per dog', pack_b3_desc: 'No guessing: PawSafe tells you exactly how long you can walk each dog today.',
-      science_label: 'Science', science_h2: 'Not guessed. Measured.',
-      science_p: 'PawSafe is based on veterinary research \u2014 no app magic, just real science behind every value.',
-      science1_label: 'Tissue damage from this temperature \u2014 confirmed by veterinary studies (Dillard et al., 2002)',
-      science2_label: 'Effective temperature perception at 80% humidity \u2014 the humidity index flows directly into PawSafe',
-      science3_label: 'Temperature factor for brachycephalic breeds (pug, bulldog) compared to typical dogs',
-      science_source: '<strong>How does PawSafe calculate ground temperature?</strong><br/>Surface temperature is estimated from air temperature, UV index, cloud cover and surface coefficient (asphalt, concrete, earth, grass) using the <em>UTCI model</em>. All parameters and sources are available directly in the app under <em>Settings \u2192 Data basis</em>.',
-      winter_label: 'Winter Mode', winter_h2: 'Cold is just as dangerous.',
-      winter_p: 'De-icing salt burns paws, frost damages tissue, and some breeds get cold faster than others. PawSafe protects your pack all year round.',
-      winter1_title: 'De-icing Salt Warning', winter1_desc: 'At temperatures near 0\u00b0C and after snowfall: automatic warning about de-icing salt on paths.',
-      winter2_title: 'Cold-Risk Alert', winter2_desc: 'Short-haired breeds, puppies and older dogs need protection in frost too. PawSafe knows the limits.',
-      winter3_title: 'Leptospirosis Warning', winter3_desc: 'After heavy rain: alert for increased leptospirosis risk in standing water.',
-      emergency_h3: 'Emergency: What to do in a heatstroke?', emergency_p: 'PawSafe shows you step by step what to do \u2014 and finds the nearest emergency vet.',
-      emergency_btn: 'Open in the app \u2192',
-      cta_h2: 'Be one of the<br/><span class="grad-text">first.</span>',
-      cta_p: 'PawSafe is coming soon to the App Store. Sign up and get notified the moment it launches.',
-      cta_placeholder: 'your@email.com', cta_btn: 'Sign up now 🐾',
-      cta_success: '✅ Great! You\'re on the list. We\'ll be in touch!',
-      badge_ios_small: 'Coming soon to the', badge_ios_main: 'App Store',
-      badge_android_small: 'Coming soon to', badge_android_main: 'Google Play',
-      side_home: 'Home', side_risk: 'Risk Indicator', side_access: 'Early Access',
-      footer_impressum: 'Legal Notice',
-      impressum_title: 'Legal Notice',
-      impressum_angaben_label: 'Information pursuant to § 5 DDG (German Digital Services Act)',
-      impressum_contact_title: 'Responsible',
-      impressum_reach_title: 'Contact',
-      impressum_disclaimer_title: 'Liability Notice',
-      impressum_disclaimer_text: 'The content of this app is for general information purposes only. It does not replace veterinary advice. If your dog has health problems, please consult a vet.',
-      impressum_note: '* Placeholder data — will be replaced with real information before launch.',
-      footer_features: 'Features', footer_science: 'Science', footer_access: 'Early Access',
-      footer_contact: 'Contact', footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 For every dog in the world 🐾',
-    }
-  };
-
-  let currentLang = localStorage.getItem('pawsafe_lang') || (navigator.language && navigator.language.startsWith('de') ? 'de' : 'en');
-
-  window.setLang = function setLang(lang) {
-    currentLang = lang;
-    localStorage.setItem('pawsafe_lang', lang);
-    document.documentElement.lang = lang;
-    document.title = T[lang].page_title;
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.dataset.i18n;
-      if (T[lang][key] !== undefined) el.innerHTML = T[lang][key];
-    });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-      const key = el.dataset.i18nPlaceholder;
-      if (T[lang][key] !== undefined) el.placeholder = T[lang][key];
-    });
-    const btnDe = document.getElementById('btn-de');
-    const btnEn = document.getElementById('btn-en');
-    if (btnDe) btnDe.classList.toggle('active', lang === 'de');
-    if (btnEn) btnEn.classList.toggle('active', lang === 'en');
-    if (window.lucide) lucide.createIcons();
-  };
-
-  window.setLang(currentLang);
-
-  // ── Side nav: highlight active section on scroll ────────────────────────────
-  (function() {
-    const sectionIds = ['hero','features','risk','pack','science','waitlist'];
-    const navItems = document.querySelectorAll('.side-nav-item');
-
-    function setActive(id) {
-      navItems.forEach(item => item.classList.toggle('active', item.dataset.section === id));
-    }
-
-    // IntersectionObserver: mark section active when it crosses 30% from top
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) setActive(entry.target.id);
-      });
-    }, { threshold: 0, rootMargin: '-20% 0px -70% 0px' });
-
-    sectionIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    // Fallback scroll for browsers without IO support
-    function onScroll() {
-      let current = 'hero';
-      sectionIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - window.innerHeight * 0.4) current = id;
-      });
-      setActive(current);
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // run immediately on load
-  })();
-
-</script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
   <style>
     /* ── Reset & Tokens ───────────────────────────────────────── */
@@ -1466,6 +1253,206 @@
       alert('Keine Verbindung. Bitte versuch es nochmal.');
     }
   });
+
+
+  // ── i18n ─────────────────────────────────────────────────────────────────
+  const T = {
+    de: {
+      page_title: 'PawSafe \u2013 Sichere Pfoten bei jedem Wetter',
+      nav_features: 'Features', nav_science: 'Wissenschaft', nav_pack: 'Dein Rudel', nav_cta: 'Early Access',
+      hero_badge: '🐾 Bald im App Store',
+      hero_h1: 'Sichere Pfoten<br/><span class="grad-text">bei jedem Wetter.</span>',
+      hero_p: 'PawSafe berechnet in Echtzeit, ob der Boden f\u00fcr deinen Hund zu hei\u00df oder zu kalt ist \u2014 personalisiert f\u00fcr jede Rasse, jedes Fell, jeden Hund.',
+      hero_btn_primary: '🐾 Early Access sichern', hero_btn_secondary: 'Mehr erfahren \u2193',
+      stat_1: 'Asphalt-Temperatur an hei\u00dfen Sommertagen', stat_2: 'bis Asphalt Pfoten dauerhaft verbrennt',
+      stat_3: 'Oberfl\u00e4chen live berechnet \u2014 Asphalt bis Gras', stat_4: 'Sprachen: DE, EN, IT, ES, FR',
+      problem_label: 'Das Problem', problem_h2: 'Der Boden wird zur unsichtbaren Gefahr',
+      problem_p: '30\u00b0C Lufttemperatur klingen harmlos. Aber Asphalt in der Sonne kann 60\u00b0C erreichen \u2014 genug um Pfoten in Sekunden dauerhaft zu verbrennen. PawSafe macht das Unsichtbare sichtbar.',
+      problem_chart_label: 'Bodentemperaturen bei 30\u00b0C Luft',
+      problem_card_label: '<i data-lucide="thermometer" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> PawSafe \u2014 Live Auswertung',
+      problem_asphalt_label: 'Asphalt-Temperatur', problem_risk_title: 'Gef\u00e4hrlich',
+      problem_risk_desc: 'Bitte nicht spazieren gehen. Verbrennung in Sekunden m\u00f6glich.',
+      problem_air: 'Lufttemperatur', problem_humidity: 'Luftfeuchtigkeit',
+      problem_next: 'N\u00e4chstes Fenster', problem_next_val: 'Heute 20:30 Uhr',
+      features_label: 'Features', features_h2: 'Alles was dein Hund braucht.',
+      features_sub: 'Von der Echtzeit-Risikoampel bis zu K\u00fchlspot-Karten \u2014 PawSafe denkt f\u00fcr dich mit.',
+      feat1_title: 'Echtzeit-Risikoampel', feat1_desc: 'Bodentemperatur wird live aus Lufttemp, Sonneneinstrahlung und Windgeschwindigkeit berechnet \u2014 nicht geraten. Vier Stufen: Sicher, Vorsicht, Gef\u00e4hrlich, Kritisch.',
+      feat2_title: 'Dein Rudel', feat2_desc: 'Rasse, Alter, Fell, Gewicht, Herzerkrankung \u2014 PawSafe bewertet das Risiko f\u00fcr jeden Hund individuell. Brachyzephale, Riesenrassen und Seniorhunde werden automatisch erkannt.',
+      feat3_title: '7-Tage-Prognose', feat3_desc: 'St\u00fcndlich aufgel\u00f6ste Vorhersage f\u00fcr die n\u00e4chsten 7 Tage. Sieh auf einen Blick, wann heute noch ein sicheres Spaziergang-Fenster kommt \u2014 oder ob morgen fr\u00fch besser ist.',
+      feat4_title: 'GPS Walk Tracking', feat4_desc: 'Live-Tracking mit Timer, Distanz und Hunde-Auswahl \u2014 auch im Hintergrund. Alle Spazierg\u00e4nge werden gespeichert: Datum, Dauer, km, Aktivit\u00e4tslevel.',
+      feat5_title: 'K\u00fchlspot-Karte', feat5_desc: 'Parks, W\u00e4lder, Gew\u00e4sser und Naturschutzgebiete in der N\u00e4he \u2014 mit berechneter Temperatur vor Ort. Perfekt um spontan den k\u00fchlsten Weg zu finden.',
+      feat6_title: '4 Oberfl\u00e4chen im Vergleich', feat6_desc: 'Asphalt, Beton, Erde, Gras \u2014 alle gleichzeitig berechnet. Du siehst sofort, wie viel k\u00fchler der Schotterweg neben der Stra\u00dfe wirklich ist.',
+      feat7_title: 'Winter-Modus', feat7_desc: 'Streusalz-Warnung bei Frost, K\u00e4lte-Risikoampel (zu kalt, gef\u00e4hrlich, kritisch) und Windchill-Berechnung. K\u00e4lte ist genauso gef\u00e4hrlich wie Hitze.',
+      feat8_title: 'Anpassbares Dashboard', feat8_desc: 'Widgets per Drag & Drop sortieren, ein- oder ausblenden. Jeder Hundebesitzer hat andere Priorit\u00e4ten \u2014 dein Dashboard, deine Regeln.',
+      feat9_title: 'Notfall & Erste Hilfe', feat9_desc: 'Hitzschlag-Erkennung mit Schritt-f\u00fcr-Schritt-Anleitung direkt in der App. Plus: n\u00e4chsten Notfalltierarzt sofort finden.',
+      risk_label: 'Risikoampel', risk_h2: 'Vier Farben.<br/>Eine klare Antwort.',
+      risk_p: 'Kein kompliziertes Ablesen von Diagrammen. PawSafe gibt dir sofort die Ampel \u2014 und erkl\u00e4rt genau warum.',
+      risk_science: 'Basiert auf veterin\u00e4rmedizinischer Forschung und \u00fcber 30 Studien zur Hundehitzetoleranz.',
+      risk1_level: 'Sicher', risk1_range: 'Asphalt unter 35\u00b0C \u00b7 Unbegrenzt laufen',
+      risk2_level: 'Vorsicht', risk2_range: '35\u201345\u00b0C \u00b7 Max. 20 Minuten',
+      risk3_level: 'Gef\u00e4hrlich', risk3_range: '45\u201355\u00b0C \u00b7 Nur kurz auf Schatten',
+      risk4_level: 'Kritisch', risk4_range: '\u00dcber 55\u00b0C \u00b7 Bitte zu Hause bleiben',
+      pack_rudel_header: 'Mein Rudel', pack_miss_meta: 'Cane Corso \u00b7 4,5 Jahre \u00b7 Braun',
+      pack_elio_meta: 'Deutsche Dogge \u00b7 13 Mon. \u00b7 Schwarz \u00b7 \u2764\ufe0f Herz',
+      pack_add: 'Hund hinzuf\u00fcgen', pack_badge_caution: 'Vorsicht', pack_badge_critical: 'Kritisch',
+      pack_label: 'Dein Rudel', pack_h2: 'Jeder Hund ist anders.',
+      pack_p: 'Ein junger Windhund, eine \u00e4ltere Dogge mit Herzerkrankung und ein Mischling mit Doppelfell \u2014 alle drei haben v\u00f6llig andere Grenzen. PawSafe kennt sie alle.',
+      pack_b1_title: 'Rassenspezifische Modifikatoren', pack_b1_desc: 'Kurznasen (Bulldogge, Mops), Riesenrassen, Doppelfall-Rassen und Windhunde werden automatisch erkannt.',
+      pack_b2_title: 'Spaziergang-Statistiken', pack_b2_desc: 'Wie oft war Elio diese Woche drau\u00dfen? Wie viele km habt ihr zur\u00fcckgelegt? Alles sauber getrackt.',
+      pack_b3_title: 'Maximale Gehzeit pro Hund', pack_b3_desc: 'Kein Raten: PawSafe sagt dir konkret, wie lange du heute mit jedem Hund rausgehen kannst.',
+      science_label: 'Wissenschaft', science_h2: 'Nicht geraten. Gemessen.',
+      science_p: 'PawSafe basiert auf veterin\u00e4rmedizinischer Forschung \u2014 keine App-Magie, sondern echte Wissenschaft hinter jedem Wert.',
+      science1_label: 'Gewebeschäden ab dieser Temperatur \u2014 bestätigt durch veterinärmedizinische Studien (Dillard et al., 2002)',
+      science2_label: 'Effektives Temperaturempfinden bei 80% Luftfeuchtigkeit \u2014 der Humidity-Index fließt direkt in PawSafe ein',
+      science3_label: 'Temperaturfaktor für brachycephale Rassen (Mops, Bulldogge) gegenüber Normalhunden',
+      science_source: '<strong>Wie berechnet PawSafe die Bodentemperatur?</strong><br/>Anhand von Lufttemperatur, UV-Index, Bew\u00f6lkungsgrad und Belag-Koeffizient wird die Oberfl\u00e4chentemperatur nach dem <em>UTCI-Modell</em> abgesch\u00e4tzt. Alle Quellen findest du in der App unter <em>Einstellungen \u2192 Grundlage der Daten</em>.',
+      winter_label: 'Winter-Modus', winter_h2: 'K\u00e4lte ist genauso gef\u00e4hrlich.',
+      winter_p: 'Streusalz verbrennt Pfoten, Frost sch\u00e4digt Gewebe, und manche Rassen frieren schneller als andere. PawSafe sch\u00fctzt dein Rudel das ganze Jahr.',
+      winter1_title: 'Streusalz-Warnung', winter1_desc: 'Bei Temperaturen nahe 0\u00b0C und nach Schneef\u00e4llen: automatische Warnung vor Streusalz auf den Wegen.',
+      winter2_title: 'K\u00e4lteschutz-Risikoampel', winter2_desc: 'Kurzhaar-Rassen, Welpen und \u00e4ltere Hunde brauchen auch bei Frost Schutz. PawSafe kennt die Grenzen.',
+      winter3_title: 'Leptospirose-Warnung', winter3_desc: 'Nach starken Regenf\u00e4llen: Hinweis auf erh\u00f6htes Leptospirose-Risiko in stehenden Gew\u00e4ssern.',
+      emergency_h3: 'Notfall: Was tun bei Hitzschlag?', emergency_p: 'PawSafe zeigt dir Schritt f\u00fcr Schritt was zu tun ist \u2014 und findet den n\u00e4chsten Notfalltierarzt.',
+      emergency_btn: 'In der App \u00f6ffnen \u2192',
+      cta_h2: 'Sei einer der<br/><span class="grad-text">Ersten.</span>',
+      cta_p: 'PawSafe erscheint bald im App Store. Trag dich ein und bekomme sofort Bescheid wenn es soweit ist.',
+      cta_placeholder: 'deine@email.de', cta_btn: 'Jetzt eintragen \ud83d\udc3e',
+      cta_success: '\u2705 Super! Du bist auf der Liste. Wir melden uns!',
+      badge_ios_small: 'Demn\u00e4chst im', badge_ios_main: 'App Store',
+      badge_android_small: 'Demn\u00e4chst bei', badge_android_main: 'Google Play',
+      side_home: 'Start', side_risk: 'Risikoampel', side_access: 'Early Access',
+      footer_impressum: 'Impressum', footer_features: 'Features', footer_science: 'Wissenschaft',
+      footer_access: 'Early Access', footer_contact: 'Kontakt',
+      footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 F\u00fcr alle Hunde dieser Welt \ud83d\udc3e',
+      impressum_title: 'Impressum', impressum_angaben_label: 'Angaben gem\u00e4\u00df \u00a7 5 DDG',
+      impressum_contact_title: 'Verantwortlich', impressum_reach_title: 'Kontakt',
+      impressum_disclaimer_title: 'Haftungshinweis',
+      impressum_disclaimer_text: 'Die Inhalte dieser App dienen ausschlie\u00dflich der allgemeinen Information. Sie ersetzen keine tier\u00e4rztliche Beratung.',
+      impressum_note: '* Platzhalterdaten \u2014 werden vor Launch durch echte Angaben ersetzt.',
+    },
+    en: {
+      page_title: 'PawSafe \u2013 Safe Paws in Any Weather',
+      nav_features: 'Features', nav_science: 'Science', nav_pack: 'Your Pack', nav_cta: 'Early Access',
+      hero_badge: '\ud83d\udc3e Coming to the App Store',
+      hero_h1: 'Safe Paws<br/><span class="grad-text">in Any Weather.</span>',
+      hero_p: 'PawSafe calculates in real time whether the ground is too hot or too cold for your dog \u2014 personalised for every breed, coat, and individual dog.',
+      hero_btn_primary: '\ud83d\udc3e Get Early Access', hero_btn_secondary: 'Learn more \u2193',
+      stat_1: 'Asphalt temperature on hot summer days', stat_2: 'until asphalt permanently burns paws',
+      stat_3: 'Surfaces calculated live \u2014 asphalt to grass', stat_4: 'Languages: DE, EN, IT, ES, FR',
+      problem_label: 'The Problem', problem_h2: 'The ground becomes an invisible danger',
+      problem_p: '30\u00b0C air temperature sounds harmless. But asphalt in the sun can reach 60\u00b0C \u2014 enough to permanently burn paws in seconds. PawSafe makes the invisible visible.',
+      problem_chart_label: 'Ground temperatures at 30\u00b0C air temp',
+      problem_card_label: '<i data-lucide="thermometer" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> PawSafe \u2014 Live Analysis',
+      problem_asphalt_label: 'Asphalt Temperature', problem_risk_title: 'Dangerous',
+      problem_risk_desc: 'Please do not walk outside. Burns possible within seconds.',
+      problem_air: 'Air Temperature', problem_humidity: 'Humidity',
+      problem_next: 'Next Safe Window', problem_next_val: 'Today at 8:30 PM',
+      features_label: 'Features', features_h2: 'Everything your dog needs.',
+      features_sub: 'From real-time risk alerts to cool spot maps \u2014 PawSafe thinks ahead for you.',
+      feat1_title: 'Real-Time Risk Alert', feat1_desc: 'Ground temperature is calculated live from air temp, solar radiation and wind \u2014 no guessing. Four levels: Safe, Caution, Dangerous, Critical.',
+      feat2_title: 'Your Pack', feat2_desc: 'Breed, age, coat, weight, heart condition \u2014 PawSafe assesses the risk for each dog individually. Brachycephalic, giant breeds, and senior dogs are detected automatically.',
+      feat3_title: '7-Day Forecast', feat3_desc: 'Hourly forecast for the next 7 days. See at a glance when a safe walk window is coming today \u2014 or whether tomorrow morning is better.',
+      feat4_title: 'GPS Walk Tracking', feat4_desc: 'Live tracking with timer, distance and dog selection \u2014 even in the background. All walks are saved: date, duration, km, activity level.',
+      feat5_title: 'Cool Spot Map', feat5_desc: 'Nearby parks, forests, waterways and nature reserves \u2014 with calculated on-site temperature. Perfect for finding the coolest route.',
+      feat6_title: '4 Surfaces Compared', feat6_desc: 'Asphalt, concrete, earth, grass \u2014 all calculated simultaneously. You instantly see how much cooler the gravel path really is.',
+      feat7_title: 'Winter Mode', feat7_desc: 'De-icing salt warning at frost, cold risk alert and wind chill calculation. Cold is just as dangerous as heat.',
+      feat8_title: 'Customisable Dashboard', feat8_desc: 'Sort widgets by drag & drop, show or hide them. Your dashboard, your rules.',
+      feat9_title: 'Emergency & First Aid', feat9_desc: 'Heatstroke detection with step-by-step guidance. Plus: find the nearest emergency vet instantly.',
+      risk_label: 'Risk Indicator', risk_h2: 'Four Colours.<br/>One Clear Answer.',
+      risk_p: 'No complicated chart reading. PawSafe gives you the signal immediately \u2014 and explains exactly why.',
+      risk_science: 'Based on veterinary research and over 30 studies on canine heat tolerance.',
+      risk1_level: 'Safe', risk1_range: 'Asphalt below 35\u00b0C \u00b7 Walk as long as you like',
+      risk2_level: 'Caution', risk2_range: '35\u201345\u00b0C \u00b7 Max. 20 minutes',
+      risk3_level: 'Dangerous', risk3_range: '45\u201355\u00b0C \u00b7 Shaded areas only',
+      risk4_level: 'Critical', risk4_range: 'Above 55\u00b0C \u00b7 Please stay home',
+      pack_rudel_header: 'My Pack', pack_miss_meta: 'Cane Corso \u00b7 4.5 years \u00b7 Brown',
+      pack_elio_meta: 'Great Dane \u00b7 13 mo. \u00b7 Black \u00b7 \u2764\ufe0f Heart',
+      pack_add: 'Add a dog', pack_badge_caution: 'Caution', pack_badge_critical: 'Critical',
+      pack_label: 'Your Pack', pack_h2: 'Every dog is different.',
+      pack_p: 'A young greyhound, an older Great Dane with a heart condition, and a mixed breed with a double coat \u2014 all three have completely different limits. PawSafe knows them all.',
+      pack_b1_title: 'Breed-specific modifiers', pack_b1_desc: 'Short-nosed breeds (bulldog, pug), giant breeds, double-coat breeds and sighthounds are detected automatically.',
+      pack_b2_title: 'Walk statistics', pack_b2_desc: 'How often was Elio outside this week? How many km did you cover? All neatly tracked.',
+      pack_b3_title: 'Maximum walk time per dog', pack_b3_desc: 'No guessing: PawSafe tells you exactly how long you can walk each dog today.',
+      science_label: 'Science', science_h2: 'Not guessed. Measured.',
+      science_p: 'PawSafe is based on veterinary research \u2014 no app magic, just real science behind every value.',
+      science1_label: 'Tissue damage from this temperature \u2014 confirmed by veterinary studies (Dillard et al., 2002)',
+      science2_label: 'Effective temperature perception at 80% humidity \u2014 the humidity index flows directly into PawSafe',
+      science3_label: 'Temperature factor for brachycephalic breeds (pug, bulldog) compared to typical dogs',
+      science_source: '<strong>How does PawSafe calculate ground temperature?</strong><br/>Surface temperature is estimated from air temperature, UV index, cloud cover and surface coefficient using the <em>UTCI model</em>. All sources are in the app under <em>Settings \u2192 Data basis</em>.',
+      winter_label: 'Winter Mode', winter_h2: 'Cold is just as dangerous.',
+      winter_p: 'De-icing salt burns paws, frost damages tissue, and some breeds get cold faster. PawSafe protects your pack all year round.',
+      winter1_title: 'De-icing Salt Warning', winter1_desc: 'At temperatures near 0\u00b0C and after snowfall: automatic warning about de-icing salt on paths.',
+      winter2_title: 'Cold-Risk Alert', winter2_desc: 'Short-haired breeds, puppies and older dogs need protection in frost too. PawSafe knows the limits.',
+      winter3_title: 'Leptospirosis Warning', winter3_desc: 'After heavy rain: alert for increased leptospirosis risk in standing water.',
+      emergency_h3: 'Emergency: What to do in a heatstroke?', emergency_p: 'PawSafe shows you step by step what to do \u2014 and finds the nearest emergency vet.',
+      emergency_btn: 'Open in the app \u2192',
+      cta_h2: 'Be one of the<br/><span class="grad-text">first.</span>',
+      cta_p: 'PawSafe is coming soon to the App Store. Sign up and get notified the moment it launches.',
+      cta_placeholder: 'your@email.com', cta_btn: 'Sign up now \ud83d\udc3e',
+      cta_success: '\u2705 Great! You\'re on the list. We\'ll be in touch!',
+      badge_ios_small: 'Coming soon to the', badge_ios_main: 'App Store',
+      badge_android_small: 'Coming soon to', badge_android_main: 'Google Play',
+      side_home: 'Home', side_risk: 'Risk Indicator', side_access: 'Early Access',
+      footer_impressum: 'Legal Notice', footer_features: 'Features', footer_science: 'Science',
+      footer_access: 'Early Access', footer_contact: 'Contact',
+      footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 For every dog in the world \ud83d\udc3e',
+      impressum_title: 'Legal Notice', impressum_angaben_label: 'Information pursuant to \u00a7 5 DDG',
+      impressum_contact_title: 'Responsible', impressum_reach_title: 'Contact',
+      impressum_disclaimer_title: 'Liability Notice',
+      impressum_disclaimer_text: 'The content of this app is for general information only. It does not replace veterinary advice.',
+      impressum_note: '* Placeholder data \u2014 will be replaced with real information before launch.',
+    }
+  };
+
+  // ── Language switcher ─────────────────────────────────────────────────────
+  (function() {
+    var lang = localStorage.getItem('pawsafe_lang') ||
+               (navigator.language && navigator.language.startsWith('de') ? 'de' : 'en');
+
+    function applyLang(l) {
+      localStorage.setItem('pawsafe_lang', l);
+      document.documentElement.lang = l;
+      document.title = T[l].page_title;
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.dataset.i18n;
+        if (T[l][key] !== undefined) el.innerHTML = T[l][key];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+        var key = el.dataset.i18nPlaceholder;
+        if (T[l][key] !== undefined) el.placeholder = T[l][key];
+      });
+      var btnDe = document.getElementById('btn-de');
+      var btnEn = document.getElementById('btn-en');
+      if (btnDe) { btnDe.classList.toggle('active', l === 'de'); }
+      if (btnEn) { btnEn.classList.toggle('active', l === 'en'); }
+      lucide.createIcons();
+    }
+
+    window.setLang = function(l) { lang = l; applyLang(l); };
+    applyLang(lang);
+  })();
+
+  // ── Side nav: active section on scroll (IntersectionObserver) ────────────
+  (function() {
+    var ids = ['hero','features','risk','pack','science','waitlist'];
+    var items = document.querySelectorAll('.side-nav-item');
+
+    function activate(id) {
+      items.forEach(function(item) {
+        item.classList.toggle('active', item.dataset.section === id);
+      });
+    }
+
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) activate(entry.target.id);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60% 0px' });
+
+    ids.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+  })();
 
   // ── Lucide Icons ──────────────────────────────────────────────
   lucide.createIcons();
