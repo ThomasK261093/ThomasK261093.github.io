@@ -271,13 +271,14 @@
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
+      position: relative;
     }
     .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 20px; font-weight: 800; color: var(--text);
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center;
       text-decoration: none;
     }
-    .nav-logo img { width: 128px; height: 128px; border-radius: 20px; }
+    .nav-logo img { width: 256px; height: 256px; border-radius: 28px; object-fit: contain; }
     .nav-links { display: flex; align-items: center; gap: 32px; }
     .nav-links a {
       font-size: 14px; font-weight: 600; color: var(--text2);
@@ -415,7 +416,7 @@
       padding: 28px 0;
     }
     .stats-inner {
-      display: grid; grid-template-columns: repeat(3, 1fr);
+      display: grid; grid-template-columns: repeat(4, 1fr);
       divide-x: 1px solid var(--border);
     }
     .stat-item {
@@ -431,10 +432,14 @@
     }
     .stat-desc { font-size: 13px; color: var(--text2); margin-top: 6px; font-weight: 500; }
 
-    @media (max-width: 520px) {
-      .stats-inner { grid-template-columns: 1fr; }
-      .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
-      .stat-item:last-child { border-bottom: none; }
+    @media (max-width: 700px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+    }
+    @media (max-width: 380px) {
+      .stat-num { font-size: 28px; }
+      .stat-desc { font-size: 11px; }
     }
 
     /* ── Problem ────────────────────────────────────────────────── */
@@ -749,7 +754,7 @@
     /* ── Language Switcher ─────────────────────────────────── */
     .lang-switcher { display: flex; gap: 3px; align-items: center; margin-left: 8px; }
     .lang-btn { background: none; border: 1.5px solid var(--border); color: var(--text2); border-radius: 20px; padding: 4px 11px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: inherit; letter-spacing: 0.5px; }
-    .lang-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .lang-btn.active { background: #556B5D; border-color: #556B5D; color: #fff; }
     .lang-btn:hover:not(.active) { border-color: var(--accent); color: var(--text); }
   </style>
 </head>
@@ -760,7 +765,6 @@
   <div class="container nav-inner">
     <a href="/" class="nav-logo">
       <img src="logo.png" alt="PawSafe Logo" />
-      PawSafe
     </a>
     <div class="nav-links">
       <a href="#features" data-i18n="nav_features">Features</a>
