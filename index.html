@@ -183,7 +183,7 @@
 
   let currentLang = localStorage.getItem('pawsafe_lang') || (navigator.language && navigator.language.startsWith('de') ? 'de' : 'en');
 
-  function setLang(lang) {
+  window.setLang = function setLang(lang) {
     currentLang = lang;
     localStorage.setItem('pawsafe_lang', lang);
     document.documentElement.lang = lang;
@@ -201,25 +201,42 @@
     if (btnDe) btnDe.classList.toggle('active', lang === 'de');
     if (btnEn) btnEn.classList.toggle('active', lang === 'en');
     if (window.lucide) lucide.createIcons();
-  }
+  };
 
-  setLang(currentLang);
+  window.setLang(currentLang);
 
   // ── Side nav: highlight active section on scroll ────────────────────────────
   (function() {
-    const sections = ['hero','features','risk','pack','science','waitlist'];
-    const items = document.querySelectorAll('.side-nav-item');
+    const sectionIds = ['hero','features','risk','pack','science','waitlist'];
+    const navItems = document.querySelectorAll('.side-nav-item');
+
+    function setActive(id) {
+      navItems.forEach(item => item.classList.toggle('active', item.dataset.section === id));
+    }
+
+    // IntersectionObserver: mark section active when it crosses 30% from top
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { threshold: 0, rootMargin: '-20% 0px -70% 0px' });
+
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    // Fallback scroll for browsers without IO support
     function onScroll() {
       let current = 'hero';
-      sections.forEach(id => {
+      sectionIds.forEach(id => {
         const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 200) current = id;
+        if (el && window.scrollY >= el.offsetTop - window.innerHeight * 0.4) current = id;
       });
-      items.forEach(item => {
-        item.classList.toggle('active', item.dataset.section === current);
-      });
+      setActive(current);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run immediately on load
   })();
 
 </script>
@@ -880,17 +897,10 @@
     <a href="/" class="nav-logo">
       <img src="logo.png" alt="PawSafe Logo" />
     </a>
-    <div class="nav-links">
-      <a href="#features" data-i18n="nav_features">Features</a>
-      <a href="#science" data-i18n="nav_science">Wissenschaft</a>
-      <a href="#pack" data-i18n="nav_pack">Dein Rudel</a>
-      <a href="#waitlist" class="nav-cta" data-i18n="nav_cta">Early Access</a>
-    </div>
     <div class="lang-switcher">
       <button onclick="setLang('de')" id="btn-de" class="lang-btn">DE</button>
       <button onclick="setLang('en')" id="btn-en" class="lang-btn">EN</button>
     </div>
-    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">☰</button>
   </div>
 </nav>
 
