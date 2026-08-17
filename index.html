@@ -92,6 +92,7 @@
       cta_success: '✅ Super! Du bist auf der Liste. Wir melden uns!',
       badge_ios_small: 'Demn\u00e4chst im', badge_ios_main: 'App Store',
       badge_android_small: 'Demn\u00e4chst bei', badge_android_main: 'Google Play',
+      side_home: 'Start', side_risk: 'Risikoampel', side_access: 'Early Access',
       footer_impressum: 'Impressum',
       impressum_title: 'Impressum',
       impressum_angaben_label: 'Angaben gemäß § 5 DDG',
@@ -166,6 +167,7 @@
       cta_success: '✅ Great! You\'re on the list. We\'ll be in touch!',
       badge_ios_small: 'Coming soon to the', badge_ios_main: 'App Store',
       badge_android_small: 'Coming soon to', badge_android_main: 'Google Play',
+      side_home: 'Home', side_risk: 'Risk Indicator', side_access: 'Early Access',
       footer_impressum: 'Legal Notice',
       impressum_title: 'Legal Notice',
       impressum_angaben_label: 'Information pursuant to § 5 DDG (German Digital Services Act)',
@@ -202,6 +204,23 @@
   }
 
   setLang(currentLang);
+
+  // ── Side nav: highlight active section on scroll ────────────────────────────
+  (function() {
+    const sections = ['hero','features','risk','pack','science','waitlist'];
+    const items = document.querySelectorAll('.side-nav-item');
+    function onScroll() {
+      let current = 'hero';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 200) current = id;
+      });
+      items.forEach(item => {
+        item.classList.toggle('active', item.dataset.section === current);
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
 
 </script>
 
@@ -278,7 +297,7 @@
     /* ── Nav ────────────────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 8px 0;
+      padding: 0;
       background: rgba(28,31,34,0.80);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -287,7 +306,7 @@
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      position: relative;
+      position: relative; min-height: 280px; padding: 12px 0;
     }
     .nav-logo {
       position: absolute; left: 50%; transform: translateX(-50%);
@@ -318,7 +337,7 @@
     .hero {
       min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 24px 80px;
+      text-align: center; padding: 320px 24px 80px;
       position: relative; overflow: hidden;
     }
 
@@ -791,6 +810,38 @@
     }
     .burn-caption strong { color: #ff6a00; }
 
+
+    /* ── Side Nav ───────────────────────────────────────────────── */
+    .side-nav {
+      position: fixed; left: 20px; top: 50%; transform: translateY(-50%);
+      z-index: 98; display: flex; flex-direction: column; gap: 18px;
+    }
+    .side-nav-item {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; cursor: pointer;
+    }
+    .side-nav-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); flex-shrink: 0;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .side-nav-item:hover .side-nav-dot,
+    .side-nav-item.active .side-nav-dot {
+      background: var(--accent); transform: scale(1.5);
+    }
+    .side-nav-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+      color: var(--text2); white-space: nowrap;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none; text-transform: uppercase;
+    }
+    .side-nav-item:hover .side-nav-label,
+    .side-nav-item.active .side-nav-label {
+      opacity: 1; transform: translateX(0);
+    }
+    @media (max-width: 1100px) { .side-nav { display: none; } }
+
     /* ── Language Switcher ─────────────────────────────────── */
     .lang-switcher { display: flex; gap: 3px; align-items: center; margin-left: 8px; }
     .lang-btn { background: none; border: 1.5px solid var(--border); color: var(--text2); border-radius: 20px; padding: 4px 11px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: inherit; letter-spacing: 0.5px; }
@@ -799,6 +850,29 @@
   </style>
 </head>
 <body>
+
+
+<!-- ── Side Nav ─────────────────────────────────────────────────── -->
+<div class="side-nav" id="sideNav">
+  <a href="#hero"      class="side-nav-item active" data-section="hero">
+    <span class="side-nav-dot"></span><span class="side-nav-label" data-i18n="side_home">Start</span>
+  </a>
+  <a href="#features"  class="side-nav-item" data-section="features">
+    <span class="side-nav-dot"></span><span class="side-nav-label" data-i18n="nav_features">Features</span>
+  </a>
+  <a href="#risk"      class="side-nav-item" data-section="risk">
+    <span class="side-nav-dot"></span><span class="side-nav-label" data-i18n="side_risk">Risikoampel</span>
+  </a>
+  <a href="#pack"      class="side-nav-item" data-section="pack">
+    <span class="side-nav-dot"></span><span class="side-nav-label" data-i18n="nav_pack">Dein Rudel</span>
+  </a>
+  <a href="#science"   class="side-nav-item" data-section="science">
+    <span class="side-nav-dot"></span><span class="side-nav-label" data-i18n="nav_science">Wissenschaft</span>
+  </a>
+  <a href="#waitlist"  class="side-nav-item" data-section="waitlist">
+    <span class="side-nav-dot"></span><span class="side-nav-label" data-i18n="side_access">Early Access</span>
+  </a>
+</div>
 
 <!-- ── Nav ──────────────────────────────────────────────────────── -->
 <nav>
@@ -821,7 +895,7 @@
 </nav>
 
 <!-- ── Hero ─────────────────────────────────────────────────────── -->
-<section class="hero">
+<section class="hero" id="hero">
   <div class="hero-bg"></div>
   <div class="hero-orb"></div>
 
