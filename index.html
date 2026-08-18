@@ -33,10 +33,10 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #1C1F22;                  /* deepest navy */
-      --surface:  #23262A;                  /* midnight navy — logo graphic color */
-      --surface2: #2A2E33;                  /* card alt */
-      --glass:    rgba(28,31,34,0.80);
+      --bg:       #2C3030;                  /* dark forest */
+      --surface:  #353B38;                  /* card surface */
+      --surface2: #3C4340;                  /* card alt */
+      --glass:    rgba(44,48,48,0.80);
       --border:   rgba(220,207,184,0.12);
       --accent:   #556B5D;
       --accent2:  #6BAA7A;
@@ -102,7 +102,7 @@
     nav {
       position: relative;
       padding: 0;
-      background: rgba(28,31,34,0.97);
+      background: rgba(44,48,48,0.97);
       border-bottom: 1px solid var(--border);
     }
     .nav-inner {
@@ -147,7 +147,7 @@
       position: absolute; inset: 0; z-index: 0;
       background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(85,107,93,0.15) 0%, transparent 60%),
                   radial-gradient(ellipse 60% 50% at 80% 70%, rgba(66,165,245,0.07) 0%, transparent 60%),
-                  linear-gradient(180deg, #23262A 0%, #1C1F22 100%);
+                  linear-gradient(180deg, #353B38 0%, #2C3030 100%);
       animation: heroBg 14s ease infinite alternate;
     }
     @keyframes heroBg {
@@ -1220,7 +1220,7 @@
   // ── Nav background on scroll ─────────────────────────────────────
   window.addEventListener('scroll', () => {
     document.querySelector('nav').style.background =
-      window.scrollY > 60 ? 'rgba(28,31,34,0.97)' : 'rgba(28,31,34,0.80)';
+      window.scrollY > 60 ? 'rgba(44,48,48,0.97)' : 'rgba(44,48,48,0.80)';
   }, { passive: true });
 
   // ── Waitlist Form (Formspree) ─────────────────────────────────────
