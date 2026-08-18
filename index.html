@@ -649,6 +649,14 @@
     .lang-btn.active { background: #556B5D; border-color: #556B5D; color: #fff; }
     .lang-btn:hover:not(.active) { border-color: var(--accent); color: var(--text); }
   </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XRFFYDERE8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XRFFYDERE8');
+</script>
 </head>
 <body>
 
@@ -706,8 +714,8 @@
   </p>
 
   <div class="hero-actions">
-    <a href="#waitlist" class="btn-primary" data-i18n="hero_btn_primary">🐾 Early Access sichern</a>
-    <a href="#features" class="btn-secondary" data-i18n="hero_btn_secondary">Mehr erfahren ↓</a>
+    <a href="#waitlist" class="btn-primary" data-i18n="hero_btn_primary" onclick="gtag('event','cta_click',{event_category:'engagement',event_label:'hero_primary'})">🐾 Early Access sichern</a>
+    <a href="#features" class="btn-secondary" data-i18n="hero_btn_secondary" onclick="gtag('event','cta_click',{event_category:'engagement',event_label:'hero_secondary'})">Mehr erfahren ↓</a>
   </div>
 
   <div class="paw-trail" id="pawTrail"></div>
@@ -1248,6 +1256,7 @@
       if (res.ok) {
         this.style.display = 'none';
         document.getElementById('waitlistSuccess').style.display = 'block';
+        gtag('event', 'waitlist_signup', { event_category: 'engagement' });
       } else {
         btn.textContent = 'Jetzt eintragen 🐾';
         btn.disabled = false;
