@@ -100,13 +100,10 @@
 
     /* ── Nav ────────────────────────────────────────────────────── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: relative;
       padding: 0;
-      background: rgba(28,31,34,0.80);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(28,31,34,0.97);
       border-bottom: 1px solid var(--border);
-      transition: background 0.3s;
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
@@ -141,7 +138,7 @@
     .hero {
       min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 320px 24px 80px;
+      text-align: center; padding: 60px 24px 80px;
       position: relative; overflow: hidden;
     }
 
@@ -1162,7 +1159,7 @@
       <a href="#science" data-i18n="nav_science">Wissenschaft</a>
       <a href="#waitlist">Early Access</a>
       <a href="mailto:info@pawsafe.eu">Kontakt</a>
-      <a href="#impressum" data-i18n="footer_impressum">Impressum</a>
+      <a href="impressum.html" data-i18n="footer_impressum">Impressum</a>
     </div>
     <div class="footer-copy" data-i18n="footer_copy">© 2026 PawSafe · pawsafe.eu · Für alle Hunde dieser Welt 🐾</div>
   </div>
