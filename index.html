@@ -879,7 +879,7 @@
       <div class="feature-card reveal reveal-delay-1">
         <span class="feature-icon"><i data-lucide="snowflake" width="40" height="40"></i></span>
         <div class="feature-title" data-i18n="feat7_title">Winter-Modus</div>
-        <div class="feature-desc" data-i18n="feat7_desc">Streusalz-Warnung bei Frost, Kälte-Risikoampel (zu kalt, gefährlich, kritisch) und Windchill-Berechnung. Kälte ist genauso gefährlich wie Hitze.</div>
+        <div class="feature-desc" data-i18n="feat7_desc">Streusalz-Warnung bei Frost, Kälte-Risikoampel (Kalt, Zu kalt, Eiskalt) und Windchill-Berechnung. Kälte ist genauso gefährlich wie Hitze.</div>
       </div>
       <div class="feature-card reveal reveal-delay-2">
         <span class="feature-icon"><i data-lucide="layout-dashboard" width="40" height="40"></i></span>
@@ -919,7 +919,7 @@
         <div class="risk-card reveal reveal-delay-1" style="border-color: #6BAA7A; animation-delay: 0.1s;">
           <div class="risk-dot" style="background:#6BAA7A;"></div>
           <div class="risk-info">
-            <div class="risk-level" data-i18n="risk4_level" data-i18n="risk3_level" data-i18n="risk2_level" data-i18n="risk1_level" style="color:#6BAA7A">Sicher</div>
+            <div class="risk-level" data-i18n="risk1_level" style="color:#6BAA7A">Sicher</div>
             <div class="risk-range" data-i18n="risk1_range">Asphalt unter 35°C · Unbegrenzt laufen</div>
           </div>
           <div class="risk-temp" style="color:#6BAA7A">~25°C</div>
@@ -927,26 +927,26 @@
         <div class="risk-card reveal reveal-delay-2" style="border-color: #C77B58;">
           <div class="risk-dot" style="background:#C77B58;"></div>
           <div class="risk-info">
-            <div class="risk-level" style="color:#C77B58">Vorsicht</div>
-            <div class="risk-range" data-i18n="risk2_range">35–45°C · Max. 20 Minuten</div>
+            <div class="risk-level" data-i18n="risk2_level" style="color:#C77B58">Vorsicht</div>
+            <div class="risk-range" data-i18n="risk2_range">35–45°C · Max. 45 Minuten</div>
           </div>
           <div class="risk-temp" style="color:#C77B58">~38°C</div>
         </div>
-        <div class="risk-card reveal reveal-delay-3" style="border-color: #FF5722;">
-          <div class="risk-dot" style="background:#FF5722;"></div>
-          <div class="risk-info">
-            <div class="risk-level" style="color:#FF5722">Gefährlich</div>
-            <div class="risk-range" data-i18n="risk3_range">45–55°C · Nur kurz auf Schatten</div>
-          </div>
-          <div class="risk-temp" style="color:#FF5722">~50°C</div>
-        </div>
-        <div class="risk-card reveal reveal-delay-4" style="border-color: #F44336;">
+        <div class="risk-card reveal reveal-delay-3" style="border-color: #F44336;">
           <div class="risk-dot" style="background:#F44336;"></div>
           <div class="risk-info">
-            <div class="risk-level" style="color:#F44336">Kritisch</div>
-            <div class="risk-range" data-i18n="risk4_range">Über 55°C · Bitte zu Hause bleiben</div>
+            <div class="risk-level" data-i18n="risk3_level" style="color:#F44336">Gefährlich</div>
+            <div class="risk-range" data-i18n="risk3_range">45–52°C · Max. 10 Minuten</div>
           </div>
-          <div class="risk-temp" style="color:#F44336">60°C+</div>
+          <div class="risk-temp" style="color:#F44336">~50°C</div>
+        </div>
+        <div class="risk-card reveal reveal-delay-4" style="border-color: #B71C1C;">
+          <div class="risk-dot" style="background:#B71C1C;"></div>
+          <div class="risk-info">
+            <div class="risk-level" data-i18n="risk4_level" style="color:#B71C1C">Kritisch</div>
+            <div class="risk-range" data-i18n="risk4_range">Über 52°C · Nicht empfohlen</div>
+          </div>
+          <div class="risk-temp" style="color:#B71C1C">55°C+</div>
         </div>
       </div>
     </div>
@@ -1297,16 +1297,16 @@
       feat4_title: 'GPS Walk Tracking', feat4_desc: 'Live-Tracking mit Timer, Distanz und Hunde-Auswahl \u2014 auch im Hintergrund. Alle Spazierg\u00e4nge werden gespeichert: Datum, Dauer, km, Aktivit\u00e4tslevel.',
       feat5_title: 'K\u00fchlspot-Karte', feat5_desc: 'Parks, W\u00e4lder, Gew\u00e4sser und Naturschutzgebiete in der N\u00e4he \u2014 mit berechneter Temperatur vor Ort. Perfekt um spontan den k\u00fchlsten Weg zu finden.',
       feat6_title: '4 Oberfl\u00e4chen im Vergleich', feat6_desc: 'Asphalt, Beton, Erde, Gras \u2014 alle gleichzeitig berechnet. Du siehst sofort, wie viel k\u00fchler der Schotterweg neben der Stra\u00dfe wirklich ist.',
-      feat7_title: 'Winter-Modus', feat7_desc: 'Streusalz-Warnung bei Frost, K\u00e4lte-Risikoampel (zu kalt, gef\u00e4hrlich, kritisch) und Windchill-Berechnung. K\u00e4lte ist genauso gef\u00e4hrlich wie Hitze.',
+      feat7_title: 'Winter-Modus', feat7_desc: 'Streusalz-Warnung bei Frost, K\u00e4lte-Risikoampel (Kalt, Zu kalt, Eiskalt) und Windchill-Berechnung. K\u00e4lte ist genauso gef\u00e4hrlich wie Hitze.',
       feat8_title: 'Anpassbares Dashboard', feat8_desc: 'Widgets per Drag & Drop sortieren, ein- oder ausblenden. Jeder Hundebesitzer hat andere Priorit\u00e4ten \u2014 dein Dashboard, deine Regeln.',
       feat9_title: 'Notfall & Erste Hilfe', feat9_desc: 'Hitzschlag-Erkennung mit Schritt-f\u00fcr-Schritt-Anleitung direkt in der App. Plus: n\u00e4chsten Notfalltierarzt sofort finden.',
       risk_label: 'Risikoampel', risk_h2: 'Vier Farben.<br/>Eine klare Antwort.',
       risk_p: 'Kein kompliziertes Ablesen von Diagrammen. PawSafe gibt dir sofort die Ampel \u2014 und erkl\u00e4rt genau warum.',
       risk_science: 'Basiert auf veterin\u00e4rmedizinischer Forschung und \u00fcber 30 Studien zur Hundehitzetoleranz.',
       risk1_level: 'Sicher', risk1_range: 'Asphalt unter 35\u00b0C \u00b7 Unbegrenzt laufen',
-      risk2_level: 'Vorsicht', risk2_range: '35\u201345\u00b0C \u00b7 Max. 20 Minuten',
-      risk3_level: 'Gef\u00e4hrlich', risk3_range: '45\u201355\u00b0C \u00b7 Nur kurz auf Schatten',
-      risk4_level: 'Kritisch', risk4_range: '\u00dcber 55\u00b0C \u00b7 Bitte zu Hause bleiben',
+      risk2_level: 'Vorsicht', risk2_range: '35\u201345\u00b0C \u00b7 Max. 45 Minuten',
+      risk3_level: 'Gef\u00e4hrlich', risk3_range: '45\u201352\u00b0C \u00b7 Max. 10 Minuten',
+      risk4_level: 'Kritisch', risk4_range: '\u00dcber 52\u00b0C \u00b7 Nicht empfohlen',
       pack_rudel_header: 'Mein Rudel', pack_miss_meta: 'Cane Corso \u00b7 4,5 Jahre \u00b7 Braun',
       pack_elio_meta: 'Deutsche Dogge \u00b7 13 Mon. \u00b7 Schwarz \u00b7 \u2764\ufe0f Herz',
       pack_add: 'Hund hinzuf\u00fcgen', pack_badge_caution: 'Vorsicht', pack_badge_critical: 'Kritisch',
@@ -1376,9 +1376,9 @@
       risk_p: 'No complicated chart reading. PawSafe gives you the signal immediately \u2014 and explains exactly why.',
       risk_science: 'Based on veterinary research and over 30 studies on canine heat tolerance.',
       risk1_level: 'Safe', risk1_range: 'Asphalt below 35\u00b0C \u00b7 Walk as long as you like',
-      risk2_level: 'Caution', risk2_range: '35\u201345\u00b0C \u00b7 Max. 20 minutes',
-      risk3_level: 'Dangerous', risk3_range: '45\u201355\u00b0C \u00b7 Shaded areas only',
-      risk4_level: 'Critical', risk4_range: 'Above 55\u00b0C \u00b7 Please stay home',
+      risk2_level: 'Caution', risk2_range: '35\u201345\u00b0C \u00b7 Max. 45 minutes',
+      risk3_level: 'Dangerous', risk3_range: '45\u201352\u00b0C \u00b7 Max. 10 minutes',
+      risk4_level: 'Critical', risk4_range: 'Above 52\u00b0C \u00b7 Not recommended',
       pack_rudel_header: 'My Pack', pack_miss_meta: 'Cane Corso \u00b7 4.5 years \u00b7 Brown',
       pack_elio_meta: 'Great Dane \u00b7 13 mo. \u00b7 Black \u00b7 \u2764\ufe0f Heart',
       pack_add: 'Add a dog', pack_badge_caution: 'Caution', pack_badge_critical: 'Critical',
