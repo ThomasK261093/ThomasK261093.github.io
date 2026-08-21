@@ -164,10 +164,11 @@
       justify-content: space-around; padding: 0 5%; pointer-events: none;
     }
     .paw-trail span {
-      font-size: 26px; opacity: 0;
+      opacity: 0;
       animation: pawAppear 0.5s ease forwards;
       display: inline-block;
     }
+    .paw-trail span svg { width: 22px; height: 22px; stroke: var(--text3); stroke-width: 1.5; }
     @keyframes pawAppear {
       from { opacity: 0; transform: translateY(12px) scale(0.5); }
       to   { opacity: 0.25; transform: translateY(0) scale(1) rotate(var(--r)); }
@@ -681,7 +682,7 @@
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
 
-  <div class="hero-badge" data-i18n="hero_badge">🐾 Bald im App Store</div>
+  <div class="hero-badge" data-i18n="hero_badge">Bald im App Store</div>
 
   <h1 data-i18n="hero_h1">
     Sichere Pfoten<br/>
@@ -694,7 +695,7 @@
   </p>
 
   <div class="hero-actions">
-    <a href="#waitlist" class="btn-primary" data-i18n="hero_btn_primary" onclick="gtag('event','cta_click',{event_category:'engagement',event_label:'hero_primary'})">🐾 Early Access sichern</a>
+    <a href="#waitlist" class="btn-primary" data-i18n="hero_btn_primary" onclick="gtag('event','cta_click',{event_category:'engagement',event_label:'hero_primary'})">Early Access sichern</a>
     <a href="#features" class="btn-secondary" data-i18n="hero_btn_secondary" onclick="gtag('event','cta_click',{event_category:'engagement',event_label:'hero_secondary'})">Mehr erfahren ↓</a>
   </div>
 
@@ -710,7 +711,7 @@
       <source src="burn_loop.mp4" type="video/mp4">
     </video>
     <div class="burn-badge-3d">
-      <span class="sun-ico">☀️</span>
+      <span class="sun-ico"><i data-lucide="sun"></i></span>
       Asphalt: 62°C
     </div>
   </div>
@@ -955,13 +956,13 @@
           <div class="dog-avatar" style="background: rgba(244,67,54,0.12);"><i data-lucide="dog" width="26" height="26" style="stroke:#F44336;stroke-width:1.5;"></i></div>
           <div>
             <div class="dog-name">Elio</div>
-            <div class="dog-meta" data-i18n="pack_elio_meta">Deutsche Dogge · 13 Mon. · Schwarz · ❤️ Herz</div>
+            <div class="dog-meta" data-i18n="pack_elio_meta">Deutsche Dogge · 13 Mon. · Schwarz · <i data-lucide="heart-pulse" width="12" height="12" style="display:inline-block;vertical-align:middle;stroke-width:2;"></i> Herz</div>
           </div>
           <div class="dog-risk-badge" style="background:rgba(244,67,54,0.15); color:#F44336;" data-i18n="pack_badge_critical">Kritisch</div>
         </div>
 
         <div style="background: var(--surface); border: 1px dashed var(--border); border-radius: 14px; padding: 16px 18px; display: flex; align-items: center; gap: 12px; color: var(--text3); font-size: 14px; cursor: pointer;">
-          <span style="font-size: 22px;">＋</span> <span data-i18n="pack_add">Hund hinzufügen</span>
+          <i data-lucide="plus" width="18" height="18" style="stroke-width:2;"></i> <span data-i18n="pack_add">Hund hinzufügen</span>
         </div>
 
         <div style="margin-top: 4px; padding: 14px 16px; background: rgba(244,67,54,0.06); border: 1px solid rgba(244,67,54,0.15); border-radius: 12px;">
@@ -1110,10 +1111,10 @@
     <form class="waitlist-form reveal reveal-delay-2" id="waitlistForm">
       <input class="waitlist-input" type="email" name="email" placeholder="deine@email.de" required id="emailInput" data-i18n-placeholder="cta_placeholder" />
       <div id="emailError" style="display:none; color:#EF5350; font-size:13px; margin-top:6px; text-align:center;" data-i18n="email_error">Bitte gib eine gültige E-Mail-Adresse ein.</div>
-      <button class="waitlist-btn" type="submit" data-i18n="cta_btn">Jetzt eintragen 🐾</button>
+      <button class="waitlist-btn" type="submit" data-i18n="cta_btn">Jetzt eintragen</button>
     </form>
     <div class="waitlist-success" id="waitlistSuccess">
-      <span data-i18n="cta_success">✅ Super! Du bist auf der Liste. Wir melden uns!</span>
+      <span data-i18n="cta_success">Super! Du bist auf der Liste. Wir melden uns!</span>
     </div>
 
     <div class="app-store-badges reveal reveal-delay-3">
@@ -1149,7 +1150,7 @@
       <a href="mailto:info@pawsafe.eu">Kontakt</a>
       <a href="impressum.html" data-i18n="footer_impressum">Impressum</a>
     </div>
-    <div class="footer-copy" data-i18n="footer_copy">© 2026 PawSafe · pawsafe.eu · Für alle Hunde dieser Welt 🐾</div>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 PawSafe · pawsafe.eu · Für alle Hunde dieser Welt</div>
   </div>
 </footer>
 
@@ -1187,7 +1188,7 @@
   const rotations = [-18, -8, -2, 5, 12, 18, 8, -5];
   for (let i = 0; i < 8; i++) {
     const span = document.createElement('span');
-    span.textContent = '🐾';
+    span.innerHTML = '<i data-lucide="paw-print"></i>';
     span.style.setProperty('--r', rotations[i] + 'deg');
     span.style.animationDelay = (i * 120 + 400) + 'ms';
     trail.appendChild(span);
@@ -1238,12 +1239,12 @@
         document.getElementById('waitlistSuccess').style.display = 'block';
         gtag('event', 'waitlist_signup', { event_category: 'engagement' });
       } else {
-        btn.textContent = 'Jetzt eintragen 🐾';
+        btn.textContent = 'Jetzt eintragen';
         btn.disabled = false;
         alert('Ups, etwas ist schiefgelaufen. Bitte versuch es nochmal.');
       }
     } catch {
-      btn.textContent = 'Jetzt eintragen 🐾';
+      btn.textContent = 'Jetzt eintragen';
       btn.disabled = false;
       alert('Keine Verbindung. Bitte versuch es nochmal.');
     }
@@ -1255,10 +1256,10 @@
     de: {
       page_title: 'PawSafe \u2013 Sichere Pfoten bei jedem Wetter',
       nav_features: 'Features', nav_science: 'Wissenschaft', nav_pack: 'Dein Rudel', nav_cta: 'Early Access',
-      hero_badge: '🐾 Bald im App Store',
+      hero_badge: 'Bald im App Store',
       hero_h1: 'Sichere Pfoten<br/><span class="grad-text">bei jedem Wetter.</span>',
       hero_p: 'PawSafe berechnet in Echtzeit, ob der Boden f\u00fcr deinen Hund zu hei\u00df oder zu kalt ist \u2014 personalisiert f\u00fcr jede Rasse, jedes Fell, jeden Hund.',
-      hero_btn_primary: '🐾 Early Access sichern', hero_btn_secondary: 'Mehr erfahren \u2193',
+      hero_btn_primary: 'Early Access sichern', hero_btn_secondary: 'Mehr erfahren \u2193',
       stat_1: 'Asphalt-Temperatur an hei\u00dfen Sommertagen', stat_2: 'bis Asphalt Pfoten dauerhaft verbrennt',
       stat_3: 'Oberfl\u00e4chen live berechnet \u2014 Asphalt bis Gras', stat_4: 'Sprachen: DE, EN, IT, ES, FR',
       problem_label: 'Das Problem', problem_h2: 'Der Boden wird zur unsichtbaren Gefahr',
@@ -1288,7 +1289,7 @@
       risk3_level: 'Gef\u00e4hrlich', risk3_range: '45\u201352\u00b0C \u00b7 Max. 10 Minuten',
       risk4_level: 'Kritisch', risk4_range: '\u00dcber 52\u00b0C \u00b7 Nicht empfohlen',
       pack_rudel_header: 'Mein Rudel', pack_miss_meta: 'Cane Corso \u00b7 4,5 Jahre \u00b7 Braun',
-      pack_elio_meta: 'Deutsche Dogge \u00b7 13 Mon. \u00b7 Schwarz \u00b7 \u2764\ufe0f Herz',
+      pack_elio_meta: 'Deutsche Dogge \u00b7 13 Mon. \u00b7 Schwarz \u00b7 <i data-lucide="heart-pulse" width="12" height="12" style="display:inline-block;vertical-align:middle;stroke-width:2;"></i> Herz',
       pack_add: 'Hund hinzuf\u00fcgen', pack_badge_caution: 'Vorsicht', pack_badge_critical: 'Kritisch',
       pack_label: 'Dein Rudel', pack_h2: 'Jeder Hund ist anders.',
       pack_p: 'Ein junger Windhund, eine \u00e4ltere Dogge mit Herzerkrankung und ein Mischling mit Doppelfell \u2014 alle drei haben v\u00f6llig andere Grenzen. PawSafe kennt sie alle.',
@@ -1310,14 +1311,14 @@
       emergency_btn: 'In der App \u00f6ffnen \u2192',
       cta_h2: 'Sei einer der<br/><span class="grad-text">Ersten.</span>',
       cta_p: 'PawSafe erscheint bald im App Store. Trag dich ein und bekomme sofort Bescheid wenn es soweit ist.',
-      cta_placeholder: 'deine@email.de', cta_btn: 'Jetzt eintragen \ud83d\udc3e', email_error: 'Bitte gib eine gültige E-Mail-Adresse ein.',
-      cta_success: '\u2705 Super! Du bist auf der Liste. Wir melden uns!',
+      cta_placeholder: 'deine@email.de', cta_btn: 'Jetzt eintragen', email_error: 'Bitte gib eine gültige E-Mail-Adresse ein.',
+      cta_success: 'Super! Du bist auf der Liste. Wir melden uns!',
       badge_ios_small: 'Demn\u00e4chst im', badge_ios_main: 'App Store',
       badge_android_small: 'Demn\u00e4chst bei', badge_android_main: 'Google Play',
       side_home: 'Start', side_risk: 'Risikoampel', side_access: 'Early Access',
       footer_impressum: 'Impressum', footer_features: 'Features', footer_science: 'Wissenschaft',
       footer_access: 'Early Access', footer_contact: 'Kontakt',
-      footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 F\u00fcr alle Hunde dieser Welt \ud83d\udc3e',
+      footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 F\u00fcr alle Hunde dieser Welt',
       impressum_title: 'Impressum', impressum_angaben_label: 'Angaben gem\u00e4\u00df \u00a7 5 DDG',
       impressum_contact_title: 'Verantwortlich', impressum_reach_title: 'Kontakt', impressum_no_packages: 'Bitte keine Pakete oder Päckchen an diese Anschrift senden.',
       impressum_disclaimer_title: 'Haftungshinweis',
@@ -1327,10 +1328,10 @@
     en: {
       page_title: 'PawSafe \u2013 Safe Paws in Any Weather',
       nav_features: 'Features', nav_science: 'Science', nav_pack: 'Your Pack', nav_cta: 'Early Access',
-      hero_badge: '\ud83d\udc3e Coming to the App Store',
+      hero_badge: 'Coming to the App Store',
       hero_h1: 'Safe Paws<br/><span class="grad-text">in Any Weather.</span>',
       hero_p: 'PawSafe calculates in real time whether the ground is too hot or too cold for your dog \u2014 personalised for every breed, coat, and individual dog.',
-      hero_btn_primary: '\ud83d\udc3e Get Early Access', hero_btn_secondary: 'Learn more \u2193',
+      hero_btn_primary: 'Get Early Access', hero_btn_secondary: 'Learn more \u2193',
       stat_1: 'Asphalt temperature on hot summer days', stat_2: 'until asphalt permanently burns paws',
       stat_3: 'Surfaces calculated live \u2014 asphalt to grass', stat_4: 'Languages: DE, EN, IT, ES, FR',
       problem_label: 'The Problem', problem_h2: 'The ground becomes an invisible danger',
@@ -1360,7 +1361,7 @@
       risk3_level: 'Dangerous', risk3_range: '45\u201352\u00b0C \u00b7 Max. 10 minutes',
       risk4_level: 'Critical', risk4_range: 'Above 52\u00b0C \u00b7 Not recommended',
       pack_rudel_header: 'My Pack', pack_miss_meta: 'Cane Corso \u00b7 4.5 years \u00b7 Brown',
-      pack_elio_meta: 'Great Dane \u00b7 13 mo. \u00b7 Black \u00b7 \u2764\ufe0f Heart',
+      pack_elio_meta: 'Great Dane \u00b7 13 mo. \u00b7 Black \u00b7 <i data-lucide="heart-pulse" width="12" height="12" style="display:inline-block;vertical-align:middle;stroke-width:2;"></i> Heart',
       pack_add: 'Add a dog', pack_badge_caution: 'Caution', pack_badge_critical: 'Critical',
       pack_label: 'Your Pack', pack_h2: 'Every dog is different.',
       pack_p: 'A young greyhound, an older Great Dane with a heart condition, and a mixed breed with a double coat \u2014 all three have completely different limits. PawSafe knows them all.',
@@ -1382,14 +1383,14 @@
       emergency_btn: 'Open in the app \u2192',
       cta_h2: 'Be one of the<br/><span class="grad-text">first.</span>',
       cta_p: 'PawSafe is coming soon to the App Store. Sign up and get notified the moment it launches.',
-      cta_placeholder: 'your@email.com', cta_btn: 'Sign up now \ud83d\udc3e', email_error: 'Please enter a valid email address.',
-      cta_success: '\u2705 Great! You\'re on the list. We\'ll be in touch!',
+      cta_placeholder: 'your@email.com', cta_btn: 'Sign up now', email_error: 'Please enter a valid email address.',
+      cta_success: 'Great! You\'re on the list. We\'ll be in touch!',
       badge_ios_small: 'Coming soon to the', badge_ios_main: 'App Store',
       badge_android_small: 'Coming soon to', badge_android_main: 'Google Play',
       side_home: 'Home', side_risk: 'Risk Indicator', side_access: 'Early Access',
       footer_impressum: 'Legal Notice', footer_features: 'Features', footer_science: 'Science',
       footer_access: 'Early Access', footer_contact: 'Contact',
-      footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 For every dog in the world \ud83d\udc3e',
+      footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 For every dog in the world',
       impressum_title: 'Legal Notice', impressum_angaben_label: 'Information pursuant to \u00a7 5 DDG',
       impressum_contact_title: 'Responsible', impressum_reach_title: 'Contact', impressum_no_packages: 'Please do not send packages or parcels to this address.',
       impressum_disclaimer_title: 'Liability Notice',
