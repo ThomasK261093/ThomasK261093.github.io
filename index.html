@@ -150,32 +150,11 @@
       position: relative; overflow: hidden;
     }
 
-    /* animated gradient bg */
+    /* calm static hero backdrop */
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(85,107,93,0.15) 0%, transparent 60%),
-                  radial-gradient(ellipse 60% 50% at 80% 70%, rgba(66,165,245,0.07) 0%, transparent 60%),
+      background: radial-gradient(ellipse 70% 55% at 50% 25%, rgba(85,107,93,0.13) 0%, transparent 60%),
                   linear-gradient(180deg, #353B38 0%, #2C3030 100%);
-      animation: heroBg 14s ease infinite alternate;
-    }
-    @keyframes heroBg {
-      0%   { background-position: 50% 30%; filter: hue-rotate(0deg); }
-      50%  { background-position: 55% 35%; filter: hue-rotate(20deg); }
-      100% { background-position: 45% 28%; filter: hue-rotate(-10deg); }
-    }
-
-    /* floating orb */
-    .hero-orb {
-      position: absolute;
-      width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(85,107,93,0.08) 0%, transparent 70%);
-      top: 50%; left: 50%; transform: translate(-50%, -60%);
-      animation: orbPulse 6s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes orbPulse {
-      0%, 100% { transform: translate(-50%, -60%) scale(1); opacity: 0.7; }
-      50%       { transform: translate(-50%, -62%) scale(1.12); opacity: 1; }
     }
 
     /* paw trail at bottom */
@@ -227,9 +206,9 @@
       background: var(--accent); color: #000;
       padding: 15px 32px; border-radius: 14px; font-size: 15px; font-weight: 800;
       text-decoration: none; transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 8px 32px rgba(85,107,93,0.35);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(85,107,93,0.5); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.24); }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(245,237,230,0.06); color: var(--text);
@@ -519,9 +498,9 @@
       font-size: 15px; font-weight: 800; font-family: inherit;
       border: none; cursor: pointer;
       transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 8px 32px rgba(85,107,93,0.35);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
     }
-    .waitlist-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(85,107,93,0.5); }
+    .waitlist-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.24); }
     .waitlist-success {
       display: none; color: var(--ok); font-weight: 700; font-size: 16px;
       margin-top: 16px;
@@ -610,10 +589,10 @@
       font-size: 13px; font-weight: 700; color: #ff6a00;
       letter-spacing: 0.5px; backdrop-filter: blur(8px);
     }
-    .burn-badge-3d .sun-ico { font-size: 18px; animation: sunPulse3d 2s ease-in-out infinite; }
+    .burn-badge-3d .sun-ico { display: flex; align-items: center; animation: sunPulse3d 3s ease-in-out infinite; }
+    .burn-badge-3d .sun-ico svg { width: 16px; height: 16px; stroke: #ff6a00; stroke-width: 2; }
     @keyframes sunPulse3d {
-      0%,100% { filter: drop-shadow(0 0 4px rgba(255,160,0,0.6)); transform: scale(1); }
-      50%     { filter: drop-shadow(0 0 14px rgba(255,100,0,1)); transform: scale(1.18); }
+      0%,100% { opacity: 0.75; } 50% { opacity: 1; }
     }
     .burn-caption {
       text-align: center; padding: 18px 24px 26px;
@@ -701,7 +680,6 @@
 <!-- ── Hero ─────────────────────────────────────────────────────── -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
-  <div class="hero-orb"></div>
 
   <div class="hero-badge" data-i18n="hero_badge">🐾 Bald im App Store</div>
 
