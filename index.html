@@ -33,7 +33,7 @@
   <link rel="icon" href="logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fredoka:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
   <style>
@@ -41,13 +41,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #2C3030;                  /* dark forest */
+      --bg:       #2C3030;                  /* dark forest, matches app + logo */
       --surface:  #353B38;                  /* card surface */
       --surface2: #3C4340;                  /* card alt */
       --glass:    rgba(44,48,48,0.80);
       --border:   rgba(220,207,184,0.12);
-      --accent:   #556B5D;
-      --accent2:  #6BAA7A;
+      --accent:   #556B5D;                  /* logo shield green */
+      --accent2:  #6BAA7A;                  /* logo wordmark green */
       --ok:       #6BAA7A;
       --warn:     #C77B58;
       --danger:   #F44336;
@@ -55,9 +55,10 @@
       --text:     #F5EDE6;                  /* warm cream — logo background */
       --text2:    rgba(245,237,230,0.62);
       --text3:    rgba(245,237,230,0.32);
-      --radius:   16px;
+      --radius:   8px;
       --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --font-display: 'Fredoka', sans-serif;
+      --font-mono:    'Space Mono', 'SF Mono', Consolas, monospace;
     }
 
     html { scroll-behavior: smooth; }
@@ -77,11 +78,11 @@
 
     /* ── Utility ────────────────────────────────────────────────── */
     .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
-    .grad-text {
-      color: var(--accent2);
-    }
+    .grad-text { color: var(--accent); }
+    .num { font-family: var(--font-mono); }
     .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 1.8px;
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
       text-transform: uppercase; color: var(--accent);
       margin-bottom: 12px; display: block;
     }
@@ -122,7 +123,7 @@
       display: flex; align-items: center;
       text-decoration: none;
     }
-    .nav-logo img { width: 256px; height: 256px; border-radius: 28px; object-fit: contain; }
+    .nav-logo img { width: 256px; height: 256px; border-radius: 20px; object-fit: contain; }
     .nav-links { display: flex; align-items: center; gap: 32px; }
     .nav-links a {
       font-size: 14px; font-weight: 600; color: var(--text2);
@@ -131,7 +132,7 @@
     .nav-links a:hover { color: var(--text); }
     .nav-cta {
       background: var(--accent); color: #000 !important;
-      padding: 8px 20px; border-radius: 24px; font-weight: 700 !important;
+      padding: 8px 20px; border-radius: var(--radius); font-weight: 700 !important;
       transition: transform 0.15s, box-shadow 0.15s !important;
     }
     .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(85,107,93,0.4) !important; }
@@ -150,11 +151,14 @@
       position: relative; overflow: hidden;
     }
 
-    /* calm static hero backdrop */
+    /* asphalt grain backdrop — texture, not a glow */
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
-      background: radial-gradient(ellipse 70% 55% at 50% 25%, rgba(85,107,93,0.13) 0%, transparent 60%),
-                  linear-gradient(180deg, #353B38 0%, #2C3030 100%);
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(180deg, rgba(53,59,56,0.6) 0%, transparent 40%),
+        radial-gradient(rgba(245,237,230,0.05) 1px, transparent 1px);
+      background-size: 100% 100%, 3px 3px;
     }
 
     /* paw trail at bottom */
@@ -175,22 +179,21 @@
     }
 
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(85,107,93,0.12); border: 1px solid rgba(85,107,93,0.3);
-      border-radius: 24px; padding: 6px 16px; font-size: 13px; font-weight: 600;
-      color: var(--accent); margin-bottom: 28px; position: relative; z-index: 1;
+      font-family: var(--font-mono);
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 6px 14px; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.4px;
+      color: var(--accent2); margin-bottom: 28px; position: relative; z-index: 1;
     }
-    .hero-badge::before {
-      content: ''; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--accent); animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+    .hero-badge::before { content: '['; color: var(--text3); }
+    .hero-badge::after { content: ']'; color: var(--text3); }
 
     .hero h1 {
       font-family: var(--font-display);
       font-size: clamp(38px, 7vw, 68px);
       font-weight: 600; line-height: 1.08;
-      letter-spacing: -0.5px; margin-bottom: 24px;
+      margin-bottom: 24px;
       position: relative; z-index: 1;
     }
     .hero p {
@@ -205,24 +208,25 @@
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--accent); color: #000;
-      padding: 15px 32px; border-radius: 14px; font-size: 15px; font-weight: 800;
+      padding: 15px 32px; border-radius: var(--radius); font-size: 15px; font-weight: 800;
       text-decoration: none; transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.24);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.24); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(245,237,230,0.06); color: var(--text);
-      padding: 15px 32px; border-radius: 14px; font-size: 15px; font-weight: 700;
+      background: rgba(242,233,219,0.05); color: var(--text);
+      padding: 15px 32px; border-radius: var(--radius); font-size: 15px; font-weight: 700;
       text-decoration: none; border: 1px solid var(--border);
       transition: background 0.2s, border-color 0.2s;
     }
-    .btn-secondary:hover { background: rgba(245,237,230,0.10); border-color: rgba(245,237,230,0.18); }
+    .btn-secondary:hover { background: rgba(242,233,219,0.09); border-color: rgba(242,233,219,0.2); }
 
     /* scroll indicator */
     .scroll-hint {
       position: absolute; bottom: -72px; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 6px;
+      font-family: var(--font-mono);
       font-size: 11px; color: var(--text3); letter-spacing: 2px; text-transform: uppercase;
       z-index: 1;
     }
@@ -242,7 +246,6 @@
     }
     .stats-inner {
       display: grid; grid-template-columns: repeat(4, 1fr);
-      divide-x: 1px solid var(--border);
     }
     .stat-item {
       text-align: center; padding: 0 20px;
@@ -250,20 +253,21 @@
     }
     .stat-item:last-child { border-right: none; }
     .stat-num {
-      font-family: var(--font-display);
-      font-size: 34px; font-weight: 600;
-      color: var(--accent2);
+      font-family: var(--font-mono);
+      font-size: 30px; font-weight: 700;
+      color: var(--accent);
       line-height: 1;
     }
-    .stat-desc { font-size: 13px; color: var(--text2); margin-top: 6px; font-weight: 500; }
+    .stat-desc { font-size: 13px; color: var(--text2); margin-top: 8px; font-weight: 500; }
 
     @media (max-width: 700px) {
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .stat-item:nth-child(2) { border-right: none; }
-      .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+      .stat-item:nth-child(3) { border-top: 1px solid var(--border); padding-top: 16px; }
+      .stat-item:nth-child(4) { border-top: 1px solid var(--border); padding-top: 16px; }
     }
     @media (max-width: 380px) {
-      .stat-num { font-size: 28px; }
+      .stat-num { font-size: 24px; }
       .stat-desc { font-size: 11px; }
     }
 
@@ -280,16 +284,16 @@
     }
     .temp-bar-label { font-size: 13px; color: var(--text2); width: 90px; text-align: right; font-weight: 500; }
     .temp-bar-track {
-      flex: 1; height: 12px; border-radius: 6px;
+      flex: 1; height: 10px; border-radius: 5px;
       background: var(--surface2); overflow: hidden;
     }
     .temp-bar-fill {
-      height: 100%; border-radius: 6px;
+      height: 100%; border-radius: 5px;
       animation: fillIn 1.2s ease forwards;
       transform-origin: left;
     }
     @keyframes fillIn { from{transform:scaleX(0);} to{transform:scaleX(1);} }
-    .temp-bar-val { font-size: 13px; font-weight: 800; width: 48px; }
+    .temp-bar-val { font-family: var(--font-mono); font-size: 13px; font-weight: 700; width: 48px; }
 
     .surface-card {
       background: var(--surface); border: 1px solid var(--border);
@@ -310,36 +314,27 @@
 
     /* ── Features ───────────────────────────────────────────────── */
     .features { padding: 100px 0; }
-    .features-header { text-align: center; margin-bottom: 60px; }
+    .features-header { text-align: center; margin-bottom: 48px; }
     .features-header .section-sub { margin: 0 auto; }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+    .features-list {
+      display: flex; flex-direction: column;
+      border-top: 1px solid var(--border);
     }
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px; padding: 28px;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      cursor: default;
+    .feature-row {
+      display: grid; grid-template-columns: 260px 1fr;
+      gap: 24px; padding: 26px 4px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
     }
-    .feature-card:hover {
-      border-color: rgba(85,107,93,0.4);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(85,107,93,0.1);
-    }
-    .feature-icon { display: block; margin-bottom: 16px; }
-    .feature-icon svg { width: 40px; height: 40px; stroke: var(--accent); stroke-width: 1.5; filter: drop-shadow(0 4px 12px rgba(85,107,93,0.3)); }
-    .feature-title { font-size: 17px; font-weight: 800; margin-bottom: 8px; }
-    .feature-desc { font-size: 14px; color: var(--text2); line-height: 1.6; }
+    .feature-row:hover { background: rgba(242,233,219,0.02); }
+    .feature-row-head { display: flex; align-items: center; gap: 12px; }
+    .feature-row-head svg { width: 18px; height: 18px; stroke: var(--accent); stroke-width: 1.75; flex-shrink: 0; }
+    .feature-title { font-size: 16px; font-weight: 700; }
+    .feature-desc { font-size: 14px; color: var(--text2); line-height: 1.65; max-width: 620px; }
 
-    @media (max-width: 900px) {
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 560px) {
-      .features-grid { grid-template-columns: 1fr; }
+    @media (max-width: 700px) {
+      .feature-row { grid-template-columns: 1fr; gap: 8px; padding: 20px 4px; }
     }
 
     /* ── Ampel / Risk ───────────────────────────────────────────── */
@@ -347,19 +342,19 @@
     .risk-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
     }
-    .risk-cards { display: flex; flex-direction: column; gap: 12px; }
+    .risk-cards { display: flex; flex-direction: column; gap: 10px; }
     .risk-card {
       display: flex; align-items: center; gap: 16px;
-      background: var(--surface); border-radius: 14px;
-      padding: 18px 20px; border-left: 4px solid;
+      background: var(--surface); border-radius: var(--radius);
+      padding: 16px 20px; border-left: 3px solid;
       transition: transform 0.2s;
     }
-    .risk-card:hover { transform: translateX(6px); }
-    .risk-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; }
+    .risk-card:hover { transform: translateX(4px); }
+    .risk-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
     .risk-info { flex: 1; }
     .risk-level { font-size: 15px; font-weight: 800; }
     .risk-range { font-size: 12px; color: var(--text2); margin-top: 2px; }
-    .risk-temp { font-size: 22px; font-weight: 900; }
+    .risk-temp { font-family: var(--font-mono); font-size: 20px; font-weight: 700; }
 
     @media (max-width: 760px) {
       .risk-grid { grid-template-columns: 1fr; }
@@ -373,7 +368,7 @@
     .dog-cards { display: flex; flex-direction: column; gap: 12px; }
     .dog-card {
       display: flex; align-items: center; gap: 14px;
-      background: var(--surface); border-radius: 14px;
+      background: var(--surface); border-radius: var(--radius);
       padding: 16px 18px; border: 1px solid var(--border);
     }
     .dog-avatar {
@@ -384,7 +379,7 @@
     .dog-name { font-size: 15px; font-weight: 800; }
     .dog-meta { font-size: 12px; color: var(--text2); margin-top: 2px; }
     .dog-risk-badge {
-      margin-left: auto; padding: 4px 12px; border-radius: 20px;
+      margin-left: auto; padding: 4px 12px; border-radius: var(--radius);
       font-size: 12px; font-weight: 700;
     }
 
@@ -397,22 +392,22 @@
       padding: 100px 0;
       background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 50%, var(--bg) 100%);
     }
-    .science-header { text-align: center; margin-bottom: 60px; }
+    .science-header { text-align: center; margin-bottom: 48px; }
     .science-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
     }
     .science-card {
-      background: rgba(245,237,230,0.04);
+      background: rgba(242,233,219,0.03);
       border: 1px solid var(--border);
-      border-radius: 20px; padding: 28px; text-align: center;
+      border-radius: var(--radius); padding: 26px; text-align: left;
     }
-    .science-emoji { margin-bottom: 14px; display: flex; justify-content: center; }
-    .science-emoji svg { width: 44px; height: 44px; stroke: var(--accent); stroke-width: 1.5; }
-    .science-num { font-size: 36px; font-weight: 900; color: var(--accent); line-height: 1; }
-    .science-label { font-size: 13px; color: var(--text2); margin-top: 6px; line-height: 1.5; }
+    .science-emoji { margin-bottom: 16px; display: flex; }
+    .science-emoji svg { width: 26px; height: 26px; stroke: var(--accent); stroke-width: 1.5; }
+    .science-num { font-family: var(--font-mono); font-size: 32px; font-weight: 700; color: var(--accent); line-height: 1; }
+    .science-label { font-size: 13px; color: var(--text2); margin-top: 8px; line-height: 1.55; }
     .science-source {
-      margin-top: 48px; padding: 24px; background: rgba(85,107,93,0.05);
-      border: 1px solid rgba(85,107,93,0.15); border-radius: 16px;
+      margin-top: 40px; padding: 22px; background: rgba(85,107,93,0.05);
+      border: 1px solid rgba(85,107,93,0.15); border-radius: var(--radius);
       font-size: 14px; color: var(--text2); line-height: 1.7; text-align: center;
     }
     .science-source strong { color: var(--text); }
@@ -426,14 +421,14 @@
     .winter-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
     }
-    .winter-features { display: flex; flex-direction: column; gap: 16px; }
+    .winter-features { display: flex; flex-direction: column; gap: 14px; }
     .winter-item {
       display: flex; gap: 14px; align-items: flex-start;
-      padding: 16px; background: var(--surface); border-radius: 14px;
+      padding: 16px; background: var(--surface); border-radius: var(--radius);
       border: 1px solid var(--border);
     }
     .winter-item-icon { flex-shrink: 0; display: flex; align-items: center; }
-    .winter-item-icon svg { width: 28px; height: 28px; stroke: var(--warn); stroke-width: 1.5; }
+    .winter-item-icon svg { width: 24px; height: 24px; stroke: var(--cold); stroke-width: 1.5; }
     .winter-item-text h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
     .winter-item-text p  { font-size: 13px; color: var(--text2); line-height: 1.5; }
 
@@ -446,7 +441,7 @@
       margin: 0 0 0;
       background: linear-gradient(135deg, #1A0808, #2A0505);
       border: 1px solid rgba(244,67,54,0.25);
-      border-radius: 20px; padding: 32px;
+      border-radius: var(--radius); padding: 32px;
       display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
     }
     .emergency-strip-text h3 { font-size: 18px; font-weight: 800; color: #F44336; }
@@ -454,22 +449,17 @@
     .emergency-strip-btn {
       margin-left: auto;
       background: #F44336; color: #fff; padding: 12px 24px;
-      border-radius: 12px; font-weight: 700; font-size: 14px;
+      border-radius: var(--radius); font-weight: 700; font-size: 14px;
       text-decoration: none; white-space: nowrap;
       transition: transform 0.15s, box-shadow 0.15s;
     }
-    .emergency-strip-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(244,67,54,0.4); }
+    .emergency-strip-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(244,67,54,0.35); }
 
     /* ── CTA / Waitlist ─────────────────────────────────────────── */
     .cta-section {
       padding: 120px 0;
       text-align: center;
       position: relative; overflow: hidden;
-    }
-    .cta-bg {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(85,107,93,0.08) 0%, transparent 70%);
-      pointer-events: none;
     }
     .cta-section h2 {
       font-family: var(--font-display);
@@ -485,7 +475,7 @@
       position: relative; z-index: 1;
     }
     .waitlist-input {
-      padding: 15px 22px; border-radius: 14px;
+      padding: 15px 22px; border-radius: var(--radius);
       background: var(--surface); border: 1px solid var(--border);
       color: var(--text); font-size: 15px; font-family: inherit;
       outline: none; width: 300px; max-width: 100%;
@@ -494,14 +484,14 @@
     .waitlist-input:focus { border-color: var(--accent); }
     .waitlist-input::placeholder { color: var(--text3); }
     .waitlist-btn {
-      padding: 15px 30px; border-radius: 14px;
+      padding: 15px 30px; border-radius: var(--radius);
       background: var(--accent); color: #000;
       font-size: 15px; font-weight: 800; font-family: inherit;
       border: none; cursor: pointer;
       transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.24);
     }
-    .waitlist-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.24); }
+    .waitlist-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
     .waitlist-success {
       display: none; color: var(--ok); font-weight: 700; font-size: 16px;
       margin-top: 16px;
@@ -514,11 +504,11 @@
     .badge {
       display: inline-flex; align-items: center; gap: 10px;
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 14px; padding: 12px 22px;
+      border-radius: var(--radius); padding: 12px 22px;
       font-size: 14px; font-weight: 700; color: var(--text2);
       text-decoration: none; transition: border-color 0.2s;
     }
-    .badge:hover { border-color: rgba(245,237,230,0.25); }
+    .badge:hover { border-color: rgba(242,233,219,0.25); }
     .badge-icon { display: flex; align-items: center; }
     .badge-icon svg { width: 22px; height: 22px; stroke: var(--text2); stroke-width: 1.5; }
     .badge-label { display: flex; flex-direction: column; }
@@ -554,7 +544,8 @@
       display: flex; gap: 48px; flex-wrap: wrap;
     }
     .impressum-col h4 {
-      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
       letter-spacing: 1.2px; color: var(--text2); margin-bottom: 12px;
     }
     .impressum-col p, .impressum-col a {
@@ -584,17 +575,15 @@
     .burn-badge-3d {
       position: absolute; top: 16px; right: 20px; z-index: 10;
       display: flex; align-items: center; gap: 8px;
-      background: rgba(255,100,0,0.12);
+      background: rgba(0,0,0,0.65);
       border: 1px solid rgba(255,100,0,0.35);
-      border-radius: 30px; padding: 8px 16px;
+      border-radius: var(--radius); padding: 8px 14px;
+      font-family: var(--font-mono);
       font-size: 13px; font-weight: 700; color: #ff6a00;
-      letter-spacing: 0.5px; backdrop-filter: blur(8px);
+      letter-spacing: 0.3px;
     }
-    .burn-badge-3d .sun-ico { display: flex; align-items: center; animation: sunPulse3d 3s ease-in-out infinite; }
-    .burn-badge-3d .sun-ico svg { width: 16px; height: 16px; stroke: #ff6a00; stroke-width: 2; }
-    @keyframes sunPulse3d {
-      0%,100% { opacity: 0.75; } 50% { opacity: 1; }
-    }
+    .burn-badge-3d .sun-ico { display: flex; align-items: center; }
+    .burn-badge-3d .sun-ico svg { width: 15px; height: 15px; stroke: #ff6a00; stroke-width: 2; }
     .burn-caption {
       text-align: center; padding: 18px 24px 26px;
       font-size: 15px; color: var(--text3); font-weight: 500; background: #000;
@@ -602,28 +591,34 @@
     .burn-caption strong { color: #ff6a00; }
 
 
-    /* ── Side Nav ───────────────────────────────────────────────── */
+    /* ── Side Nav — a ruler, not a dot list ────────────────────────── */
     .side-nav {
-      position: fixed; left: 20px; top: 50%; transform: translateY(-50%);
-      z-index: 98; display: flex; flex-direction: column; gap: 18px;
+      position: fixed; left: 28px; top: 50%; transform: translateY(-50%);
+      z-index: 98; display: flex; flex-direction: column; gap: 20px;
+    }
+    .side-nav::before {
+      content: '';
+      position: absolute; left: 3px; top: 4px; bottom: 4px; width: 1px;
+      background: var(--border);
     }
     .side-nav-item {
       display: flex; align-items: center; gap: 10px;
       text-decoration: none; cursor: pointer;
     }
     .side-nav-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--border); flex-shrink: 0;
-      transition: background 0.25s, transform 0.25s;
+      width: 7px; height: 2px; border-radius: 1px;
+      background: var(--text3); flex-shrink: 0;
+      transition: background 0.25s, width 0.25s;
     }
     .side-nav-item:hover .side-nav-dot,
     .side-nav-item.active .side-nav-dot {
-      background: var(--accent); transform: scale(1.5);
+      background: var(--accent); width: 16px;
     }
     .side-nav-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 400; letter-spacing: 0.3px;
       color: var(--text2); white-space: nowrap;
-      opacity: 0; transform: translateX(-6px);
+      opacity: 0; transform: translateX(-4px);
       transition: opacity 0.2s, transform 0.2s;
       pointer-events: none; text-transform: uppercase;
     }
@@ -635,8 +630,8 @@
 
     /* ── Language Switcher ─────────────────────────────────── */
     .lang-switcher { display: flex; gap: 3px; align-items: center; position: absolute; top: 14px; right: 24px; }
-    .lang-btn { background: none; border: 1.5px solid var(--border); color: var(--text2); border-radius: 20px; padding: 4px 11px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: inherit; letter-spacing: 0.5px; }
-    .lang-btn.active { background: #556B5D; border-color: #556B5D; color: #fff; }
+    .lang-btn { font-family: var(--font-mono); background: none; border: 1px solid var(--border); color: var(--text2); border-radius: var(--radius); padding: 4px 10px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px; }
+    .lang-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
     .lang-btn:hover:not(.active) { border-color: var(--accent); color: var(--text); }
   </style>
 </head>
@@ -712,7 +707,7 @@
     </video>
     <div class="burn-badge-3d">
       <span class="sun-ico"><i data-lucide="sun"></i></span>
-      Asphalt: 62°C
+      Asphalt: <span class="num">62°C</span>
     </div>
   </div>
   <p class="burn-caption">
@@ -757,7 +752,7 @@
         </p>
 
         <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 14px;">
-          <div style="font-size: 13px; color: var(--text3); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;" data-i18n="problem_chart_label">Bodentemperaturen bei 30°C Luft</div>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text3); font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 4px;" data-i18n="problem_chart_label">Bodentemperaturen bei 30°C Luft</div>
           <div class="temp-bar">
             <span class="temp-bar-label">Gras</span>
             <div class="temp-bar-track"><div class="temp-bar-fill" style="width:38%; background: linear-gradient(90deg, #6BAA7A, #9DC9A9); animation-delay: 0.3s;"></div></div>
@@ -782,31 +777,31 @@
       </div>
 
       <div class="reveal reveal-delay-2">
-        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 28px;">
-          <div style="font-size: 13px; font-weight: 700; color: var(--text2); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;" data-i18n="problem_card_label"><i data-lucide="thermometer" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> PawSafe — Live Auswertung</div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px;">
+          <div style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--text2); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.8px;" data-i18n="problem_card_label"><i data-lucide="thermometer" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> PawSafe — Live Auswertung</div>
 
           <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
             <span style="font-size: 14px; color: var(--text2);" data-i18n="problem_asphalt_label">Asphalt-Temperatur</span>
-            <span style="font-size: 40px; font-weight: 900; color: #F44336;">51°C</span>
+            <span class="num" style="font-size: 40px; font-weight: 700; color: #F44336;">51°C</span>
           </div>
 
-          <div style="background: rgba(244,67,54,0.1); border: 1px solid rgba(244,67,54,0.3); border-radius: 12px; padding: 14px 16px; margin-bottom: 20px;">
+          <div style="background: rgba(244,67,54,0.1); border: 1px solid rgba(244,67,54,0.3); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 20px;">
             <div style="font-size: 16px; font-weight: 800; color: #F44336;" data-i18n="problem_risk_title">Gefährlich</div>
             <div style="font-size: 13px; color: var(--text2); margin-top: 4px;" data-i18n="problem_risk_desc">Bitte nicht spazieren gehen. Verbrennung in Sekunden möglich.</div>
           </div>
 
           <div style="display: flex; flex-direction: column; gap: 10px;">
-            <div style="display: flex; justify-content: space-between; padding: 10px 14px; background: rgba(245,237,230,0.05); border-radius: 10px;">
+            <div style="display: flex; justify-content: space-between; padding: 10px 14px; background: rgba(242,233,219,0.04); border-radius: var(--radius);">
               <span style="font-size: 13px; color: var(--text2);"><i data-lucide="sun" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> <span data-i18n="problem_air">Lufttemperatur</span></span>
-              <span style="font-size: 13px; font-weight: 700;">32°C</span>
+              <span class="num" style="font-size: 13px; font-weight: 700;">32°C</span>
             </div>
-            <div style="display: flex; justify-content: space-between; padding: 10px 14px; background: rgba(245,237,230,0.05); border-radius: 10px;">
+            <div style="display: flex; justify-content: space-between; padding: 10px 14px; background: rgba(242,233,219,0.04); border-radius: var(--radius);">
               <span style="font-size: 13px; color: var(--text2);"><i data-lucide="droplets" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:#C77B58;stroke-width:1.5;margin-right:4px;"></i> <span data-i18n="problem_humidity">Luftfeuchtigkeit</span></span>
-              <span style="font-size: 13px; font-weight: 700; color: #C77B58;">78% !</span>
+              <span class="num" style="font-size: 13px; font-weight: 700; color: #C77B58;">78% !</span>
             </div>
-            <div style="display: flex; justify-content: space-between; padding: 10px 14px; background: rgba(245,237,230,0.05); border-radius: 10px;">
+            <div style="display: flex; justify-content: space-between; padding: 10px 14px; background: rgba(242,233,219,0.04); border-radius: var(--radius);">
               <span style="font-size: 13px; color: var(--text2);"><i data-lucide="clock" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> <span data-i18n="problem_next">Nächstes Fenster</span></span>
-              <span style="font-size: 13px; font-weight: 700; color: #6BAA7A;" data-i18n="problem_next_val">Heute 20:30 Uhr</span>
+              <span class="num" style="font-size: 13px; font-weight: 700; color: #6BAA7A;" data-i18n="problem_next_val">Heute 20:30 Uhr</span>
             </div>
           </div>
         </div>
@@ -884,35 +879,47 @@
       <p class="section-sub" data-i18n="features_sub">Von der Echtzeit-Risikoampel bis zu Kühlspot-Karten — PawSafe denkt für dich mit.</p>
     </div>
 
-    <div class="features-grid">
-      <div class="feature-card reveal reveal-delay-1">
-        <span class="feature-icon"><i data-lucide="paw-print" width="40" height="40"></i></span>
-        <div class="feature-title" data-i18n="feat2_title">Dein Rudel</div>
+    <div class="features-list">
+      <div class="feature-row reveal reveal-delay-1">
+        <div class="feature-row-head">
+          <i data-lucide="paw-print"></i>
+          <span class="feature-title" data-i18n="feat2_title">Dein Rudel</span>
+        </div>
         <div class="feature-desc" data-i18n="feat2_desc">Rasse, Alter, Fell, Gewicht, Herzerkrankung — PawSafe bewertet das Risiko für jeden Hund individuell. Brachyzephale, Riesenrassen und Seniorhunde werden automatisch erkannt.</div>
       </div>
-      <div class="feature-card reveal reveal-delay-2">
-        <span class="feature-icon"><i data-lucide="calendar" width="40" height="40"></i></span>
-        <div class="feature-title" data-i18n="feat3_title">7-Tage-Prognose</div>
+      <div class="feature-row reveal reveal-delay-2">
+        <div class="feature-row-head">
+          <i data-lucide="calendar"></i>
+          <span class="feature-title" data-i18n="feat3_title">7-Tage-Prognose</span>
+        </div>
         <div class="feature-desc" data-i18n="feat3_desc">Stündlich aufgelöste Vorhersage für die nächsten 7 Tage. Sieh auf einen Blick, wann heute noch ein sicheres Spaziergang-Fenster kommt — oder ob morgen früh besser ist.</div>
       </div>
-      <div class="feature-card reveal reveal-delay-3">
-        <span class="feature-icon"><i data-lucide="map-pin" width="40" height="40"></i></span>
-        <div class="feature-title" data-i18n="feat4_title">GPS Walk Tracking</div>
+      <div class="feature-row reveal reveal-delay-3">
+        <div class="feature-row-head">
+          <i data-lucide="map-pin"></i>
+          <span class="feature-title" data-i18n="feat4_title">GPS Walk Tracking</span>
+        </div>
         <div class="feature-desc" data-i18n="feat4_desc">Live-Tracking mit Timer, Distanz und Hunde-Auswahl — auch im Hintergrund. Alle Spaziergänge werden gespeichert: Datum, Dauer, km, Aktivitätslevel.</div>
       </div>
-      <div class="feature-card reveal reveal-delay-4">
-        <span class="feature-icon"><i data-lucide="trees" width="40" height="40"></i></span>
-        <div class="feature-title" data-i18n="feat5_title">Kühlspot-Karte</div>
+      <div class="feature-row reveal reveal-delay-4">
+        <div class="feature-row-head">
+          <i data-lucide="trees"></i>
+          <span class="feature-title" data-i18n="feat5_title">Kühlspot-Karte</span>
+        </div>
         <div class="feature-desc" data-i18n="feat5_desc">Parks, Wälder, Gewässer und Naturschutzgebiete in der Nähe — mit berechneter Temperatur vor Ort. Perfekt um spontan den kühlsten Weg zu finden.</div>
       </div>
-      <div class="feature-card reveal reveal-delay-5">
-        <span class="feature-icon"><i data-lucide="snowflake" width="40" height="40"></i></span>
-        <div class="feature-title" data-i18n="feat7_title">Winter-Modus</div>
+      <div class="feature-row reveal reveal-delay-5">
+        <div class="feature-row-head">
+          <i data-lucide="snowflake"></i>
+          <span class="feature-title" data-i18n="feat7_title">Winter-Modus</span>
+        </div>
         <div class="feature-desc" data-i18n="feat7_desc">Streusalz-Warnung bei Frost, Kälte-Risikoampel (Kalt, Zu kalt, Eiskalt) und Windchill-Berechnung. Kälte ist genauso gefährlich wie Hitze.</div>
       </div>
-      <div class="feature-card reveal reveal-delay-6">
-        <span class="feature-icon"><i data-lucide="layout-dashboard" width="40" height="40"></i></span>
-        <div class="feature-title" data-i18n="feat8_title">Anpassbares Dashboard</div>
+      <div class="feature-row reveal reveal-delay-6">
+        <div class="feature-row-head">
+          <i data-lucide="layout-dashboard"></i>
+          <span class="feature-title" data-i18n="feat8_title">Anpassbares Dashboard</span>
+        </div>
         <div class="feature-desc" data-i18n="feat8_desc">Widgets per Drag &amp; Drop sortieren, ein- oder ausblenden. Jeder Hundebesitzer hat andere Prioritäten — dein Dashboard, deine Regeln.</div>
       </div>
     </div>
@@ -926,7 +933,7 @@
   <div class="container">
     <div class="pack-grid">
       <div class="dog-cards reveal">
-        <div style="font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;" data-i18n="pack_rudel_header">Mein Rudel</div>
+        <div style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 4px;" data-i18n="pack_rudel_header">Mein Rudel</div>
 
         <div class="dog-card">
           <div class="dog-avatar" style="background: rgba(85,107,93,0.15);"><i data-lucide="dog" width="26" height="26" style="stroke:var(--accent);stroke-width:1.5;"></i></div>
@@ -946,11 +953,11 @@
           <div class="dog-risk-badge" style="background:rgba(244,67,54,0.15); color:#F44336;" data-i18n="pack_badge_critical">Kritisch</div>
         </div>
 
-        <div style="background: var(--surface); border: 1px dashed var(--border); border-radius: 14px; padding: 16px 18px; display: flex; align-items: center; gap: 12px; color: var(--text3); font-size: 14px; cursor: pointer;">
+        <div style="background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); padding: 16px 18px; display: flex; align-items: center; gap: 12px; color: var(--text3); font-size: 14px; cursor: pointer;">
           <i data-lucide="plus" width="18" height="18" style="stroke-width:2;"></i> <span data-i18n="pack_add">Hund hinzufügen</span>
         </div>
 
-        <div style="margin-top: 4px; padding: 14px 16px; background: rgba(244,67,54,0.06); border: 1px solid rgba(244,67,54,0.15); border-radius: 12px;">
+        <div style="margin-top: 4px; padding: 14px 16px; background: rgba(244,67,54,0.06); border: 1px solid rgba(244,67,54,0.15); border-radius: var(--radius);">
           <div style="font-size: 13px; color: var(--text2);"><i data-lucide="heart-pulse" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:#F44336;stroke-width:1.5;margin-right:4px;"></i> Elio hat eine Herzerkrankung. Bei Temperaturen über 26°C <strong style="color:var(--text)">immer Risikohund-Modus</strong> aktivieren.</div>
         </div>
       </div>
@@ -1004,17 +1011,17 @@
 
     <div class="science-grid">
       <div class="science-card reveal reveal-delay-1">
-        <span class="science-emoji"><i data-lucide="thermometer" width="44" height="44"></i></span>
+        <span class="science-emoji"><i data-lucide="thermometer"></i></span>
         <div class="science-num">52°C</div>
         <div class="science-label" data-i18n="science1_label">Gewebeschäden ab dieser Temperatur — bestätigt durch veterinärmedizinische Studien (Dillard et al., 2002)</div>
       </div>
       <div class="science-card reveal reveal-delay-2">
-        <span class="science-emoji"><i data-lucide="droplets" width="44" height="44"></i></span>
+        <span class="science-emoji"><i data-lucide="droplets"></i></span>
         <div class="science-num">+8°C</div>
         <div class="science-label" data-i18n="science2_label">Effektives Temperaturempfinden bei 80% Luftfeuchtigkeit — der Humidity-Index fließt direkt in PawSafe ein</div>
       </div>
       <div class="science-card reveal reveal-delay-3">
-        <span class="science-emoji"><i data-lucide="paw-print" width="44" height="44"></i></span>
+        <span class="science-emoji"><i data-lucide="paw-print"></i></span>
         <div class="science-num">×1.6</div>
         <div class="science-label" data-i18n="science3_label">Temperaturfaktor für brachycephale Rassen (Mops, Bulldogge) gegenüber Normalhunden</div>
       </div>
@@ -1040,21 +1047,21 @@
 
       <div class="winter-features reveal reveal-delay-2">
         <div class="winter-item">
-          <span class="winter-item-icon"><i data-lucide="alert-triangle" width="28" height="28"></i></span>
+          <span class="winter-item-icon"><i data-lucide="alert-triangle"></i></span>
           <div class="winter-item-text">
             <h4 data-i18n="winter1_title">Streusalz-Warnung</h4>
             <p data-i18n="winter1_desc">Bei Temperaturen nahe 0°C und nach Schneefällen: automatische Warnung vor Streusalz auf den Wegen.</p>
           </div>
         </div>
         <div class="winter-item">
-          <span class="winter-item-icon"><i data-lucide="thermometer-snowflake" width="28" height="28"></i></span>
+          <span class="winter-item-icon"><i data-lucide="thermometer-snowflake"></i></span>
           <div class="winter-item-text">
             <h4 data-i18n="winter2_title">Kälteschutz-Risikoampel</h4>
             <p data-i18n="winter2_desc">Kurzhaar-Rassen, Welpen und ältere Hunde brauchen auch bei Frost Schutz. PawSafe kennt die Grenzen.</p>
           </div>
         </div>
         <div class="winter-item">
-          <span class="winter-item-icon"><i data-lucide="cloud-rain" width="28" height="28"></i></span>
+          <span class="winter-item-icon"><i data-lucide="cloud-rain"></i></span>
           <div class="winter-item-text">
             <h4 data-i18n="winter3_title">Leptospirose-Warnung</h4>
             <p data-i18n="winter3_desc">Nach starken Regenfällen: Hinweis auf erhöhtes Leptospirose-Risiko in stehenden Gewässern.</p>
@@ -1083,7 +1090,6 @@
 
 <!-- ── CTA / Waitlist ─────────────────────────────────────────────── -->
 <section class="cta-section" id="waitlist">
-  <div class="cta-bg"></div>
   <div class="container">
     <h2 class="reveal">
       <span data-i18n="cta_h2">Sei einer der<br/>
@@ -1239,133 +1245,133 @@
   // ── i18n ─────────────────────────────────────────────────────────────────
   const T = {
     de: {
-      page_title: 'PawSafe \u2013 Sichere Pfoten bei jedem Wetter',
+      page_title: 'PawSafe – Sichere Pfoten bei jedem Wetter',
       nav_features: 'Features', nav_science: 'Wissenschaft', nav_pack: 'Dein Rudel', nav_cta: 'Early Access',
       hero_badge: 'Bald im App Store',
       hero_h1: 'Sichere Pfoten<br/><span class="grad-text">bei jedem Wetter.</span>',
-      hero_p: 'PawSafe berechnet in Echtzeit, ob der Boden f\u00fcr deinen Hund zu hei\u00df oder zu kalt ist \u2014 personalisiert f\u00fcr jede Rasse, jedes Fell, jeden Hund.',
-      hero_btn_primary: 'Early Access sichern', hero_btn_secondary: 'Mehr erfahren \u2193',
-      stat_1: 'Asphalt-Temperatur an hei\u00dfen Sommertagen', stat_2: 'bis Asphalt Pfoten dauerhaft verbrennt',
-      stat_3: 'Oberfl\u00e4chen live berechnet \u2014 Asphalt bis Gras', stat_4: 'Sprachen: DE, EN, IT, ES, FR',
+      hero_p: 'PawSafe berechnet in Echtzeit, ob der Boden für deinen Hund zu heiß oder zu kalt ist — personalisiert für jede Rasse, jedes Fell, jeden Hund.',
+      hero_btn_primary: 'Early Access sichern', hero_btn_secondary: 'Mehr erfahren ↓',
+      stat_1: 'Asphalt-Temperatur an heißen Sommertagen', stat_2: 'bis Asphalt Pfoten dauerhaft verbrennt',
+      stat_3: 'Oberflächen live berechnet — Asphalt bis Gras', stat_4: 'Sprachen: DE, EN, IT, ES, FR',
       problem_label: 'Das Problem', problem_h2: 'Der Boden wird zur unsichtbaren Gefahr',
-      problem_p: '30\u00b0C Lufttemperatur klingen harmlos. Aber Asphalt in der Sonne kann 60\u00b0C erreichen \u2014 genug um Pfoten in Sekunden dauerhaft zu verbrennen. PawSafe macht das Unsichtbare sichtbar.',
-      problem_chart_label: 'Bodentemperaturen bei 30\u00b0C Luft',
-      problem_card_label: '<i data-lucide="thermometer" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> PawSafe \u2014 Live Auswertung',
-      problem_asphalt_label: 'Asphalt-Temperatur', problem_risk_title: 'Gef\u00e4hrlich',
-      problem_risk_desc: 'Bitte nicht spazieren gehen. Verbrennung in Sekunden m\u00f6glich.',
+      problem_p: '30°C Lufttemperatur klingen harmlos. Aber Asphalt in der Sonne kann 60°C erreichen — genug um Pfoten in Sekunden dauerhaft zu verbrennen. PawSafe macht das Unsichtbare sichtbar.',
+      problem_chart_label: 'Bodentemperaturen bei 30°C Luft',
+      problem_card_label: '<i data-lucide="thermometer" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> PawSafe — Live Auswertung',
+      problem_asphalt_label: 'Asphalt-Temperatur', problem_risk_title: 'Gefährlich',
+      problem_risk_desc: 'Bitte nicht spazieren gehen. Verbrennung in Sekunden möglich.',
       problem_air: 'Lufttemperatur', problem_humidity: 'Luftfeuchtigkeit',
-      problem_next: 'N\u00e4chstes Fenster', problem_next_val: 'Heute 20:30 Uhr',
+      problem_next: 'Nächstes Fenster', problem_next_val: 'Heute 20:30 Uhr',
       features_label: 'Features', features_h2: 'Alles was dein Hund braucht.',
-      features_sub: 'Von der Echtzeit-Risikoampel bis zu K\u00fchlspot-Karten \u2014 PawSafe denkt f\u00fcr dich mit.',
-      feat1_title: 'Echtzeit-Risikoampel', feat1_desc: 'Bodentemperatur wird live aus Lufttemp, Sonneneinstrahlung und Windgeschwindigkeit berechnet \u2014 nicht geraten. Vier Stufen: Sicher, Vorsicht, Gef\u00e4hrlich, Kritisch.',
-      feat2_title: 'Dein Rudel', feat2_desc: 'Rasse, Alter, Fell, Gewicht, Herzerkrankung \u2014 PawSafe bewertet das Risiko f\u00fcr jeden Hund individuell. Brachyzephale, Riesenrassen und Seniorhunde werden automatisch erkannt.',
-      feat3_title: '7-Tage-Prognose', feat3_desc: 'St\u00fcndlich aufgel\u00f6ste Vorhersage f\u00fcr die n\u00e4chsten 7 Tage. Sieh auf einen Blick, wann heute noch ein sicheres Spaziergang-Fenster kommt \u2014 oder ob morgen fr\u00fch besser ist.',
-      feat4_title: 'GPS Walk Tracking', feat4_desc: 'Live-Tracking mit Timer, Distanz und Hunde-Auswahl \u2014 auch im Hintergrund. Alle Spazierg\u00e4nge werden gespeichert: Datum, Dauer, km, Aktivit\u00e4tslevel.',
-      feat5_title: 'K\u00fchlspot-Karte', feat5_desc: 'Parks, W\u00e4lder, Gew\u00e4sser und Naturschutzgebiete in der N\u00e4he \u2014 mit berechneter Temperatur vor Ort. Perfekt um spontan den k\u00fchlsten Weg zu finden.',
-      feat6_title: '4 Oberfl\u00e4chen im Vergleich', feat6_desc: 'Asphalt, Beton, Erde, Gras \u2014 alle gleichzeitig berechnet. Du siehst sofort, wie viel k\u00fchler der Schotterweg neben der Stra\u00dfe wirklich ist.',
-      feat7_title: 'Winter-Modus', feat7_desc: 'Streusalz-Warnung bei Frost, K\u00e4lte-Risikoampel (Kalt, Zu kalt, Eiskalt) und Windchill-Berechnung. K\u00e4lte ist genauso gef\u00e4hrlich wie Hitze.',
-      feat8_title: 'Anpassbares Dashboard', feat8_desc: 'Widgets per Drag & Drop sortieren, ein- oder ausblenden. Jeder Hundebesitzer hat andere Priorit\u00e4ten \u2014 dein Dashboard, deine Regeln.',
-      feat9_title: 'Notfall & Erste Hilfe', feat9_desc: 'Hitzschlag-Erkennung mit Schritt-f\u00fcr-Schritt-Anleitung direkt in der App. Plus: n\u00e4chsten Notfalltierarzt sofort finden.',
+      features_sub: 'Von der Echtzeit-Risikoampel bis zu Kühlspot-Karten — PawSafe denkt für dich mit.',
+      feat1_title: 'Echtzeit-Risikoampel', feat1_desc: 'Bodentemperatur wird live aus Lufttemp, Sonneneinstrahlung und Windgeschwindigkeit berechnet — nicht geraten. Vier Stufen: Sicher, Vorsicht, Gefährlich, Kritisch.',
+      feat2_title: 'Dein Rudel', feat2_desc: 'Rasse, Alter, Fell, Gewicht, Herzerkrankung — PawSafe bewertet das Risiko für jeden Hund individuell. Brachyzephale, Riesenrassen und Seniorhunde werden automatisch erkannt.',
+      feat3_title: '7-Tage-Prognose', feat3_desc: 'Stündlich aufgelöste Vorhersage für die nächsten 7 Tage. Sieh auf einen Blick, wann heute noch ein sicheres Spaziergang-Fenster kommt — oder ob morgen früh besser ist.',
+      feat4_title: 'GPS Walk Tracking', feat4_desc: 'Live-Tracking mit Timer, Distanz und Hunde-Auswahl — auch im Hintergrund. Alle Spaziergänge werden gespeichert: Datum, Dauer, km, Aktivitätslevel.',
+      feat5_title: 'Kühlspot-Karte', feat5_desc: 'Parks, Wälder, Gewässer und Naturschutzgebiete in der Nähe — mit berechneter Temperatur vor Ort. Perfekt um spontan den kühlsten Weg zu finden.',
+      feat6_title: '4 Oberflächen im Vergleich', feat6_desc: 'Asphalt, Beton, Erde, Gras — alle gleichzeitig berechnet. Du siehst sofort, wie viel kühler der Schotterweg neben der Straße wirklich ist.',
+      feat7_title: 'Winter-Modus', feat7_desc: 'Streusalz-Warnung bei Frost, Kälte-Risikoampel (Kalt, Zu kalt, Eiskalt) und Windchill-Berechnung. Kälte ist genauso gefährlich wie Hitze.',
+      feat8_title: 'Anpassbares Dashboard', feat8_desc: 'Widgets per Drag & Drop sortieren, ein- oder ausblenden. Jeder Hundebesitzer hat andere Prioritäten — dein Dashboard, deine Regeln.',
+      feat9_title: 'Notfall & Erste Hilfe', feat9_desc: 'Hitzschlag-Erkennung mit Schritt-für-Schritt-Anleitung direkt in der App. Plus: nächsten Notfalltierarzt sofort finden.',
       risk_label: 'Risikoampel', risk_h2: 'Vier Farben.<br/>Eine klare Antwort.',
-      risk_p: 'Kein kompliziertes Ablesen von Diagrammen. PawSafe gibt dir sofort die Ampel \u2014 und erkl\u00e4rt genau warum.',
-      risk_science: 'Basiert auf veterin\u00e4rmedizinischer Forschung und \u00fcber 30 Studien zur Hundehitzetoleranz.',
-      risk1_level: 'Sicher', risk1_range: 'Asphalt unter 35\u00b0C \u00b7 Unbegrenzt laufen',
-      risk2_level: 'Vorsicht', risk2_range: '35\u201345\u00b0C \u00b7 Max. 45 Minuten',
-      risk3_level: 'Gef\u00e4hrlich', risk3_range: '45\u201352\u00b0C \u00b7 Max. 10 Minuten',
-      risk4_level: 'Kritisch', risk4_range: '\u00dcber 52\u00b0C \u00b7 Nicht empfohlen',
-      pack_rudel_header: 'Mein Rudel', pack_miss_meta: 'Cane Corso \u00b7 4,5 Jahre \u00b7 Braun',
-      pack_elio_meta: 'Deutsche Dogge \u00b7 13 Mon. \u00b7 Schwarz \u00b7 <i data-lucide="heart-pulse" width="12" height="12" style="display:inline-block;vertical-align:middle;stroke-width:2;"></i> Herz',
-      pack_add: 'Hund hinzuf\u00fcgen', pack_badge_caution: 'Vorsicht', pack_badge_critical: 'Kritisch',
+      risk_p: 'Kein kompliziertes Ablesen von Diagrammen. PawSafe gibt dir sofort die Ampel — und erklärt genau warum.',
+      risk_science: 'Basiert auf veterinärmedizinischer Forschung und über 30 Studien zur Hundehitzetoleranz.',
+      risk1_level: 'Sicher', risk1_range: 'Asphalt unter 35°C · Unbegrenzt laufen',
+      risk2_level: 'Vorsicht', risk2_range: '35–45°C · Max. 45 Minuten',
+      risk3_level: 'Gefährlich', risk3_range: '45–52°C · Max. 10 Minuten',
+      risk4_level: 'Kritisch', risk4_range: 'Über 52°C · Nicht empfohlen',
+      pack_rudel_header: 'Mein Rudel', pack_miss_meta: 'Cane Corso · 4,5 Jahre · Braun',
+      pack_elio_meta: 'Deutsche Dogge · 13 Mon. · Schwarz · <i data-lucide="heart-pulse" width="12" height="12" style="display:inline-block;vertical-align:middle;stroke-width:2;"></i> Herz',
+      pack_add: 'Hund hinzufügen', pack_badge_caution: 'Vorsicht', pack_badge_critical: 'Kritisch',
       pack_label: 'Dein Rudel', pack_h2: 'Jeder Hund ist anders.',
-      pack_p: 'Ein junger Windhund, eine \u00e4ltere Dogge mit Herzerkrankung und ein Mischling mit Doppelfell \u2014 alle drei haben v\u00f6llig andere Grenzen. PawSafe kennt sie alle.',
+      pack_p: 'Ein junger Windhund, eine ältere Dogge mit Herzerkrankung und ein Mischling mit Doppelfell — alle drei haben völlig andere Grenzen. PawSafe kennt sie alle.',
       pack_b1_title: 'Rassenspezifische Modifikatoren', pack_b1_desc: 'Kurznasen (Bulldogge, Mops), Riesenrassen, Doppelfall-Rassen und Windhunde werden automatisch erkannt.',
-      pack_b2_title: 'Spaziergang-Statistiken', pack_b2_desc: 'Wie oft war Elio diese Woche drau\u00dfen? Wie viele km habt ihr zur\u00fcckgelegt? Alles sauber getrackt.',
+      pack_b2_title: 'Spaziergang-Statistiken', pack_b2_desc: 'Wie oft war Elio diese Woche draußen? Wie viele km habt ihr zurückgelegt? Alles sauber getrackt.',
       pack_b3_title: 'Maximale Gehzeit pro Hund', pack_b3_desc: 'Kein Raten: PawSafe sagt dir konkret, wie lange du heute mit jedem Hund rausgehen kannst.',
       science_label: 'Wissenschaft', science_h2: 'Nicht geraten. Gemessen.',
-      science_p: 'PawSafe basiert auf veterin\u00e4rmedizinischer Forschung \u2014 keine App-Magie, sondern echte Wissenschaft hinter jedem Wert.',
-      science1_label: 'Gewebeschäden ab dieser Temperatur \u2014 bestätigt durch veterinärmedizinische Studien (Dillard et al., 2002)',
-      science2_label: 'Effektives Temperaturempfinden bei 80% Luftfeuchtigkeit \u2014 der Humidity-Index fließt direkt in PawSafe ein',
+      science_p: 'PawSafe basiert auf veterinärmedizinischer Forschung — keine App-Magie, sondern echte Wissenschaft hinter jedem Wert.',
+      science1_label: 'Gewebeschäden ab dieser Temperatur — bestätigt durch veterinärmedizinische Studien (Dillard et al., 2002)',
+      science2_label: 'Effektives Temperaturempfinden bei 80% Luftfeuchtigkeit — der Humidity-Index fließt direkt in PawSafe ein',
       science3_label: 'Temperaturfaktor für brachycephale Rassen (Mops, Bulldogge) gegenüber Normalhunden',
-      science_source: '<strong>Wie berechnet PawSafe die Bodentemperatur?</strong><br/>Anhand von Lufttemperatur, UV-Index, Bew\u00f6lkungsgrad und Belag-Koeffizient wird die Oberfl\u00e4chentemperatur nach dem <em>UTCI-Modell</em> abgesch\u00e4tzt. Alle Quellen findest du in der App unter <em>Einstellungen \u2192 Grundlage der Daten</em>.',
-      winter_label: 'Winter-Modus', winter_h2: 'K\u00e4lte ist genauso gef\u00e4hrlich.',
-      winter_p: 'Streusalz verbrennt Pfoten, Frost sch\u00e4digt Gewebe, und manche Rassen frieren schneller als andere. PawSafe sch\u00fctzt dein Rudel das ganze Jahr.',
-      winter1_title: 'Streusalz-Warnung', winter1_desc: 'Bei Temperaturen nahe 0\u00b0C und nach Schneef\u00e4llen: automatische Warnung vor Streusalz auf den Wegen.',
-      winter2_title: 'K\u00e4lteschutz-Risikoampel', winter2_desc: 'Kurzhaar-Rassen, Welpen und \u00e4ltere Hunde brauchen auch bei Frost Schutz. PawSafe kennt die Grenzen.',
-      winter3_title: 'Leptospirose-Warnung', winter3_desc: 'Nach starken Regenf\u00e4llen: Hinweis auf erh\u00f6htes Leptospirose-Risiko in stehenden Gew\u00e4ssern.',
-      emergency_h3: 'Notfall: Was tun bei Hitzschlag?', emergency_p: 'PawSafe zeigt dir Schritt f\u00fcr Schritt was zu tun ist \u2014 und findet den n\u00e4chsten Notfalltierarzt.',
-      emergency_btn: 'In der App \u00f6ffnen \u2192',
+      science_source: '<strong>Wie berechnet PawSafe die Bodentemperatur?</strong><br/>Anhand von Lufttemperatur, UV-Index, Bewölkungsgrad und Belag-Koeffizient wird die Oberflächentemperatur nach dem <em>UTCI-Modell</em> abgeschätzt. Alle Quellen findest du in der App unter <em>Einstellungen → Grundlage der Daten</em>.',
+      winter_label: 'Winter-Modus', winter_h2: 'Kälte ist genauso gefährlich.',
+      winter_p: 'Streusalz verbrennt Pfoten, Frost schädigt Gewebe, und manche Rassen frieren schneller als andere. PawSafe schützt dein Rudel das ganze Jahr.',
+      winter1_title: 'Streusalz-Warnung', winter1_desc: 'Bei Temperaturen nahe 0°C und nach Schneefällen: automatische Warnung vor Streusalz auf den Wegen.',
+      winter2_title: 'Kälteschutz-Risikoampel', winter2_desc: 'Kurzhaar-Rassen, Welpen und ältere Hunde brauchen auch bei Frost Schutz. PawSafe kennt die Grenzen.',
+      winter3_title: 'Leptospirose-Warnung', winter3_desc: 'Nach starken Regenfällen: Hinweis auf erhöhtes Leptospirose-Risiko in stehenden Gewässern.',
+      emergency_h3: 'Notfall: Was tun bei Hitzschlag?', emergency_p: 'PawSafe zeigt dir Schritt für Schritt was zu tun ist — und findet den nächsten Notfalltierarzt.',
+      emergency_btn: 'In der App öffnen →',
       cta_h2: 'Sei einer der<br/><span class="grad-text">Ersten.</span>',
       cta_p: 'PawSafe erscheint bald im App Store. Trag dich ein und bekomme sofort Bescheid wenn es soweit ist.',
       cta_placeholder: 'deine@email.de', cta_btn: 'Jetzt eintragen', email_error: 'Bitte gib eine gültige E-Mail-Adresse ein.',
       cta_success: 'Super! Du bist auf der Liste. Wir melden uns!',
-      badge_ios_small: 'Demn\u00e4chst im', badge_ios_main: 'App Store',
-      badge_android_small: 'Demn\u00e4chst bei', badge_android_main: 'Google Play',
+      badge_ios_small: 'Demnächst im', badge_ios_main: 'App Store',
+      badge_android_small: 'Demnächst bei', badge_android_main: 'Google Play',
       side_home: 'Start', side_risk: 'Risikoampel', side_access: 'Early Access',
       footer_impressum: 'Impressum', footer_features: 'Features', footer_science: 'Wissenschaft',
       footer_access: 'Early Access', footer_contact: 'Kontakt',
-      footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 F\u00fcr alle Hunde dieser Welt',
-      impressum_title: 'Impressum', impressum_angaben_label: 'Angaben gem\u00e4\u00df \u00a7 5 DDG',
+      footer_copy: '© 2026 PawSafe · pawsafe.eu · Für alle Hunde dieser Welt',
+      impressum_title: 'Impressum', impressum_angaben_label: 'Angaben gemäß § 5 DDG',
       impressum_contact_title: 'Verantwortlich', impressum_reach_title: 'Kontakt', impressum_no_packages: 'Bitte keine Pakete oder Päckchen an diese Anschrift senden.',
       impressum_disclaimer_title: 'Haftungshinweis',
-      impressum_disclaimer_text: 'Die Inhalte dieser App dienen ausschlie\u00dflich der allgemeinen Information. Sie ersetzen keine tier\u00e4rztliche Beratung.',
-      impressum_note: '* Platzhalterdaten \u2014 werden vor Launch durch echte Angaben ersetzt.',
+      impressum_disclaimer_text: 'Die Inhalte dieser App dienen ausschließlich der allgemeinen Information. Sie ersetzen keine tierärztliche Beratung.',
+      impressum_note: '* Platzhalterdaten — werden vor Launch durch echte Angaben ersetzt.',
     },
     en: {
-      page_title: 'PawSafe \u2013 Safe Paws in Any Weather',
+      page_title: 'PawSafe – Safe Paws in Any Weather',
       nav_features: 'Features', nav_science: 'Science', nav_pack: 'Your Pack', nav_cta: 'Early Access',
       hero_badge: 'Coming to the App Store',
       hero_h1: 'Safe Paws<br/><span class="grad-text">in Any Weather.</span>',
-      hero_p: 'PawSafe calculates in real time whether the ground is too hot or too cold for your dog \u2014 personalised for every breed, coat, and individual dog.',
-      hero_btn_primary: 'Get Early Access', hero_btn_secondary: 'Learn more \u2193',
+      hero_p: 'PawSafe calculates in real time whether the ground is too hot or too cold for your dog — personalised for every breed, coat, and individual dog.',
+      hero_btn_primary: 'Get Early Access', hero_btn_secondary: 'Learn more ↓',
       stat_1: 'Asphalt temperature on hot summer days', stat_2: 'until asphalt permanently burns paws',
-      stat_3: 'Surfaces calculated live \u2014 asphalt to grass', stat_4: 'Languages: DE, EN, IT, ES, FR',
+      stat_3: 'Surfaces calculated live — asphalt to grass', stat_4: 'Languages: DE, EN, IT, ES, FR',
       problem_label: 'The Problem', problem_h2: 'The ground becomes an invisible danger',
-      problem_p: '30\u00b0C air temperature sounds harmless. But asphalt in the sun can reach 60\u00b0C \u2014 enough to permanently burn paws in seconds. PawSafe makes the invisible visible.',
-      problem_chart_label: 'Ground temperatures at 30\u00b0C air temp',
-      problem_card_label: '<i data-lucide="thermometer" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> PawSafe \u2014 Live Analysis',
+      problem_p: '30°C air temperature sounds harmless. But asphalt in the sun can reach 60°C — enough to permanently burn paws in seconds. PawSafe makes the invisible visible.',
+      problem_chart_label: 'Ground temperatures at 30°C air temp',
+      problem_card_label: '<i data-lucide="thermometer" width="13" height="13" style="display:inline-block;vertical-align:middle;stroke:var(--text2);stroke-width:1.5;margin-right:4px;"></i> PawSafe — Live Analysis',
       problem_asphalt_label: 'Asphalt Temperature', problem_risk_title: 'Dangerous',
       problem_risk_desc: 'Please do not walk outside. Burns possible within seconds.',
       problem_air: 'Air Temperature', problem_humidity: 'Humidity',
       problem_next: 'Next Safe Window', problem_next_val: 'Today at 8:30 PM',
       features_label: 'Features', features_h2: 'Everything your dog needs.',
-      features_sub: 'From real-time risk alerts to cool spot maps \u2014 PawSafe thinks ahead for you.',
-      feat1_title: 'Real-Time Risk Alert', feat1_desc: 'Ground temperature is calculated live from air temp, solar radiation and wind \u2014 no guessing. Four levels: Safe, Caution, Dangerous, Critical.',
-      feat2_title: 'Your Pack', feat2_desc: 'Breed, age, coat, weight, heart condition \u2014 PawSafe assesses the risk for each dog individually. Brachycephalic, giant breeds, and senior dogs are detected automatically.',
-      feat3_title: '7-Day Forecast', feat3_desc: 'Hourly forecast for the next 7 days. See at a glance when a safe walk window is coming today \u2014 or whether tomorrow morning is better.',
-      feat4_title: 'GPS Walk Tracking', feat4_desc: 'Live tracking with timer, distance and dog selection \u2014 even in the background. All walks are saved: date, duration, km, activity level.',
-      feat5_title: 'Cool Spot Map', feat5_desc: 'Nearby parks, forests, waterways and nature reserves \u2014 with calculated on-site temperature. Perfect for finding the coolest route.',
-      feat6_title: '4 Surfaces Compared', feat6_desc: 'Asphalt, concrete, earth, grass \u2014 all calculated simultaneously. You instantly see how much cooler the gravel path really is.',
+      features_sub: 'From real-time risk alerts to cool spot maps — PawSafe thinks ahead for you.',
+      feat1_title: 'Real-Time Risk Alert', feat1_desc: 'Ground temperature is calculated live from air temp, solar radiation and wind — no guessing. Four levels: Safe, Caution, Dangerous, Critical.',
+      feat2_title: 'Your Pack', feat2_desc: 'Breed, age, coat, weight, heart condition — PawSafe assesses the risk for each dog individually. Brachycephalic, giant breeds, and senior dogs are detected automatically.',
+      feat3_title: '7-Day Forecast', feat3_desc: 'Hourly forecast for the next 7 days. See at a glance when a safe walk window is coming today — or whether tomorrow morning is better.',
+      feat4_title: 'GPS Walk Tracking', feat4_desc: 'Live tracking with timer, distance and dog selection — even in the background. All walks are saved: date, duration, km, activity level.',
+      feat5_title: 'Cool Spot Map', feat5_desc: 'Nearby parks, forests, waterways and nature reserves — with calculated on-site temperature. Perfect for finding the coolest route.',
+      feat6_title: '4 Surfaces Compared', feat6_desc: 'Asphalt, concrete, earth, grass — all calculated simultaneously. You instantly see how much cooler the gravel path really is.',
       feat7_title: 'Winter Mode', feat7_desc: 'De-icing salt warning at frost, cold risk alert and wind chill calculation. Cold is just as dangerous as heat.',
       feat8_title: 'Customisable Dashboard', feat8_desc: 'Sort widgets by drag & drop, show or hide them. Your dashboard, your rules.',
       feat9_title: 'Emergency & First Aid', feat9_desc: 'Heatstroke detection with step-by-step guidance. Plus: find the nearest emergency vet instantly.',
       risk_label: 'Risk Indicator', risk_h2: 'Four Colours.<br/>One Clear Answer.',
-      risk_p: 'No complicated chart reading. PawSafe gives you the signal immediately \u2014 and explains exactly why.',
+      risk_p: 'No complicated chart reading. PawSafe gives you the signal immediately — and explains exactly why.',
       risk_science: 'Based on veterinary research and over 30 studies on canine heat tolerance.',
-      risk1_level: 'Safe', risk1_range: 'Asphalt below 35\u00b0C \u00b7 Walk as long as you like',
-      risk2_level: 'Caution', risk2_range: '35\u201345\u00b0C \u00b7 Max. 45 minutes',
-      risk3_level: 'Dangerous', risk3_range: '45\u201352\u00b0C \u00b7 Max. 10 minutes',
-      risk4_level: 'Critical', risk4_range: 'Above 52\u00b0C \u00b7 Not recommended',
-      pack_rudel_header: 'My Pack', pack_miss_meta: 'Cane Corso \u00b7 4.5 years \u00b7 Brown',
-      pack_elio_meta: 'Great Dane \u00b7 13 mo. \u00b7 Black \u00b7 <i data-lucide="heart-pulse" width="12" height="12" style="display:inline-block;vertical-align:middle;stroke-width:2;"></i> Heart',
+      risk1_level: 'Safe', risk1_range: 'Asphalt below 35°C · Walk as long as you like',
+      risk2_level: 'Caution', risk2_range: '35–45°C · Max. 45 minutes',
+      risk3_level: 'Dangerous', risk3_range: '45–52°C · Max. 10 minutes',
+      risk4_level: 'Critical', risk4_range: 'Above 52°C · Not recommended',
+      pack_rudel_header: 'My Pack', pack_miss_meta: 'Cane Corso · 4.5 years · Brown',
+      pack_elio_meta: 'Great Dane · 13 mo. · Black · <i data-lucide="heart-pulse" width="12" height="12" style="display:inline-block;vertical-align:middle;stroke-width:2;"></i> Heart',
       pack_add: 'Add a dog', pack_badge_caution: 'Caution', pack_badge_critical: 'Critical',
       pack_label: 'Your Pack', pack_h2: 'Every dog is different.',
-      pack_p: 'A young greyhound, an older Great Dane with a heart condition, and a mixed breed with a double coat \u2014 all three have completely different limits. PawSafe knows them all.',
+      pack_p: 'A young greyhound, an older Great Dane with a heart condition, and a mixed breed with a double coat — all three have completely different limits. PawSafe knows them all.',
       pack_b1_title: 'Breed-specific modifiers', pack_b1_desc: 'Short-nosed breeds (bulldog, pug), giant breeds, double-coat breeds and sighthounds are detected automatically.',
       pack_b2_title: 'Walk statistics', pack_b2_desc: 'How often was Elio outside this week? How many km did you cover? All neatly tracked.',
       pack_b3_title: 'Maximum walk time per dog', pack_b3_desc: 'No guessing: PawSafe tells you exactly how long you can walk each dog today.',
       science_label: 'Science', science_h2: 'Not guessed. Measured.',
-      science_p: 'PawSafe is based on veterinary research \u2014 no app magic, just real science behind every value.',
-      science1_label: 'Tissue damage from this temperature \u2014 confirmed by veterinary studies (Dillard et al., 2002)',
-      science2_label: 'Effective temperature perception at 80% humidity \u2014 the humidity index flows directly into PawSafe',
+      science_p: 'PawSafe is based on veterinary research — no app magic, just real science behind every value.',
+      science1_label: 'Tissue damage from this temperature — confirmed by veterinary studies (Dillard et al., 2002)',
+      science2_label: 'Effective temperature perception at 80% humidity — the humidity index flows directly into PawSafe',
       science3_label: 'Temperature factor for brachycephalic breeds (pug, bulldog) compared to typical dogs',
-      science_source: '<strong>How does PawSafe calculate ground temperature?</strong><br/>Surface temperature is estimated from air temperature, UV index, cloud cover and surface coefficient using the <em>UTCI model</em>. All sources are in the app under <em>Settings \u2192 Data basis</em>.',
+      science_source: '<strong>How does PawSafe calculate ground temperature?</strong><br/>Surface temperature is estimated from air temperature, UV index, cloud cover and surface coefficient using the <em>UTCI model</em>. All sources are in the app under <em>Settings → Data basis</em>.',
       winter_label: 'Winter Mode', winter_h2: 'Cold is just as dangerous.',
       winter_p: 'De-icing salt burns paws, frost damages tissue, and some breeds get cold faster. PawSafe protects your pack all year round.',
-      winter1_title: 'De-icing Salt Warning', winter1_desc: 'At temperatures near 0\u00b0C and after snowfall: automatic warning about de-icing salt on paths.',
+      winter1_title: 'De-icing Salt Warning', winter1_desc: 'At temperatures near 0°C and after snowfall: automatic warning about de-icing salt on paths.',
       winter2_title: 'Cold-Risk Alert', winter2_desc: 'Short-haired breeds, puppies and older dogs need protection in frost too. PawSafe knows the limits.',
       winter3_title: 'Leptospirosis Warning', winter3_desc: 'After heavy rain: alert for increased leptospirosis risk in standing water.',
-      emergency_h3: 'Emergency: What to do in a heatstroke?', emergency_p: 'PawSafe shows you step by step what to do \u2014 and finds the nearest emergency vet.',
-      emergency_btn: 'Open in the app \u2192',
+      emergency_h3: 'Emergency: What to do in a heatstroke?', emergency_p: 'PawSafe shows you step by step what to do — and finds the nearest emergency vet.',
+      emergency_btn: 'Open in the app →',
       cta_h2: 'Be one of the<br/><span class="grad-text">first.</span>',
       cta_p: 'PawSafe is coming soon to the App Store. Sign up and get notified the moment it launches.',
       cta_placeholder: 'your@email.com', cta_btn: 'Sign up now', email_error: 'Please enter a valid email address.',
@@ -1375,12 +1381,12 @@
       side_home: 'Home', side_risk: 'Risk Indicator', side_access: 'Early Access',
       footer_impressum: 'Legal Notice', footer_features: 'Features', footer_science: 'Science',
       footer_access: 'Early Access', footer_contact: 'Contact',
-      footer_copy: '\u00a9 2026 PawSafe \u00b7 pawsafe.eu \u00b7 For every dog in the world',
-      impressum_title: 'Legal Notice', impressum_angaben_label: 'Information pursuant to \u00a7 5 DDG',
+      footer_copy: '© 2026 PawSafe · pawsafe.eu · For every dog in the world',
+      impressum_title: 'Legal Notice', impressum_angaben_label: 'Information pursuant to § 5 DDG',
       impressum_contact_title: 'Responsible', impressum_reach_title: 'Contact', impressum_no_packages: 'Please do not send packages or parcels to this address.',
       impressum_disclaimer_title: 'Liability Notice',
       impressum_disclaimer_text: 'The content of this app is for general information only. It does not replace veterinary advice.',
-      impressum_note: '* Placeholder data \u2014 will be replaced with real information before launch.',
+      impressum_note: '* Placeholder data — will be replaced with real information before launch.',
     }
   };
 
