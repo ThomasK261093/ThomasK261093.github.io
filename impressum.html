@@ -76,13 +76,22 @@
       border-top: 1px solid var(--border);
     }
   </style>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XRFFYDERE8"></script>
+<!-- Google Analytics — script itself only loads after Cookie-Consent, see banner at page end -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XRFFYDERE8');
+  gtag('consent', 'default', { analytics_storage: 'denied' });
+  function pawsafeLoadAnalytics() {
+    if (window.pawsafeAnalyticsLoaded) return;
+    window.pawsafeAnalyticsLoaded = true;
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XRFFYDERE8';
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', 'G-XRFFYDERE8');
+  }
 </script>
 </head>
 <body>
@@ -91,7 +100,8 @@
       <img src="logo.png" alt="PawSafe Logo" />
       <span class="nav-title">PawSafe</span>
     </a>
-    <a href="/" class="back-link">← Zurück zur Startseite</a>
+    <a href="datenschutz.html" class="back-link" style="margin-left:auto;">Datenschutz</a>
+    <a href="/" class="back-link" style="margin-left:0;">← Zurück zur Startseite</a>
   </nav>
 
   <main>
@@ -120,5 +130,31 @@
   </main>
 
   <footer>© 2026 PawSafe · <a href="/" style="color:inherit;text-decoration:none;">pawsafe.eu</a></footer>
+
+  <!-- ── Cookie Consent (gates Google Analytics, TTDSG §25 / DSGVO Art. 6) ── -->
+  <div id="cookieConsent" style="display:none; position:fixed; left:16px; right:16px; bottom:16px; z-index:9999; max-width:640px; margin:0 auto; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px 20px; box-shadow:0 8px 30px rgba(0,0,0,0.35);">
+    <p style="font-size:13px; line-height:1.6; color:var(--text); margin:0 0 14px;">
+      Wir würden gerne Google Analytics nutzen, um zu verstehen, wie PawSafe.eu genutzt wird. Das ist freiwillig — mehr dazu in unserer <a href="datenschutz.html" style="color:var(--accent);">Datenschutzerklärung</a>.
+    </p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <button id="cookieAccept" style="flex:1; min-width:120px; background:var(--accent); color:#fff; border:none; border-radius:10px; padding:10px 16px; font-size:13px; font-weight:700; cursor:pointer;">Akzeptieren</button>
+      <button id="cookieDecline" style="flex:1; min-width:120px; background:transparent; color:var(--text); border:1px solid var(--border); border-radius:10px; padding:10px 16px; font-size:13px; font-weight:700; cursor:pointer;">Ablehnen</button>
+    </div>
+  </div>
+  <script>
+  (function() {
+    var KEY = 'pawsafe_analytics_consent';
+    var banner = document.getElementById('cookieConsent');
+    var consent = localStorage.getItem(KEY);
+    if (consent === 'granted') { pawsafeLoadAnalytics(); }
+    else if (consent !== 'denied') { banner.style.display = 'block'; }
+    document.getElementById('cookieAccept').addEventListener('click', function() {
+      localStorage.setItem(KEY, 'granted'); banner.style.display = 'none'; pawsafeLoadAnalytics();
+    });
+    document.getElementById('cookieDecline').addEventListener('click', function() {
+      localStorage.setItem(KEY, 'denied'); banner.style.display = 'none';
+    });
+  })();
+  </script>
 </body>
 </html>

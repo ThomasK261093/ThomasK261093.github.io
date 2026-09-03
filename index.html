@@ -2,13 +2,22 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XRFFYDERE8"></script>
+  <!-- Google tag (gtag.js) — script itself only loads after Cookie-Consent, see banner at page end -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XRFFYDERE8');
+  gtag('consent', 'default', { analytics_storage: 'denied' });
+  function pawsafeLoadAnalytics() {
+    if (window.pawsafeAnalyticsLoaded) return;
+    window.pawsafeAnalyticsLoaded = true;
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XRFFYDERE8';
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', 'G-XRFFYDERE8');
+  }
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PawSafe – Sichere Pfoten bei jedem Wetter</title>
@@ -1103,6 +1112,7 @@
       <input class="waitlist-input" type="email" name="email" placeholder="deine@email.de" required id="emailInput" data-i18n-placeholder="cta_placeholder" />
       <div id="emailError" style="display:none; color:#EF5350; font-size:13px; margin-top:6px; text-align:center;" data-i18n="email_error">Bitte gib eine gültige E-Mail-Adresse ein.</div>
       <button class="waitlist-btn" type="submit" data-i18n="cta_btn">Jetzt eintragen</button>
+      <p style="font-size:12px; color:var(--text3); margin-top:10px;" data-i18n="cta_privacy_note">Mit dem Absenden stimmst du unserer <a href="datenschutz.html" style="color:var(--text2);">Datenschutzerklärung</a> zu.</p>
     </form>
     <div class="waitlist-success" id="waitlistSuccess">
       <span data-i18n="cta_success">Super! Du bist auf der Liste. Wir melden uns!</span>
@@ -1140,6 +1150,7 @@
       <a href="#waitlist">Early Access</a>
       <a href="mailto:info@pawsafe.eu">Kontakt</a>
       <a href="impressum.html" data-i18n="footer_impressum">Impressum</a>
+      <a href="datenschutz.html" data-i18n="footer_datenschutz">Datenschutz</a>
     </div>
     <div class="footer-copy" data-i18n="footer_copy">© 2026 PawSafe · pawsafe.eu · Für alle Hunde dieser Welt</div>
   </div>
@@ -1308,8 +1319,9 @@
       badge_android_small: 'Demnächst bei', badge_android_main: 'Google Play',
       side_home: 'Start', side_risk: 'Risikoampel', side_access: 'Early Access',
       footer_impressum: 'Impressum', footer_features: 'Features', footer_science: 'Wissenschaft',
-      footer_access: 'Early Access', footer_contact: 'Kontakt',
+      footer_access: 'Early Access', footer_contact: 'Kontakt', footer_datenschutz: 'Datenschutz',
       footer_copy: '© 2026 PawSafe · pawsafe.eu · Für alle Hunde dieser Welt',
+      cta_privacy_note: 'Mit dem Absenden stimmst du unserer <a href="datenschutz.html" style="color:var(--text2);">Datenschutzerklärung</a> zu.',
       impressum_title: 'Impressum', impressum_angaben_label: 'Angaben gemäß § 5 DDG',
       impressum_contact_title: 'Verantwortlich', impressum_reach_title: 'Kontakt', impressum_no_packages: 'Bitte keine Pakete oder Päckchen an diese Anschrift senden.',
       impressum_disclaimer_title: 'Haftungshinweis',
@@ -1380,8 +1392,9 @@
       badge_android_small: 'Coming soon to', badge_android_main: 'Google Play',
       side_home: 'Home', side_risk: 'Risk Indicator', side_access: 'Early Access',
       footer_impressum: 'Legal Notice', footer_features: 'Features', footer_science: 'Science',
-      footer_access: 'Early Access', footer_contact: 'Contact',
+      footer_access: 'Early Access', footer_contact: 'Contact', footer_datenschutz: 'Privacy Policy',
       footer_copy: '© 2026 PawSafe · pawsafe.eu · For every dog in the world',
+      cta_privacy_note: 'By submitting, you agree to our <a href="datenschutz.html" style="color:var(--text2);">Privacy Policy</a>.',
       impressum_title: 'Legal Notice', impressum_angaben_label: 'Information pursuant to § 5 DDG',
       impressum_contact_title: 'Responsible', impressum_reach_title: 'Contact', impressum_no_packages: 'Please do not send packages or parcels to this address.',
       impressum_disclaimer_title: 'Liability Notice',
@@ -1454,6 +1467,44 @@
       }
     });
   });
+</script>
+
+<!-- ── Cookie Consent (gates Google Analytics, TTDSG §25 / DSGVO Art. 6) ── -->
+<div id="cookieConsent" style="display:none; position:fixed; left:16px; right:16px; bottom:16px; z-index:9999; max-width:640px; margin:0 auto; background:#353B38; border:1px solid rgba(220,207,184,0.18); border-radius:14px; padding:18px 20px; box-shadow:0 8px 30px rgba(0,0,0,0.35); font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
+  <p id="cookieConsentText" style="font-size:13px; line-height:1.6; color:#F5EDE6; margin:0 0 14px;">
+    Wir würden gerne Google Analytics nutzen, um zu verstehen, wie PawSafe.eu genutzt wird. Das ist freiwillig — mehr dazu in unserer <a href="datenschutz.html" style="color:#6BAA7A;">Datenschutzerklärung</a>.
+  </p>
+  <div style="display:flex; gap:10px; flex-wrap:wrap;">
+    <button id="cookieAccept" style="flex:1; min-width:120px; background:#556B5D; color:#fff; border:none; border-radius:10px; padding:10px 16px; font-size:13px; font-weight:700; cursor:pointer;">Akzeptieren</button>
+    <button id="cookieDecline" style="flex:1; min-width:120px; background:transparent; color:#F5EDE6; border:1px solid rgba(220,207,184,0.25); border-radius:10px; padding:10px 16px; font-size:13px; font-weight:700; cursor:pointer;">Ablehnen</button>
+  </div>
+</div>
+<script>
+(function() {
+  var KEY = 'pawsafe_analytics_consent';
+  var banner = document.getElementById('cookieConsent');
+  var isEn = (localStorage.getItem('pawsafe_lang') || (navigator.language || '').slice(0,2)) === 'en';
+  if (isEn) {
+    document.getElementById('cookieConsentText').innerHTML = 'We\'d like to use Google Analytics to understand how PawSafe.eu is used. This is optional — see our <a href="datenschutz.html" style="color:#6BAA7A;">Privacy Policy</a> for details.';
+    document.getElementById('cookieAccept').textContent = 'Accept';
+    document.getElementById('cookieDecline').textContent = 'Decline';
+  }
+  var consent = localStorage.getItem(KEY);
+  if (consent === 'granted') {
+    pawsafeLoadAnalytics();
+  } else if (consent !== 'denied') {
+    banner.style.display = 'block';
+  }
+  document.getElementById('cookieAccept').addEventListener('click', function() {
+    localStorage.setItem(KEY, 'granted');
+    banner.style.display = 'none';
+    pawsafeLoadAnalytics();
+  });
+  document.getElementById('cookieDecline').addEventListener('click', function() {
+    localStorage.setItem(KEY, 'denied');
+    banner.style.display = 'none';
+  });
+})();
 </script>
 
 </body>
