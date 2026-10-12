@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – PawSafe</title>
+  <link rel="alternate" hreflang="de" href="https://pawsafe.eu/datenschutz.html" />
+  <link rel="alternate" hreflang="en" href="https://pawsafe.eu/privacy.html" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #161B18;
+      --card: #1D2521;
+      --text: #ECF0E8;
+      --text2: #8FAA88;
+      --text3: #5A7060;
+      --accent: #556B5D;
+      --border: #3A4E41;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text);
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+    nav {
+      background: rgba(22,27,24,0.97);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    nav a { text-decoration: none; }
+    nav img { width: 48px; height: 48px; border-radius: 10px; object-fit: contain; }
+    nav .nav-title { font-size: 18px; font-weight: 800; color: var(--text); }
+    .back-link {
+      font-size: 13px; font-weight: 600; color: var(--text2);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .back-link:hover { color: var(--text); }
+
+    main {
+      flex: 1;
+      max-width: 720px; width: 100%;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    h1 { font-size: 32px; font-weight: 900; margin-bottom: 8px; }
+    .subtitle { font-size: 14px; color: var(--text3); margin-bottom: 40px; }
+
+    .imp-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+    }
+    .imp-section h2 {
+      font-size: 13px; font-weight: 800; letter-spacing: 0.8px;
+      text-transform: uppercase; color: var(--text2);
+      margin-bottom: 14px;
+    }
+    .imp-section h3 {
+      font-size: 15px; font-weight: 700; color: var(--text);
+      margin: 18px 0 8px;
+    }
+    .imp-section h3:first-child { margin-top: 0; }
+    .imp-section p, .imp-section a, .imp-section li {
+      font-size: 15px; line-height: 1.7; color: var(--text);
+    }
+    .imp-section a { color: var(--accent); text-decoration: none; }
+    .imp-section a:hover { text-decoration: underline; }
+    .imp-section p + p { margin-top: 8px; }
+    .imp-section ul { padding-left: 20px; margin-top: 6px; }
+    .imp-section li { margin-bottom: 4px; }
+    .note {
+      font-size: 13px; color: var(--text3); line-height: 1.6;
+    }
+    .note + .note { margin-top: 10px; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--text2); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; }
+    td, td a { color: var(--text); font-size: 14px; line-height: 1.5; }
+
+    footer {
+      text-align: center; padding: 24px;
+      font-size: 12px; color: var(--text3);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+<!-- Google Analytics — script itself only loads after Cookie-Consent, see banner at page end -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', { analytics_storage: 'denied' });
+  function pawsafeLoadAnalytics() {
+    if (window.pawsafeAnalyticsLoaded) return;
+    window.pawsafeAnalyticsLoaded = true;
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XRFFYDERE8';
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', 'G-XRFFYDERE8');
+  }
+</script>
+</head>
+<body>
+  <nav>
+    <a href="/" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <img src="logo.png" alt="PawSafe Logo" />
+      <span class="nav-title">PawSafe</span>
+    </a>
+    <a href="datenschutz.html" class="back-link" style="margin-left:auto;" hreflang="de" lang="de">Deutsch</a>
+    <a href="impressum.html" class="back-link" hreflang="de">Legal notice (German)</a>
+    <a href="/" class="back-link">← Back to home</a>
+  </nav>
+
+  <main>
+    <h1>Privacy Policy</h1>
+    <p class="subtitle">As of: 12 October 2026 · Applies to the PawSafe app and the website pawsafe.eu</p>
+
+    <div class="imp-section">
+      <p class="note">This is a translation of the German privacy policy (<a href="datenschutz.html" hreflang="de" lang="de">Datenschutzerklärung</a>). If the two versions differ, the German version prevails.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>1. Controller</h2>
+      <p>Thomas Kretzer</p>
+      <p>c/o POSTFLEX PFX-056-548</p>
+      <p>Emsdettener Straße 10</p>
+      <p>48268 Greven, Germany</p>
+      <p>Email: <a href="mailto:info@pawsafe.eu">info@pawsafe.eu</a></p>
+    </div>
+
+    <div class="imp-section">
+      <h2>2. General principles</h2>
+      <p>For the <strong>app</strong>, the aim is to create as little data as possible: there is no user account and no cloud storage. All app data (dog profiles, walk history, settings) stays exclusively on your device. As the provider, we have no access to this data — it never reaches us.</p>
+      <p>For some app functions (weather data, map display, place search) the app sends location data in real time to specialised third-party providers — details in section 4.</p>
+      <p>In addition, the <strong>website</strong> pawsafe.eu runs a simple server for the waiting list (section 3a) and, with your consent, uses Google Analytics to measure reach (section 3b).</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>3. Data stored locally on your device (app)</h2>
+      <p>This data does not leave your device and is not transmitted to us or to third parties:</p>
+      <table>
+        <tr><th>Data category</th><th>Contains</th><th>Purpose</th></tr>
+        <tr><td>Dog profiles</td><td>Name, breed, date of birth, coat type, overweight indication, heart condition indication, free-text health notes, optionally a photo</td><td>Individual safety assessment per dog (e.g. heat risk)</td></tr>
+        <tr><td>Walk history</td><td>Date, duration, activity type, assigned dogs, notes, and for GPS tracking the complete route</td><td>History view, statistics</td></tr>
+        <tr><td>Saved places</td><td>Name, coordinates</td><td>Quick access to favourite places</td></tr>
+        <tr><td>Settings</td><td>Language, display options, etc.</td><td>App personalisation</td></tr>
+      </table>
+      <p class="note" style="margin-top:14px;">Legal basis, where applicable at all: because this data is never processed by us, no processing by the controller takes place in the data-protection sense. You can delete all of this data at any time in the app under Settings → Reset, or by uninstalling the app. Storing it locally on your device is strictly necessary for the service you requested (Section 25(2) no. 2 TDDDG). Dog profiles concern animals; please do not enter information about people in free-text fields (e.g. notes).</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>3a. Waiting list on pawsafe.eu</h2>
+      <p>If you sign up for the waiting list via the form on pawsafe.eu, we process your email address in order to inform you about the app launch. The request runs through our server (api.pawsafe.eu) and is delivered to us by email and additionally stored in a backup file on the server.</p>
+      <ul>
+        <li><strong>Purpose:</strong> Notification about the availability of the app</li>
+        <li><strong>Legal basis:</strong> Consent (Art. 6(1)(a) GDPR) by actively submitting the form</li>
+        <li><strong>Recipients:</strong> Only us, no disclosure to third parties</li>
+        <li><strong>Storage location:</strong> Server in Germany (IONOS), no transfer to third countries</li>
+        <li><strong>Storage period:</strong> Until the app launch or until you object to the storage</li>
+        <li><strong>Withdrawal:</strong> At any time, informally, by email to info@pawsafe.eu</li>
+      </ul>
+    </div>
+
+    <div class="imp-section">
+      <h2>3b. Reach measurement on pawsafe.eu (Google Analytics)</h2>
+      <p>The website pawsafe.eu uses Google Analytics, a web analytics service of Google Ireland Limited, to understand how the site is used (e.g. page views, clicks on "Get early access"). The script loads <strong>only if you actively consent in the cookie banner on your first visit</strong> — without consent no Google script is loaded and no analytics cookie is set.</p>
+      <ul>
+        <li><strong>Purpose:</strong> Reach measurement, improving the website</li>
+        <li><strong>Data collected:</strong> including shortened IP address, device type, browser, pages visited, click events</li>
+        <li><strong>Legal basis:</strong> Consent (Art. 6(1)(a) GDPR, Section 25(1) TDDDG)</li>
+        <li><strong>Recipients:</strong> Google Ireland Limited; transfer to the USA is possible (Google is certified under the EU-US Data Privacy Framework)</li>
+        <li><strong>Withdrawal:</strong> Via the cookie banner (it appears again if you delete your local browser data for this site) or via the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google opt-out add-on</a></li>
+        <li><strong>More information:</strong> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a></li>
+      </ul>
+    </div>
+
+    <div class="imp-section">
+      <h2>4. Location data and disclosure to third-party providers (app)</h2>
+      <p>PawSafe asks for your device's location permission in order to provide ground temperature, safety assessment and map functions. During active walk tracking, background location permission is additionally required so that the route keeps being recorded while the screen is locked. The recorded route stays on your device and is not transmitted to third parties.</p>
+      <p>For the following functions, coordinates (latitude/longitude) and in part search input are transmitted live to external services — without being linked to a name, account or other user identifier. The app triggers the transmission as soon as you use the respective function (e.g. when opening the home screen, the forecast or the map). For technical reasons the providers also receive your IP address.</p>
+      <table>
+        <tr><th>Provider</th><th>Purpose</th><th>What is sent</th><th>Privacy information</th></tr>
+        <tr><td>Open-Meteo (Switzerland)</td><td>Weather and temperature data</td><td>Coordinates</td><td><a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">open-meteo.com/en/terms</a></td></tr>
+        <tr><td>OpenStreetMap Foundation (Nominatim, United Kingdom)</td><td>Address / place search, names of places</td><td>Coordinates, search input</td><td><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">osmfoundation.org</a></td></tr>
+        <tr><td>OpenStreetMap data via Overpass (FOSSGIS e.&nbsp;V. · Private.coffee)</td><td>Water points, veterinarians, dog parks and cool places (forest, park) nearby</td><td>Coordinates</td><td><a href="https://wiki.openstreetmap.org/wiki/Overpass_API" target="_blank" rel="noopener">wiki.openstreetmap.org</a></td></tr>
+        <tr><td>Google Maps (Android)</td><td>Map display</td><td>Coordinates, map section</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com</a></td></tr>
+        <tr><td>Apple Maps (iOS)</td><td>Map display</td><td>Map section</td><td><a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener">apple.com/legal/privacy</a></td></tr>
+      </table>
+      <ul style="margin-top:14px;">
+        <li><strong>Open-Meteo:</strong> The operator is based in Switzerland; the European Commission has adopted an adequacy decision for Switzerland (Art. 45 GDPR). According to Open-Meteo, log data that may contain coordinates is deleted after 90 days and not shared with third parties.</li>
+        <li><strong>Nominatim:</strong> Operated by the OpenStreetMap Foundation in the United Kingdom; an adequacy decision of the European Commission applies (extended until 27 December 2031). Search terms are transmitted while you type (search suggestions).</li>
+        <li><strong>Overpass:</strong> The query runs via the server of FOSSGIS e.&nbsp;V. (overpass-api.de) and, if that is unavailable, via a fallback server of the non-profit association Private.coffee (overpass.private.coffee). <!-- TODO check before publishing: seat/hosting country of Private.coffee and its privacy notice (not stated in the OSM wiki); the server only has an IPv6 address. --></li>
+        <li><strong>Google Maps (Android):</strong> Google Ireland Limited; transfer to the USA is possible (Google is certified under the EU-US Data Privacy Framework).</li>
+        <li><strong>Apple Maps (iOS):</strong> Apple Distribution International Limited (Ireland) or Apple Inc. (USA). <!-- TODO check before publishing: responsible Apple entity and transfer basis for MapKit requests. --></li>
+      </ul>
+      <p><strong>Legal basis:</strong> Transmitting your location is based on your consent, which you give by granting location permission in the operating system (Art. 6(1)(a) GDPR). You can withdraw it at any time in the device settings; the lawfulness of processing carried out until then remains unaffected. We transmit search input so that the search you triggered works (Art. 6(1)(b) GDPR).</p>
+      <p><strong>No obligation to provide data:</strong> Location permission and search input are voluntary. Without location permission, functions that need your current location cannot be used or only to a limited extent.</p>
+      <p><strong>No automated decision-making:</strong> The safety assessments (traffic light, recommendations) are calculated on your device from weather data and your dog details. No decision within the meaning of Art. 22 GDPR takes place.</p>
+      <p class="note" style="margin-top:14px;">The providers named process the requests they receive under their own responsibility (including the technically necessary processing of the IP address when the connection is established). For enquiries about this processing, please contact the respective provider directly.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>5. Permissions requested by the app</h2>
+      <table>
+        <tr><th>Permission</th><th>Why</th></tr>
+        <tr><td>Location (while using the app)</td><td>Ground temperature and safety calculation for your current location</td></tr>
+        <tr><td>Location (always / in the background)</td><td>Only for active walk tracking while the screen is locked — optional, the app also works without it</td></tr>
+        <tr><td>Photos / media library</td><td>Choosing a profile photo for your dog — the photo stays stored locally and is never uploaded</td></tr>
+        <tr><td>Notifications</td><td>Showing the status of a running walk (time and distance) on the lock screen</td></tr>
+      </table>
+      <p class="note" style="margin-top:14px;">Each permission can be withdrawn separately in the device settings; the affected functions are then limited or unavailable.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>6. Push notifications</h2>
+      <p>Notifications are generated locally on your device (currently only the status of a running walk). There is no push server of our own and no transmission of notification content to us or to third parties. Should we offer further notifications in the future, we will update this policy beforehand.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>7. No tracking, no advertising, no analytics in the app</h2>
+      <p>The PawSafe app contains no analytics SDK, no crash reporting, no advertising networks and no tracking mechanisms. There is no profiling and no sale of data. (The reach measurement described in section 3b applies to the website only, not to the app.)</p>
+      <p class="note" style="margin-top:10px;">App updates: When the app starts, it checks via the update service Expo Application Services (EAS Update) of Expo (650 Industries, Inc., USA) whether a new version of the app software is available. For technical reasons this transmits your IP address, the app version, platform / operating system and a randomly generated identifier for the update request — no location data and no content of your app data. The legal basis is our legitimate interest in a secure and up-to-date app (Art. 6(1)(f) GDPR); you can object to this under Art. 21 GDPR. According to its own statements, Expo is certified under the EU-US Data Privacy Framework.</p>
+      <p class="note" style="margin-top:10px;">The app is downloaded and installed via the Apple App Store or Google Play. Apple and Google process data under their own responsibility in that context; we have no influence on this.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>8. Storage period</h2>
+      <p>Local data (dogs, walks, places, settings) remains stored until you delete it yourself or uninstall the app. For location data transmitted live to third-party providers, their respective retention periods apply — see the privacy information linked in section 4.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>9. Your rights</h2>
+      <p>Because we, as the controller, have no access to your app data, most data-subject rights (access, rectification, erasure) can be exercised directly in the app — the data is on your device. For your waiting-list email (section 3a), the website analytics (section 3b) and for any other requests you can reach us at <a href="mailto:info@pawsafe.eu">info@pawsafe.eu</a> — there you can request access, rectification, erasure or withdrawal of your consent.</p>
+      <p>Under the GDPR you have in particular the following rights: access (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction of processing (Art. 18), data portability (Art. 20), objection to processing based on legitimate interests (Art. 21), and withdrawal of consent given, with effect for the future (Art. 7(3)). You may also lodge a complaint with a data-protection supervisory authority (Art. 77 GDPR), e.g. the authority responsible for us, the State Commissioner for Data Protection and Freedom of Information of North Rhine-Westphalia (<a href="https://www.ldi.nrw.de" target="_blank" rel="noopener">ldi.nrw.de</a>).</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>10. Minors</h2>
+      <p>PawSafe is not specifically aimed at children and does not collect age-specific information.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>11. Changes to this policy</h2>
+      <p>This policy may be updated as the app develops. The current version is available via the app and pawsafe.eu.</p>
+    </div>
+  </main>
+
+  <footer>© 2026 PawSafe · <a href="/" style="color:inherit;text-decoration:none;">pawsafe.eu</a></footer>
+
+  <!-- ── Cookie Consent (gates Google Analytics, TDDDG §25 / GDPR Art. 6) ── -->
+  <div id="cookieConsent" style="display:none; position:fixed; left:16px; right:16px; bottom:16px; z-index:9999; max-width:640px; margin:0 auto; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px 20px; box-shadow:0 8px 30px rgba(0,0,0,0.35);">
+    <p style="font-size:13px; line-height:1.6; color:var(--text); margin:0 0 14px;">
+      We would like to use Google Analytics to understand how PawSafe.eu is used. This is voluntary — see section 3b above for details.
+    </p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <button id="cookieAccept" style="flex:1; min-width:120px; background:var(--accent); color:#fff; border:none; border-radius:10px; padding:10px 16px; font-size:13px; font-weight:700; cursor:pointer;">Accept</button>
+      <button id="cookieDecline" style="flex:1; min-width:120px; background:transparent; color:var(--text); border:1px solid var(--border); border-radius:10px; padding:10px 16px; font-size:13px; font-weight:700; cursor:pointer;">Decline</button>
+    </div>
+  </div>
+  <script>
+  (function() {
+    var KEY = 'pawsafe_analytics_consent';
+    var banner = document.getElementById('cookieConsent');
+    var consent = localStorage.getItem(KEY);
+    if (consent === 'granted') { pawsafeLoadAnalytics(); }
+    else if (consent !== 'denied') { banner.style.display = 'block'; }
+    document.getElementById('cookieAccept').addEventListener('click', function() {
+      localStorage.setItem(KEY, 'granted'); banner.style.display = 'none'; pawsafeLoadAnalytics();
+    });
+    document.getElementById('cookieDecline').addEventListener('click', function() {
+      localStorage.setItem(KEY, 'denied'); banner.style.display = 'none';
+    });
+  })();
+  </script>
+</body>
+</html>
